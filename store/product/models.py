@@ -1,5 +1,5 @@
 from django.db import models
-
+from customer.models import Customer
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -31,3 +31,8 @@ class Offer(models.Model):
     offer_code = models.CharField(max_length=100)
     is_available = models.BooleanField()
 
+
+class Comment(models.Model):
+    profile_id = models.OneToOneField(Customer , on_delete=models.CASCADE)
+    comment = models.CharField(max_length=200)
+    product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
