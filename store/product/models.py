@@ -7,3 +7,8 @@ class Product(models.Model):
     count_buying = models.PositiveIntegerField()
     status_available = models.BooleanField()
     quantity = models.PositiveIntegerField() 
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    
