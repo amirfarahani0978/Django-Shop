@@ -5,6 +5,11 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
 
 
+class ProductFeature(models.Model):
+    amount = models.PositiveIntegerField()
+    descript = models.CharField(max_length=200)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=40)
     image = models.ImageField()
@@ -15,6 +20,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category , on_delete=models.CASCADE)
     history_price = models.JSONField()
     rate = models.PositiveIntegerField()
+    product_feature = models.OneToOneField(ProductFeature, on_delete=models.CASCADE)
+
 
 class Offer(models.Model):
     expire_time = models.DateField()
@@ -23,3 +30,4 @@ class Offer(models.Model):
     percent = models.PositiveIntegerField()
     offer_code = models.CharField(max_length=100)
     is_available = models.BooleanField()
+
