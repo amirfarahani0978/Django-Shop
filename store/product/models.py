@@ -14,3 +14,5 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField() 
     category = models.ForeignKey(Category , on_delete=models.CASCADE)
 
+class Offer(models.Model):
+    pass
