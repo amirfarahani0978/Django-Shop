@@ -25,6 +25,7 @@ class Product(models.Model):
 
 class Offer(models.Model):
     expire_time = models.DateField()
+    start_time = models.DateField()
     min_price = models.PositiveIntegerField()
     max_price = models.PositiveIntegerField()
     percent = models.PositiveIntegerField()
