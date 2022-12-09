@@ -13,6 +13,7 @@ class ProductFeature(models.Model):
     def __str__(self) -> str:
         return self.amount
 
+# Create your models here.
 
 class Product(models.Model):
     name = models.CharField(max_length=40)
@@ -20,7 +21,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField()
     count_buying = models.PositiveIntegerField()
     status_available = models.BooleanField()
-    quantity = models.PositiveIntegerField() 
+    quantity = models.PositiveIntegerField()
     category = models.ForeignKey(Category , on_delete=models.CASCADE)
     history_price = models.JSONField()
     rate = models.PositiveIntegerField()
