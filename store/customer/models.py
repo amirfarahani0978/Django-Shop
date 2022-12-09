@@ -19,3 +19,5 @@ class Customer(models.Model):
 class Address(models.Model):
     address = models.CharField(max_length=200)
     customer_id = models.ForeignKey(Customer , on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.address
