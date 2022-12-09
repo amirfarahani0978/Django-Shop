@@ -14,3 +14,8 @@ class Customer(models.Model):
     user_id = models.OneToOneField(User , on_delete=models.CASCADE)
     def __str__(self):
         return self.firstname
+
+
+class Address(models.Model):
+    address = models.CharField(max_length=200)
+    customer_id = models.ForeignKey(Customer , on_delete=models.CASCADE)
