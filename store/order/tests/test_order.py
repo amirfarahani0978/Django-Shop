@@ -1,5 +1,5 @@
 from django.test import TestCase
-from order.models import Order, Order_item
+from order.models import Order, OrderItem
 
 
 class TestOrder(TestCase):
@@ -21,7 +21,7 @@ class TestOrder(TestCase):
 
 class TestOrderItem(TestCase):
     def setUp(self):
-        self.order_item = Order_item.objects.create(
+        self.order_item = OrderItem.objects.create(
             quantity=200,
         )
 
