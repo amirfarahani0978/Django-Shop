@@ -3,11 +3,15 @@ from customer.models import Customer
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    def __str__(self) -> str:
+        return self.name
 
 
 class ProductFeature(models.Model):
     amount = models.PositiveIntegerField()
     descript = models.CharField(max_length=200 , null=True)
+    def __str__(self) -> str:
+        return self.amount
 
 
 class Product(models.Model):
@@ -21,6 +25,8 @@ class Product(models.Model):
     history_price = models.JSONField()
     rate = models.PositiveIntegerField()
     product_feature = models.OneToOneField(ProductFeature, on_delete=models.CASCADE, null=True)
+    def __str__(self) -> str:
+        return f"{self.name} {self.price} {self.status_available}"
 
 
 class Offer(models.Model):
@@ -37,3 +43,5 @@ class Comment(models.Model):
     profile_id = models.OneToOneField(Customer , on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
     product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return f"{self.profile_id} {self.product_id}"
