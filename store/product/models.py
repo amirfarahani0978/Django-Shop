@@ -7,7 +7,7 @@ class Category(models.Model):
 
 class ProductFeature(models.Model):
     amount = models.PositiveIntegerField()
-    descript = models.CharField(max_length=200)
+    descript = models.CharField(max_length=200 , null=True)
 
 
 class Product(models.Model):
@@ -20,7 +20,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category , on_delete=models.CASCADE)
     history_price = models.JSONField()
     rate = models.PositiveIntegerField()
-    product_feature = models.OneToOneField(ProductFeature, on_delete=models.CASCADE)
+    product_feature = models.OneToOneField(ProductFeature, on_delete=models.CASCADE, null=True)
 
 
 class Offer(models.Model):
@@ -29,7 +29,7 @@ class Offer(models.Model):
     min_price = models.PositiveIntegerField()
     max_price = models.PositiveIntegerField()
     percent = models.PositiveIntegerField()
-    offer_code = models.CharField(max_length=100)
+    offer_code = models.CharField(max_length=100 , null=True)
     is_available = models.BooleanField()
 
 
