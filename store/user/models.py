@@ -1,6 +1,7 @@
 from django.db import models
 from product.models import Product
-class User(models.Model):
+from core.models import BaseModel
+class User(BaseModel):
     phone_number = models.IntegerField()
     email = models.EmailField()
     password = models.CharField(max_length=100)
@@ -8,7 +9,7 @@ class User(models.Model):
     is_admin = models.BooleanField()
 
 
-class Wishing(models.Model):
+class Wishing(BaseModel):
     user_id = models.OneToOneField(User , on_delete= models.CASCADE)
 
 

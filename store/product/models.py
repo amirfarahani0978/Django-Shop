@@ -1,13 +1,13 @@
 from django.db import models
 from customer.models import Customer
-
-class Category(models.Model):
+from core.models import BaseModel
+class Category(BaseModel):
     name = models.CharField(max_length=100)
     def __str__(self) -> str:
         return self.name
 
 
-class ProductFeature(models.Model):
+class ProductFeature(BaseModel):
     amount = models.PositiveIntegerField()
     descript = models.CharField(max_length=200 , null=True)
     def __str__(self) -> str:
@@ -15,7 +15,7 @@ class ProductFeature(models.Model):
 
 # Create your models here.
 
-class Product(models.Model):
+class Product(BaseModel):
     name = models.CharField(max_length=40)
     image = models.ImageField()
     price = models.PositiveIntegerField()
@@ -30,7 +30,7 @@ class Product(models.Model):
         return f"{self.name} {self.price} {self.status_available}"
 
 
-class Offer(models.Model):
+class Offer(BaseModel):
     expire_time = models.DateField()
     start_time = models.DateField()
     min_price = models.PositiveIntegerField()
@@ -40,7 +40,7 @@ class Offer(models.Model):
     is_available = models.BooleanField()
 
 
-class Comment(models.Model):
+class Comment(BaseModel):
     profile_id = models.OneToOneField(Customer , on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
     product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
