@@ -13,7 +13,7 @@ class Order(BaseModel):
         return f"{self.time} + {self.total_price}"
 
 
-class Order_item(BaseModel):
+class OrderItem(BaseModel):
     quantity = models.PositiveIntegerField()
     def __str__(self) -> str:
         return self.quantity
