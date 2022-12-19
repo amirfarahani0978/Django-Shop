@@ -1,6 +1,6 @@
 from django.db import models
-from product.models import Product
 from core.models import BaseModel
+from product.models import Product
 class User(BaseModel):
     phone_number = models.IntegerField()
     email = models.EmailField()
