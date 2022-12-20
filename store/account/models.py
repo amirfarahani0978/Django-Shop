@@ -11,15 +11,15 @@ class Account(AbstractBaseUser):
     lastname = models.CharField(max_length=50)
     birth_date = models.DateField(null=True)
     image = models.ImageField(upload_to='', null=True)
-    postal_code = models.IntegerField()
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICE)
+    postal_code = models.IntegerField(null=True)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICE , null=True)
     phone_number = models.CharField(max_length=11, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(max_length=255, unique=True , null=True)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     objects = AccountManager()
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['email' , 'firstname']
+    REQUIRED_FIELDS = ['firstname' , 'lastname']
 
     def __str__(self):
         return self.phone_number
