@@ -15,7 +15,7 @@ class Account(AbstractBaseUser):
     gender = models.CharField(max_length=6, choices=GENDER_CHOICE , null=True)
     phone_number = models.CharField(max_length=11, unique=True)
     email = models.EmailField(max_length=255, unique=True , null=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = AccountManager()
     USERNAME_FIELD = 'phone_number'
