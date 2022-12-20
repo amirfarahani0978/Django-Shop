@@ -1,5 +1,5 @@
 from django.db import models
-from customer.models import Customer
+from account.models import Account
 from core.models import BaseModel
 class Category(BaseModel):
     name = models.CharField(max_length=100)
@@ -41,7 +41,7 @@ class Offer(BaseModel):
 
 
 class Comment(BaseModel):
-    profile_id = models.OneToOneField(Customer , on_delete=models.CASCADE)
+    profile_id = models.OneToOneField(Account , on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
     product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
     def __str__(self) -> str:
