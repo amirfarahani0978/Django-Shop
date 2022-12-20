@@ -16,7 +16,7 @@ class UserAdmin(BaseUserAdmin):
          ),
     )
     add_fieldsets = (
-        (None, {'fields': ('phone_number', 'email', 'firstname''lastname', 'password1', 'password2')}),
+        (None, {'fields': ('phone_number', 'email', 'firstname','lastname', 'password1', 'password2')}),
     )
     search_fields = ('phone_number', 'lastname')
     ordering = ('phone_number', 'lastname')
