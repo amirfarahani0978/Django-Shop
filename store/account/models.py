@@ -19,7 +19,7 @@ class Account(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     objects = AccountManager()
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ['email' , 'firstname']
 
     def __str__(self):
         return self.phone_number
