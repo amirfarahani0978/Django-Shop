@@ -16,14 +16,14 @@
                 </li>
                 {% if request.account.is_authenticated %}
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register:register'%}">Profile</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'register:register'%}">Sign Up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register:register'%}">Sign in</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register:register'%}">Profile</a>
                 </li>
                 {% endif %}
                 <!-- <li class="nav-item">
