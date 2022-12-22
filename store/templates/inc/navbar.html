@@ -1,7 +1,8 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home:home'%}">
-            <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"
+        <a class="navbar-brand" href="{% url 'home:home' %}">
+            <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="30" height="24"
                 class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
