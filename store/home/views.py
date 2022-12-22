@@ -5,7 +5,7 @@ from product.models import Product
 
 class Home(View):
     def get(self, request):
-        product = Product.objects.filter(available=True)
+        product = Product.objects.filter(status_available=True)
         return render(request, 'base.html', {'product': product})
 
     def post(self, request):
