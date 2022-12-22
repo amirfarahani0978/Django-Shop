@@ -1,9 +1,11 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import render, redirect
 from django.contrib import admin
 from django.views import View
 from .forms import RegistrationForm
 from .models import Account
 from django.contrib import messages
+
+
 class RegisterView(View):
     form_class = RegistrationForm
 
@@ -16,7 +18,7 @@ class RegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             Account.objects.create(
-                username=cd['username'], email=cd['email'], password=cd['password'])
+                phone_number=cd['username'], firstname=cd['email'], lastname=cd['lastname'], password=cd['password'])
             messages.success(request, "your login successfully!!!")
             return redirect('home:home')
-        return render(request , 'home:home' , {'form': form})
+        return render(request, 'home:home', {'form': form})
