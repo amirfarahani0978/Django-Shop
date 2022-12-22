@@ -1,6 +1,7 @@
 from django.db import models
 from account.models import Account
 from core.models import BaseModel
+from django.urls import reverse
 
 
 class Category(BaseModel):
@@ -36,13 +37,16 @@ class Product(BaseModel):
         Category, on_delete=models.CASCADE, related_name='products')
     rate = models.PositiveIntegerField()
     product_feature = models.OneToOneField(
-        ProductFeature, on_delete=models.CASCADE, null=True , blank=True)
+        ProductFeature, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         ordering = ('name',)
 
     def __str__(self) -> str:
         return f"{self.name} {self.price} {self.status_available}"
+
+    def get_absolute_url(self):
+        return reverse('home:detail' ,args=[self.slug,])
 
 
 class Offer(BaseModel):
