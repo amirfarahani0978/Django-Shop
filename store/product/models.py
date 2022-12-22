@@ -26,7 +26,7 @@ class ProductFeature(BaseModel):
 
 class Product(BaseModel):
     name = models.CharField(max_length=40)
-    image = models.ImageField(upload_to='product/')
+    image = models.ImageField(upload_to='product/%Y/%m/%d/')
     price = models.PositiveIntegerField()
     count_buying = models.PositiveIntegerField()
     status_available = models.BooleanField()
