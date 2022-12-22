@@ -17,7 +17,7 @@ class RegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             Account.objects.create(
-                phone_number=cd['username'], firstname=cd['email'], lastname=cd['lastname'], password=cd['password'])
+                phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
             messages.success(request, "your login successfully!!!")
             return redirect('home:home')
         return render(request, 'home:home', {'form': form})
