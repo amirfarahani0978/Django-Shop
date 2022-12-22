@@ -8,7 +8,6 @@ from django.contrib import messages
 
 class RegisterView(View):
     form_class = RegistrationForm
-
     def get(self, request):
         form = self.form_class
         return render(request, 'account/register.html', {'form': form})
