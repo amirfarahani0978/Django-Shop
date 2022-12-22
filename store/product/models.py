@@ -36,7 +36,7 @@ class Product(BaseModel):
         Category, on_delete=models.CASCADE, related_name='products')
     rate = models.PositiveIntegerField()
     product_feature = models.OneToOneField(
-        ProductFeature, on_delete=models.CASCADE, null=True)
+        ProductFeature, on_delete=models.CASCADE, null=True , blank=True)
 
     class Meta:
         ordering = ('name',)
