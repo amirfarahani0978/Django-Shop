@@ -6,7 +6,8 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 class AccountCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Confirm Password', widget=forms.PasswordInput)
 
     class Meta:
         model = Account
@@ -33,3 +34,10 @@ class AccountChangeForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ('phone_number', 'lastname', 'firstname', 'last_login')
+
+
+class RegistrationForm(forms.Form):
+    phone_number = forms.CharField(max_length=11)
+    firstname = forms.CharField(max_length='100', label='First name')
+    lastname = forms.CharField(max_length='100', label='Last name')
+    password = forms.CharField(widget=forms.PasswordInput)
