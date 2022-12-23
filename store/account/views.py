@@ -20,9 +20,9 @@ class RegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            Account.objects.create(
+            Account.objects.create_user(
                 phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
-            messages.success(request, "your login successfully!!!")
+            messages.success(request, "your Signup successfully!!!")
             return redirect('home:home')
         return render(request, 'home:home', {'form': form})
 

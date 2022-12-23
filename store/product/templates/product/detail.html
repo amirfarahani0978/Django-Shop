@@ -2,8 +2,12 @@
 
 {% block content %}
 <div class="row">
-    <h2 class="col-6 p-4"> NAME : {{product.name}}</h2>
-    <img src="{{product.image.url}}" class="col-6" style="border-radius: 10%; height: 500px;">
-    <h3 class="p-4">Price : {{product.price}}</h3>
+    <div class="container col-lg-6 p-4">
+        <h2 class="p-4 col-lg-6 " style="margin-bottom: 0px; display: inline; padding-bottom: 0px !important;"> NAME : {{product.name}}</h2>
+        <h3 class="p-4 col-lg-12" >Price : {{product.price}}</h3>
+        <h3 class="p-4 col-lg-12">Rate : {{product.rate}}</h3>
+        <h3 class="p-4 col-lg-12">Count_buy : {{product.count_buying}}</h3>
+    </div>
+    <img src="{{product.image.url}}" class="col-lg-6" style="border-radius: 10%; height: 400px;">
 </div>
 {% endblock %}
