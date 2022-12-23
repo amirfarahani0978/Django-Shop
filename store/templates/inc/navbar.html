@@ -16,7 +16,7 @@
                 </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register:register'%}">Profile</a>
+                    <a class="nav-link" href="{% url 'register:profile' request.user.id %}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register:logout'%}">Logout</a>

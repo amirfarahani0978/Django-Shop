@@ -45,3 +45,7 @@ class RegistrationForm(forms.Form):
 class LoginForm(forms.Form):
     phone_number = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput)
+class ProfileForm(forms.Form):
+    class Meta:
+        model = Account
+        fields = '__all__'
