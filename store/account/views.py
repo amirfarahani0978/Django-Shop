@@ -4,6 +4,7 @@ from django.views import View
 from .forms import RegistrationForm
 from .models import Account
 from django.contrib import messages
+from django.contrib.auth import logout as auth_logout
 
 
 class RegisterView(View):
@@ -21,3 +22,10 @@ class RegisterView(View):
             messages.success(request, "your login successfully!!!")
             return redirect('home:home')
         return render(request, 'home:home', {'form': form})
+
+
+class LogOutView(View):
+    def get(self, request):
+        auth_logout(request)
+        messages.info(request , 'logout successfully !!!' , 'info')
+        return redirect('home:home')

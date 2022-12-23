@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls', namespace='home')),
     path('register/', include('account.urls', namespace='register')),
-] 
-# + static(settings.MEDIA_URL , document_root = settings.MEDIA.ROOT)
+    path('product/' , include('product.urls' , namespace='product')),
+]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)

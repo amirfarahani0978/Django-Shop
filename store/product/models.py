@@ -3,7 +3,6 @@ from account.models import Account
 from core.models import BaseModel
 from django.urls import reverse
 
-
 class Category(BaseModel):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=200, unique=True)
@@ -46,7 +45,7 @@ class Product(BaseModel):
         return f"{self.name} {self.price} {self.status_available}"
 
     def get_absolute_url(self):
-        return reverse('home:detail' ,args=[self.slug,])
+        return reverse('product:details' ,args=[self.slug,])
 
 
 class Offer(BaseModel):
