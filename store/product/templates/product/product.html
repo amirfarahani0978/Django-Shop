@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<h1 class="p-3">Available products</h1>
+
 <div class="row m-2">
     {% for product in products %}
-
     <div class="col-md-3">
         <div class="card mb-3">
             <img src="{{product.image.url}}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
-                <p class="card-text">{{product.price}}</p>
-                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Detail</a>
+                <p class="card-text">{{product.price}} Hezar toman</p>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-warning">Detail</a>
             </div>
         </div>
     </div>

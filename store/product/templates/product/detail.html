@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>{{product.name}}</h2>    
-<small>{{product.price}}</small>
-<img src="{{product.image.url}}">
+<div class="row">
+    <h2 class="col-6 p-4"> NAME : {{product.name}}</h2>
+    <img src="{{product.image.url}}" class="col-6" style="border-radius: 10%; height: 500px;">
+    <h3 class="p-4">Price : {{product.price}}</h3>
+</div>
 {% endblock %}
