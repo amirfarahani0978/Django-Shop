@@ -49,3 +49,6 @@ class ProfileForm(forms.Form):
     class Meta:
         model = Account
         fields = '__all__'
+
+class VerfiyCodeForm(forms.Form):
+    code = forms.IntegerField()
