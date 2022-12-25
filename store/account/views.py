@@ -64,16 +64,16 @@ class VerifyCodeView(View):
     form_class = VerfiyCodeForm
     def get(self , request):
         form = self.form_class
-        return render(request, 'account/verifycode.html' , {'form':form})
+        return render(request, 'account/verify_otpcode.html' , {'form':form})
     def post(self , request):
         user_session = request.session['user_registration_info']
         code_instance = OtpCode.objects.get(phone_number = user_session['phone_number'])
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            if code_instance == cd['code']:
+            if code_instance.code == cd['code']:
                 Account.objects.create_user(
-                phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
+                phone_number=user_session['phone_number'], firstname=user_session['firstname'], lastname=user_session['lastname'], password=user_session['password'])
                 code_instance.delete()
                 messages.success(request , 'you registered!!!' , 'success')
                 return redirect('home:home')
