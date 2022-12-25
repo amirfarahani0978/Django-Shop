@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import admin
 from django.views import View
-from .forms import RegistrationForm, LoginForm, ProfileForm
+from .forms import RegistrationForm, LoginForm, ProfileForm , VerfiyCodeForm
 from django.contrib.auth import authenticate
 from .models import Account , OtpCode
 from django.contrib import messages
@@ -33,7 +33,7 @@ class RegisterView(View):
             #     phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
             messages.success(request, 'we sent you a code' , 'success')
             return redirect('register:verifycode')
-        return render(request, 'register:register', {'form': form})
+        return render(request , 'account/register.html',{'form':form})
 
 
 class LoginView(View):
@@ -58,8 +58,29 @@ class LoginView(View):
                 messages.error(
                     request, "Phone number or password is not correct ?", 'danger')
                 return redirect('home:home')
+                
 
-
+class VerifyCodeView(View):
+    form_class = VerfiyCodeForm
+    def get(self , request):
+        form = self.form_class
+        return render(request, 'account/verifycode.html' , {'form':form})
+    def post(self , request):
+        user_session = request.session['user_registration_info']
+        code_instance = OtpCode.objects.get(phone_number = user_session['phone_number'])
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if code_instance == cd['code']:
+                Account.objects.create_user(
+                phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
+                code_instance.delete()
+                messages.success(request , 'you registered!!!' , 'success')
+                return redirect('home:home')
+            else:
+                messages.error(request , 'your code is wrong' , 'danger')
+                return redirect('register:verifycode')
+        return redirect('home:home')
 class LogOutView(View):
     def get(self, request):
         auth_logout(request)
@@ -83,3 +104,5 @@ class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
         return render(request , 'account/profile.html' , {'user':user})
+
+
