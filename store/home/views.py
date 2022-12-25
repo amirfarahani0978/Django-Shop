@@ -8,7 +8,7 @@ class Home(View):
         products = Product.objects.filter(status_available=True)
         return render(request, 'product/product.html', {'products': products})
 
-    def post(self, request):
-        return render(request, 'base.html')
+    # def post(self, request):
+    #     return render(request, 'base.html')
 
 
