@@ -11,10 +11,10 @@ from django.contrib.auth import logout as auth_logout
 
 class RegisterView(View):
     form_class = RegistrationForm
-
+    template_name = 'account/register.html'
     def get(self, request):
         form = self.form_class
-        return render(request, 'account/register.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)

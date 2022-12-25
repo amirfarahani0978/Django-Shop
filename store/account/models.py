@@ -55,4 +55,4 @@ class Wishing_item(BaseModel):
 class OtpCode(BaseModel):
     phone_number = models.CharField(max_length=11, unique=True)
     code = models.PositiveSmallIntegerField()
-    create = models.TimeField()
+    create = models.DateTimeField(auto_now=True)
