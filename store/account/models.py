@@ -12,14 +12,14 @@ class Account(AbstractBaseUser):
     birth_date = models.DateField(null=True)
     image = models.ImageField(upload_to='', null=True)
     postal_code = models.IntegerField(null=True)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICE , null=True)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICE, null=True)
     phone_number = models.CharField(max_length=11, unique=True)
-    email = models.EmailField(max_length=255, unique=True , null=True)
+    email = models.EmailField(max_length=255, unique=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = AccountManager()
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['firstname' , 'lastname']
+    REQUIRED_FIELDS = ['firstname', 'lastname']
 
     def __str__(self):
         return self.phone_number
@@ -50,3 +50,9 @@ class Wishing(BaseModel):
 class Wishing_item(BaseModel):
     # product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
     wishing = models.ForeignKey(Wishing, on_delete=models.CASCADE)
+
+
+class OtpCode(BaseModel):
+    phone_number = models.CharField(max_length=11, unique=True)
+    code = models.PositiveSmallIntegerField()
+    create = models.TimeField()
