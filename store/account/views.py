@@ -7,7 +7,7 @@ from .models import Account , OtpCode
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-from utiles import send_otp_code
+from utils import send_otp_code
 import random
 class RegisterView(View):
     form_class = RegistrationForm
