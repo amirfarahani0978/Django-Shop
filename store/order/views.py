@@ -10,4 +10,5 @@ class CartView(View):
 
 
 class CartAddView(View):
+    def post(self, request , product_id)
     pass
