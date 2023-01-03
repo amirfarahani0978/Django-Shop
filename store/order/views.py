@@ -10,7 +10,7 @@ class CartView(View):
 
 class CartAddView(View):
     def post(self, request , product_id):
-        cart = Cart()
+        cart = Cart(request)
         product = get_list_or_404(Product , id=product_id)
         form = CartAddForm(request.POST)
         if form.is_valid():
