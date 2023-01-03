@@ -17,3 +17,7 @@ class CartAddView(View):
         if form.is_valid():
             cart.add(product , form.cleaned_data['quantity'])
         return redirect('order:cart')
+
+
+class RemoveCardView(View):
+    pass
