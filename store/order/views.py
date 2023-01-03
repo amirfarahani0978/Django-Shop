@@ -5,7 +5,8 @@ from product.models import Product
 from .forms import CartAddForm
 class CartView(View):
     def get(self, request):
-        return render(request, 'order/cart.html')
+        cart = Cart(request)
+        return render(request, 'order/cart.html' , {'cart':cart})
 
 
 class CartAddView(View):
