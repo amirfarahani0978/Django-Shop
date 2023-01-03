@@ -14,7 +14,8 @@ class Category(BaseModel):
 
     def __str__(self) -> str:
         return self.name
-
+    def get_absolute_url(self):
+        return reverse('home:category_filter')
 
 class ProductFeature(BaseModel):
     amount = models.PositiveIntegerField()
