@@ -1,4 +1,4 @@
-from django.shortcuts import render ,get_list_or_404 , redirect
+from django.shortcuts import render,get_object_or_404, redirect
 from django.views import View
 from .cart import Cart
 from product.models import Product
@@ -11,8 +11,8 @@ class CartView(View):
 class CartAddView(View):
     def post(self, request , product_id):
         cart = Cart(request)
-        product = get_list_or_404(Product , id=product_id)
+        product = get_object_or_404(Product , id=product_id)
         form = CartAddForm(request.POST)
         if form.is_valid():
             cart.add(product , form.cleaned_data['quantity'])
-        return redirect('prodcut:details')
+        return redirect('order:cart')
