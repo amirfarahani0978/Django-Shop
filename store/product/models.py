@@ -4,7 +4,7 @@ from core.models import BaseModel
 from django.urls import reverse
 
 class Category(BaseModel):
-    sub_category = models.ForeignKey('self', on_delete=models.CASCADE , related_name='sub_category' , null=True , blank=True)
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE , related_name='subcategory' , null=True , blank=True)
     is_sub = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=200, unique=True)

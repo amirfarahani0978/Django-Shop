@@ -7,4 +7,4 @@ admin.site.register(ProductFeature)
 admin.site.register(Offer)
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    raw_id_fields = ('category')
+    raw_id_fields = ('category',)
