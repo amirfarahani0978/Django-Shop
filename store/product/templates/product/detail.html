@@ -9,7 +9,7 @@
         <h3 class="p-4 col-lg-12">Count_buy : {{product.count_buying}}</h3>
     </div>
     <img src="{{product.image.url}}" class="col-lg-6" style="border-radius: 10%; height: 400px;">
-    <form action="" method="post">
+    <form action="{% url 'order/addcart' product.id %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="add to cart">
