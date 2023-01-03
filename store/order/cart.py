@@ -23,7 +23,7 @@ class Cart:
             yield item
 
     def __len__(self):
-        return sum(item['quatity'] for item in self.cart.values())
+        return sum(item['quantity'] for item in self.cart.values())
 
     def add(self, product, quantity):
         product_id = str(product.id)
