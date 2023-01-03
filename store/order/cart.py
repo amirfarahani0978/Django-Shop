@@ -18,7 +18,7 @@ class Cart:
             cart[str(product.id)]['product'] = product
 
         for item in cart.values():
-            item['total_price'] = int(product['price']) * product['quantity']
+            item['total_price'] = int(item['price']) * item['quantity']
             yield item
             
     def add(self, product, quantity):
