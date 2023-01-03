@@ -45,7 +45,7 @@ class Product(BaseModel):
         ordering = ('name',)
 
     def __str__(self) -> str:
-        return f"{self.name} {self.price} {self.status_available}"
+        return self.name
 
     def get_absolute_url(self):
         return reverse('product:details' ,args=[self.slug,])
