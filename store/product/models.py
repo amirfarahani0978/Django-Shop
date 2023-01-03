@@ -35,8 +35,8 @@ class Product(BaseModel):
     count_buying = models.PositiveIntegerField()
     status_available = models.BooleanField()
     quantity = models.PositiveIntegerField()
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='products')
+    category = models.ManyToManyField(
+        Category, related_name='products')
     rate = models.PositiveIntegerField()
     product_feature = models.OneToOneField(
         ProductFeature, on_delete=models.CASCADE, null=True, blank=True)
