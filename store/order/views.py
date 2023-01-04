@@ -43,4 +43,4 @@ class CreateOrderView(LoginRequiredMixin,View):
         order = Order.objects.create(user = request.user)
         for item in cart:
             OrderItem.objects.create(order = order , product = item['product'] ,price = item['price'] , quantity = item['quantity'])
-        return redirect('order:detail_order')
+        return redirect('order:detail_order' , order.id)
