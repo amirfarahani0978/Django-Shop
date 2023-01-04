@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,12 +44,13 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'account.apps.AccountConfig',
     'home.apps.HomeConfig',
-    
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -70,6 +72,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'order.context_processors.cart',
+                'django.template.context_processors.request',
+                # "django.template.context_processors.i18n",
             ],
         },
     },
@@ -77,7 +81,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
-
+# USE_I18N = True
+# LOCALE_PATHS = [str(BASE_DIR / "locale")]
+# LANGUAGES = (
+#     ('en-us', 'English (US)'),
+#     ('fa', 'فارسی'),
+# )
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -125,9 +134,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+    BASE_DIR / 'static',
 
+
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -135,4 +146,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL='account.Account'
+AUTH_USER_MODEL = 'account.Account'

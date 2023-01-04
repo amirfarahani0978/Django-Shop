@@ -18,7 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('grappelli/', include('grappelli.urls')), # grappelli URLS
+    path('admin/', admin.site.urls), # admin site
     path('', include('home.urls', namespace='home')),
     path('register/', include('account.urls', namespace='register')),
     path('product/' , include('product.urls' , namespace='product')),
