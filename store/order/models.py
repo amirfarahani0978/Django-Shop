@@ -1,7 +1,7 @@
 from django.db import models
 from product.models import Offer
 from core.models import BaseModel 
-
+from product.models import Product
 
 class Order(BaseModel):
     state = models.CharField(max_length=100)
@@ -14,6 +14,12 @@ class Order(BaseModel):
 
 
 class OrderItem(BaseModel):
-    quantity = models.PositiveIntegerField()
+    order = models.ForeignKey(Order , on_delete=models.CASCADE , related_name='items')
+    product = models.ForeignKey(Product , on_delete=models.CASCADE)
+    price = models.IntegerField()
+    quantity = models.IntegerField(default=1)
     def __str__(self) -> str:
         return self.quantity
+
+    def get_cost(self):
+        return self.price*self.quantity
