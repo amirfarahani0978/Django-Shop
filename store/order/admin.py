@@ -11,4 +11,4 @@ class OrderItemAdmin(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'updated',)
     list_filter = ('paid',)
-    inlines = (OrderItemAdmin)
+    inlines = (OrderItemAdmin,)
