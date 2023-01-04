@@ -31,16 +31,18 @@ class RemoveCardView(View):
         return redirect('order:cart')
 
 
-class DetailOrderView(LoginRequiredMixin,View):
+class DetailOrderView(LoginRequiredMixin, View):
     def get(self, request, order_id):
         order = get_object_or_404(Order, id=order_id)
         return render(request, 'order/order.html', {'order': order})
 
 
-class CreateOrderView(LoginRequiredMixin,View):
-    def get(self ,request):
+class CreateOrderView(LoginRequiredMixin, View):
+    def get(self, request):
         cart = Cart(request)
-        order = Order.objects.create(user = request.user)
+        order = Order.objects.create(user=request.user)
         for item in cart:
-            OrderItem.objects.create(order = order , product = item['product'] ,price = item['price'] , quantity = item['quantity'])
-        return redirect('order:detail_order' , order.id)
+            OrderItem.objects.create(
+                order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
+        cart.clear()
+        return redirect('order:detail_order', order.id)
