@@ -6,7 +6,7 @@ from account.models import Account
 
 class Order(BaseModel):
     user = models.ForeignKey(Account , on_delete=models.CASCADE , related_name='orders')
-    state = models.CharField(max_length=100)
+    state = models.CharField(max_length=100 , default=None)
     paid = models.BooleanField(default=False)
     description = models.CharField(max_length=100, null=True)
     created = models.DateTimeField(auto_created=True)
