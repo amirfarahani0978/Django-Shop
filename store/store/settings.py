@@ -27,12 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# "admin_interface",
+#     "colorfield",
 # Application definition
 
 INSTALLED_APPS = [
-    "admin_interface",
-    "colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

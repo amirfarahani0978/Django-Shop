@@ -5,6 +5,7 @@ admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(ProductFeature)
 admin.site.register(Offer)
+#admin.site.register(Product)
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    raw_id_fields = ('category',)
+    search_fields =('category',)
