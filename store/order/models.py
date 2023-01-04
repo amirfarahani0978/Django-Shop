@@ -9,7 +9,7 @@ class Order(BaseModel):
     state = models.CharField(max_length=100)
     paid = models.BooleanField(default=False)
     description = models.CharField(max_length=100, null=True)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_created=True)
     offer_id = models.OneToOneField(
         Offer, on_delete=models.CASCADE, related_name='order', null=True)
 
