@@ -25,3 +25,9 @@ class ProfileUpdateView(APIView):
             srz_data.save()
             return Response(srz_data.data, status=status.HTTP_202_ACCEPTED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class ProfileView(APIView):
+    def get(self, request , pk):
+        account = Account.objects.get(id = pk)
+        ser_data = ProfileSerializer(instance=account).data
+        return Response(ser_data, status=status.HTTP_200_OK)
