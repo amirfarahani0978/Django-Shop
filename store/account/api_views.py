@@ -16,15 +16,12 @@ class Register(APIView):
 class ProfileUpdateView(APIView):
     permission_classes =[IsOwnerOrReadOnly,]
     def put(self, request, pk):
-        print('8'*100)
         account = Account.objects.get(id=pk)
         self.check_object_permissions(request ,account)
         srz_data = ProfileSerializer(
             instance=account, data=request.POST, partial=True)
-        print('8'*100)
         print(srz_data)
         if srz_data.is_valid():
             srz_data.save()
-            print('8'*100)
             return Response(srz_data.data, status=status.HTTP_202_ACCEPTED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
