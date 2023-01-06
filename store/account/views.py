@@ -61,11 +61,11 @@ class LogOutView(View):
 class UpdateAccount(View):
     form_class = ProfileForm
     def get(self , request):
-        form = self.form_class
+        account = Account.objects.get(id=request.user.id)
+        form = self.form_class(instance=account)
         return render(request , 'account/editprofile.html' , {'form':form})
     def post(self, request):
-        account = Account.objects.get(id=request.user.id)
-        form = self.form_class(request.POST, instance = account)
+        form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request , 'This user update', 'success')

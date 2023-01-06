@@ -48,4 +48,4 @@ class LoginForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = '__all__'
+        exclude = ('password','last_login','is_admin','is_active','phone_number',)
