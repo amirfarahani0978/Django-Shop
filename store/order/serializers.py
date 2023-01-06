@@ -4,13 +4,13 @@ from .models import Order, OrderItem
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    order_item = serializers.SerializerMethodField()
+    orderitem = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
         fields = "__all__"
-    def get_answer(self,obj):
-        result = obj.answer.all()
+    def get_orderitem(self,obj):
+        result = obj.orderitem.all()
         return OrderItemsSerializer(instance=result , many =True).data
 
 class OrderItemsSerializer(serializers.ModelSerializer):
