@@ -19,16 +19,11 @@ class OrderApiView(APIView):
     def get(self, request):
         order_ser = OrderSerializer(instance=Order.objects.all(), many=True)
         order_items_ser = OrderItemsSerializer(
-            instance=OrderItem.objects.all(), many=True)
-        content = {
-            "orders": order_ser.data,
-            "order_item": order_items_ser.data,
-            "user": request.user.id
-        }
-        return Response(content)
+        instance=OrderItem.objects.all(), many=True)
+        return Response()
 
     def post(self, request):
-        account = Account.objects.get(user=request.user)
+        account = Account.objects.get(id=request.user.id) 
         order = Order.objects.create(user=account)
         srz_data = ItemSerializer(data=request.data, many=True)
         if srz_data.is_valid():
