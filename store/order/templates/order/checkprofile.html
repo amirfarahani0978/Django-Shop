@@ -5,6 +5,7 @@
 <p>firstname : {{user.firstname}}</p>
 <p>lastname : {{user.lastname}}</p>
 <p>lastname : {{user.postal_code}}</p>
-<input type="submit" value="Edit profile">
+<a href="{% url 'order:create_order'%}" class="btn btn-primary">OK</a>
+<a href="{% url 'register:update'%}" class="btn btn-primary">Edit profile</a>
 </div>
 {% endblock %}
