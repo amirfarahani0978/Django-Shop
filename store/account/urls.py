@@ -1,5 +1,5 @@
-from django.urls import path
-from .views import RegisterView ,LogOutView , LoginView , ProfileView
+from django.urls import path , include
+from .views import RegisterView ,LogOutView , LoginView , ProfileView , UpdateAccount
 
 
 app_name = 'register'
