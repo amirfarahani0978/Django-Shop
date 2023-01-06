@@ -70,6 +70,7 @@ class UpdateAccount(View):
             form.save()
             messages.success(request , 'This user update', 'success')
             return redirect('home:home')
+        return render(request , 'account/editprofile.html' , {'form':form})
 class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
