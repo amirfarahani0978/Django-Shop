@@ -18,4 +18,4 @@ class OrderItemsSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=256)
     price = serializers.IntegerField()
-    count = serializers.IntegerField()
+    quantity = serializers.IntegerField()
