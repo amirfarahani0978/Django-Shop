@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path , include
 from . import views
 
 app_name = 'order'
@@ -8,5 +8,6 @@ urlpatterns=[
     path('cart/' , views.CartView.as_view() , name='cart'),
     path('cart/add/<int:product_id>/' , views.CartAddView.as_view() ,name='addcart'),
     path('cart/remove/<int:product_id>/' , views.RemoveCardView.as_view() , name='removecart'),
-    path('checkprofile/' , views.CheckProfileCart.as_view() , name='check')
+    path('checkprofile/' , views.CheckProfileCart.as_view() , name='check'),
+    path('api/', include('order.api_urls', namespace='api_order')),
 ]
