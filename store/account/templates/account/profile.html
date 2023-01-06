@@ -1,9 +1,14 @@
 {%extends 'base.html' %}
 {% block content %}
 <div class="contaioner m-3" style="justify-content: center;background-color: aquamarine; ">
-<p>Phone Number : {{user.phone_number}}</p>
-<p>firstname : {{user.firstname}}</p>
-<p>lastname : {{user.lastname}}</p>
-<input type="submit" value="Edit profile">
+    <h1>Profile</h1>
+    <p>Phone Number : {{user.phone_number}}</p>
+    <p>firstname : {{user.firstname}}</p>
+    <p>lastname : {{user.lastname}}</p>
+    <p>postal_code : {{user.postal_code}}</p>
+    <p>birth_date : {{user.birth_date}}</p>
+    <p>Email : {{user.email}}</p>
+    <p>is_active : {{user.is_active}}</p>
+    <a href="{% url 'register:update'%}" class="btn btn-primary">Edit profile</a>
 </div>
 {% endblock %}
