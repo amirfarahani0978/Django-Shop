@@ -5,6 +5,7 @@ from product.models import Product
 from .forms import CartAddForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order, OrderItem
+from account.models import Account
 
 
 class CartView(View):
@@ -49,6 +50,7 @@ class CreateOrderView(LoginRequiredMixin, View):
 
 class CheckProfileCart(LoginRequiredMixin,View):
     def get(self,request):
-        if request.user['postal_code'] :
-            return render(request , 'order/checkprofile.html')
-        return False
+        user = Account.objects.get(id = request.user.id)
+        if request.user.postal_code is not None:
+            return render(request , 'order/checkprofile.html' ,{'user':user})
+        return render(request, 'order/error.html')
