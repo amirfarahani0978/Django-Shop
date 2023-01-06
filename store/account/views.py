@@ -60,17 +60,18 @@ class LogOutView(View):
 
 class UpdateAccount(View):
     form_class = ProfileForm
+    template_name = 'account/editprofile.html'
     def get(self , request):
         account = Account.objects.get(id=request.user.id)
         form = self.form_class(instance=account)
-        return render(request , 'account/editprofile.html' , {'form':form})
+        return render(request , self.template_name , {'form':form})
     def post(self, request):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST  ,instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request , 'This user update', 'success')
             return redirect('home:home')
-        return render(request , 'account/editprofile.html' , {'form':form})
+        return render(request , self.template_name , {'form':form})
 class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
