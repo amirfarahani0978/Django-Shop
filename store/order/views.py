@@ -46,3 +46,9 @@ class CreateOrderView(LoginRequiredMixin, View):
                 order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
         cart.clear()
         return redirect('order:detail_order', order.id)
+
+class CheckProfileCart(LoginRequiredMixin,View):
+    def get(self,request):
+        if request.user['postal_code'] :
+            return render(request , 'order/checkprofile.html')
+        return False
