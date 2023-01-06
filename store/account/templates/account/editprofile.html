@@ -3,7 +3,7 @@
 <div class="container" style="justify-content: center;">
     <form class="form-control" action="" method="post" style="background-color: aquamarine;" novalidate>
         {% csrf_token %}
-        {{forms.as_p}}
+        {{form.as_p}}
         <input type="submit" value="send">
     </form>
 </div>
