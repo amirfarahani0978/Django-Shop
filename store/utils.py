@@ -3,7 +3,7 @@ from django.conf import settings
 
 def send_otp_code(phone_number, code):
     try:
-       kavenegar_instance = KavenegarAPI(settings.API_CODE)
+        kavenegar_instance = KavenegarAPI(settings.API_CODE)
         params = {
             'sender': '',
             'receptor': phone_number, 
