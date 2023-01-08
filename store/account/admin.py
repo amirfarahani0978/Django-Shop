@@ -2,9 +2,11 @@ from django.contrib import admin
 from .forms import AccountChangeForm, AccountCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
-from .models import Account
+from .models import Account , OtpCode
 
-
+@admin.register(OtpCode)
+class OtpCodeAdmin(admin.ModelAdmin):
+    list_display = ('phone_number' , 'code' , 'created')
 class UserAdmin(BaseUserAdmin):
     form = AccountChangeForm
     add_form = AccountCreationForm

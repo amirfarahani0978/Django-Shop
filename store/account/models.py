@@ -19,7 +19,7 @@ class Account(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     objects = AccountManager()
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['firstname' , 'lastname']
+    REQUIRED_FIELDS = ['firstname', 'lastname']
 
     def __str__(self):
         return self.phone_number
@@ -50,3 +50,11 @@ class Wishing(BaseModel):
 class Wishing_item(BaseModel):
     # product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
     wishing = models.ForeignKey(Wishing, on_delete=models.CASCADE)
+
+
+class OtpCode(BaseModel):
+    phone_number = models.CharField(max_length=11, unique=True)
+    code = models.PositiveSmallIntegerField()
+    create = models.DateTimeField(auto_now=True)
+    def __str__(self) -> str:
+        return f'{self.phone_number} - {self.code} - {self.create}'

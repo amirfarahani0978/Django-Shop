@@ -1,30 +1,39 @@
 from django.shortcuts import render, redirect
 from django.contrib import admin
 from django.views import View
-from .forms import RegistrationForm, LoginForm, ProfileForm
+from .forms import RegistrationForm, LoginForm, ProfileForm , VerfiyCodeForm
 from django.contrib.auth import authenticate
-from .models import Account
+from .models import Account , OtpCode
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-
-
+from utils import send_otp_code
+import random
 class RegisterView(View):
     form_class = RegistrationForm
-
+    template_name = 'account/register.html'
     def get(self, request):
         form = self.form_class
-        return render(request, 'account/register.html', {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            Account.objects.create_user(
-                phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
-            messages.success(request, "your Signup successfully!!!")
-            return redirect('home:home')
-        return render(request, 'home:home', {'form': form})
+            rand = random.randint(1000 , 9999)
+            send_otp_code(cd['phone_number'] , rand)
+            OtpCode.objects.create(phone_number = cd['phone_number'] , code = rand)
+            request.session['user_registration_info'] = {
+                'phone_number' : cd['phone_number'] , 
+                'firstname': cd['firstname'],
+                'lastname':cd['lastname'],
+                'password':cd['password']
+            }
+            # Account.objects.create_user(
+            #     phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
+            messages.success(request, 'we sent you a code' , 'success')
+            return redirect('register:verifycode')
+        return render(request , 'account/register.html',{'form':form})
 
 
 class LoginView(View):
@@ -49,8 +58,29 @@ class LoginView(View):
                 messages.error(
                     request, "Phone number or password is not correct ?", 'danger')
                 return redirect('home:home')
+                
 
-
+class VerifyCodeView(View):
+    form_class = VerfiyCodeForm
+    def get(self , request):
+        form = self.form_class
+        return render(request, 'account/verify_otpcode.html' , {'form':form})
+    def post(self , request):
+        user_session = request.session['user_registration_info']
+        code_instance = OtpCode.objects.get(phone_number = user_session['phone_number'])
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            if code_instance.code == cd['code']:
+                Account.objects.create_user(
+                phone_number=user_session['phone_number'], firstname=user_session['firstname'], lastname=user_session['lastname'], password=user_session['password'])
+                code_instance.delete()
+                messages.success(request , 'you registered!!!' , 'success')
+                return redirect('home:home')
+            else:
+                messages.error(request , 'your code is wrong' , 'danger')
+                return redirect('register:verifycode')
+        return redirect('home:home')
 class LogOutView(View):
     def get(self, request):
         auth_logout(request)
@@ -76,4 +106,3 @@ class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
         return render(request , 'account/profile.html' , {'user':user})
-    
