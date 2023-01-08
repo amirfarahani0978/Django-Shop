@@ -32,3 +32,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model= Account
         fields = '__all__'
+
+
+class VerifySerializers(serializers.ModelSerializer):
+    pass

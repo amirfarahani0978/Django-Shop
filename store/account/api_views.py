@@ -30,8 +30,9 @@ class Register(APIView):
 
 class VerifyCodeView(APIView):
     def post(self, request):
-        pass
-
+        user_session = request.session['user_registration_info']
+        code_instance = OtpCode.objects.get(phone_number = user_session['phone_number'])
+        ser_data = VerifySerializers(data=request.POST)
 
 class ProfileUpdateView(APIView):
     permission_classes = [IsOwnerOrReadOnly,]
