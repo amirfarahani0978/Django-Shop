@@ -4,7 +4,9 @@
     <div class="card bg-dark">
         <div class="row text-white">
             <div class="col-4">
+                {% if user.image %}
                 <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px;" class="m-5 border">
+                {% endif %}
             </div>
             <div class="col-8 mt-5">
                 <p>Phone Number : {{user.phone_number}}</p>
