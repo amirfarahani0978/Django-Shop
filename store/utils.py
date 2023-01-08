@@ -9,7 +9,7 @@ def send_otp_code(phone_number, code):
             'receptor': phone_number, 
             'message': f'{code}کد تایید شما ',
         }
-        response = settings.API_CODE.sms_send(params)
+        response = kavenegar_instance.sms_send(params)
         print(response)
     except APIException as e:
         print(e)
