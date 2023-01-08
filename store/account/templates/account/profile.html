@@ -1,17 +1,22 @@
 {%extends 'base.html' %}
 {% block content %}
-<div class="contaioner m-3" style="justify-content: center;background-color: aquamarine; ">
-    <h1>Profile</h1>
-    <div class="col-4">
-        <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px;" class="m-5 border">
+<div class="container text-center">
+    <div class="card bg-dark">
+        <div class="row text-white">
+            <div class="col-4">
+                <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px;" class="m-5 border">
+            </div>
+            <div class="col-8 mt-5">
+                <p>Phone Number : {{user.phone_number}}</p>
+                <p>firstname : {{user.firstname}}</p>
+                <p>lastname : {{user.lastname}}</p>
+                <p>postal_code : {{user.postal_code}}</p>
+                <p>birth_date : {{user.birth_date}}</p>
+                <p>Email : {{user.email}}</p>
+                <p>is_active : {{user.is_active}}</p>
+                <a href="{% url 'register:update' %}" class="btn btn-info w-25">Edit</a>
+            </div>
+        </div>
     </div>
-    <p>Phone Number : {{user.phone_number}}</p>
-    <p>firstname : {{user.firstname}}</p>
-    <p>lastname : {{user.lastname}}</p>
-    <p>postal_code : {{user.postal_code}}</p>
-    <p>birth_date : {{user.birth_date}}</p>
-    <p>Email : {{user.email}}</p>
-    <p>is_active : {{user.is_active}}</p>
-    <a href="{% url 'register:update'%}" class="btn btn-primary">Edit profile</a>
 </div>
 {% endblock %}
