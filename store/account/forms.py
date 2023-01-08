@@ -33,7 +33,7 @@ class AccountChangeForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('phone_number', 'lastname', 'firstname', 'last_login')
+        fields = ('phone_number', 'lastname', 'firstname', 'last_login',)
 
 
 class RegistrationForm(forms.Form):
@@ -45,10 +45,11 @@ class RegistrationForm(forms.Form):
 class LoginForm(forms.Form):
     phone_number = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput)
-class ProfileForm(forms.Form):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = '__all__'
+        exclude = ('password','last_login','is_admin','is_active','phone_number','image','birth_date',)
 
 class VerfiyCodeForm(forms.Form):
     code = forms.IntegerField()
+

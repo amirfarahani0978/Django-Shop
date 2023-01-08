@@ -4,6 +4,8 @@ from core.models import BaseModel
 from django.urls import reverse
 
 class Category(BaseModel):
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE , related_name='subcategory' , null=True , blank=True)
+    is_sub = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=200, unique=True)
 
@@ -14,7 +16,8 @@ class Category(BaseModel):
 
     def __str__(self) -> str:
         return self.name
-
+    def get_absolute_url(self):
+        return reverse('home:category_filter' , args=[self.slug,])
 
 class ProductFeature(BaseModel):
     amount = models.PositiveIntegerField()
@@ -32,8 +35,8 @@ class Product(BaseModel):
     count_buying = models.PositiveIntegerField()
     status_available = models.BooleanField()
     quantity = models.PositiveIntegerField()
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='products')
+    category = models.ManyToManyField(
+        Category, related_name='products')
     rate = models.PositiveIntegerField()
     product_feature = models.OneToOneField(
         ProductFeature, on_delete=models.CASCADE, null=True, blank=True)
@@ -42,7 +45,7 @@ class Product(BaseModel):
         ordering = ('name',)
 
     def __str__(self) -> str:
-        return f"{self.name} {self.price} {self.status_available}"
+        return self.name
 
     def get_absolute_url(self):
         return reverse('product:details' ,args=[self.slug,])

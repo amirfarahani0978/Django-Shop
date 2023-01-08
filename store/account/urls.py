@@ -1,5 +1,6 @@
-from django.urls import path
-from .views import RegisterView ,LogOutView , LoginView , ProfileView ,VerifyCodeView
+
+from django.urls import path , include
+from .views import RegisterView ,LogOutView , LoginView , ProfileView , UpdateAccount ,VerifyCodeView
 
 
 app_name = 'register'
@@ -8,5 +9,8 @@ urlpatterns = [
     path('logout/' , LogOutView.as_view() , name='logout'),
     path('login/' , LoginView.as_view() , name='login'),
     path('profile/<int:user_id>/' , ProfileView.as_view() , name='profile'),
+    path('updateprofile/' , UpdateAccount.as_view() , name='update'),
+    path('profile/<int:user_id>/' , ProfileView.as_view() , name='profile'),
+    path('api/', include('account.api_urls' , namespace='api')),
     path('verifycode/' , VerifyCodeView.as_view() , name='verifycode')
 ]

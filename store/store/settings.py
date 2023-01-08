@@ -27,12 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# "admin_interface",
+#     "colorfield",
 # Application definition
 
 INSTALLED_APPS = [
-    "admin_interface",
-    "colorfield",
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'account.apps.AccountConfig',
     'home.apps.HomeConfig',
-    
+
+    'rest_framework',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'order.context_processors.cart',
+                'django.template.context_processors.request',
+                # "django.template.context_processors.i18n",
             ],
         },
     },
@@ -77,7 +83,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'store.wsgi.application'
 
-
+# USE_I18N = True
+# LOCALE_PATHS = [str(BASE_DIR / "locale")]
+# LANGUAGES = (
+#     ('en-us', 'English (US)'),
+#     ('fa', 'فارسی'),
+# )
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -87,7 +98,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+   ),
+   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser'
+   ),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
