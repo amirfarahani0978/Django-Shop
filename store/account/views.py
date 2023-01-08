@@ -96,7 +96,7 @@ class UpdateAccount(View):
         form = self.form_class(instance=account)
         return render(request , self.template_name , {'form':form})
     def post(self, request):
-        form = self.form_class(request.POST  ,instance=request.user)
+        form = self.form_class(request.POST ,files=request.FILES  ,instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request , 'This user update', 'success')
