@@ -1,11 +1,14 @@
 {%extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="container text-center">
     <div class="card bg-dark">
         <div class="row text-white">
             <div class="col-4">
                 {% if user.image %}
-                <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px;" class="m-5 border">
+                    <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px;" class="m-5 border">
+                {% else %}
+                    <img src="{% static 'images/default.png' %}" alt="" style="width:300px; height:300px;" class="m-5 border circle">
                 {% endif %}
             </div>
             <div class="col-8 mt-5">
