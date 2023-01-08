@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
 <div class="container text-center">
-    <div class="card bg-dark">
+    <div class="card bg-dark" style="background: linear-gradient(0.25turn,#78c0e2 ,45%,#ec92db);">
         <div class="row text-white">
             <div class="col-4">
                 {% if user.image %}
-                    <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px;" class="m-5 border">
+                    <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px; " class="m-5 border">
                 {% else %}
                     <img src="{% static 'images/default.png' %}" alt="" style="width:300px; height:300px;" class="m-5 border circle">
                 {% endif %}
