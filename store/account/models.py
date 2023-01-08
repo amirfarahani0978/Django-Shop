@@ -10,7 +10,7 @@ class Account(AbstractBaseUser):
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=50)
     birth_date = models.DateField(null=True , blank=True)
-    image = models.ImageField(upload_to='profile/%Y/%m/%d/', null=True , blank=True)
+    image = models.ImageField(upload_to='profile/%Y/%m/%d/')
     postal_code = models.IntegerField(null=True , blank=True)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICE , null=True , blank=True)
     phone_number = models.CharField(max_length=11, unique=True)
