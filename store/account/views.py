@@ -9,6 +9,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from utils import send_otp_code
 import random
+from order.models import Order
 class RegisterView(View):
     form_class = RegistrationForm
     template_name = 'account/register.html'
@@ -105,4 +106,5 @@ class UpdateAccount(View):
 class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
-        return render(request , 'account/profile.html' , {'user':user})
+        order_history = Order.objects.get(user = request.user)
+        return render(request , 'account/profile.html' , {'user':user , 'order':order_history})
