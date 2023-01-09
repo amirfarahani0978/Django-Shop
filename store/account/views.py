@@ -106,6 +106,6 @@ class UpdateAccount(View):
 class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
-        # order_history = Order.objects.filter(user = request.user)
-        # print(order_history.phone_number)
-        return render(request , 'account/profile.html' , {'user':user})
+        order = Order.objects.filter(user = request.user)
+        print(order)
+        return render(request , 'account/profile.html' , {'user':user ,'order':order})
