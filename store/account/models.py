@@ -1,20 +1,22 @@
 from django.db import models
 from core.models import BaseModel
-from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import AccountManager
 # Create your models here.
 
 
-class Account(AbstractBaseUser , PermissionsMixin):
+class Account(AbstractBaseUser, PermissionsMixin):
     GENDER_CHOICE = (('male', 'MALE'), ('female', 'FEMALE'))
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=50)
-    birth_date = models.DateField(null=True , blank=True)
-    image = models.ImageField(upload_to='profile/%Y/%m/%d/',blank=True)
-    postal_code = models.IntegerField(null=True , blank=True)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICE , null=True , blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    image = models.ImageField(upload_to='profile/%Y/%m/%d/', blank=True)
+    postal_code = models.IntegerField(null=True, blank=True)
+    gender = models.CharField(
+        max_length=6, choices=GENDER_CHOICE, null=True, blank=True)
     phone_number = models.CharField(max_length=11, unique=True)
-    email = models.EmailField(max_length=255, unique=True , null=True , blank=True)
+    email = models.EmailField(
+        max_length=255, unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = AccountManager()
@@ -23,12 +25,6 @@ class Account(AbstractBaseUser , PermissionsMixin):
 
     def __str__(self):
         return self.phone_number
-
-    def has_perm(self, perm, obj=None):
-        return True
-
-    def has_module_perms(self, app_label):
-        return True
 
     @property
     def is_staff(self):
@@ -56,5 +52,6 @@ class OtpCode(BaseModel):
     phone_number = models.CharField(max_length=11, unique=True)
     code = models.PositiveSmallIntegerField()
     create = models.DateTimeField(auto_now=True)
+
     def __str__(self) -> str:
         return f'{self.phone_number} - {self.code} - {self.create}'
