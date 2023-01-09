@@ -21,7 +21,7 @@
                 <a href="{% url 'register:update' %}" class="btn btn-info w-25">Edit</a>
                 <br>
                 {% if order %}
-                <h6>History_buy : </h6>
+                <h3>History_buy : </h3>
                 {% for order in order%}
                 Date:{{order.created}} Total Price : {{order.get_total_price }}
                 <br>
