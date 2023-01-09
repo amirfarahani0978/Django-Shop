@@ -3,7 +3,7 @@ from product.models import Offer
 from core.models import BaseModel
 from product.models import Product
 from account.models import Account
-
+from django.core.validators import MinValueValidator , MaxValueValidator
 
 class Order(BaseModel):
     user = models.ForeignKey(
@@ -39,7 +39,7 @@ class OrderItem(BaseModel):
 class Offer(BaseModel):
     expire_time = models.DateTimeField()
     start_time = models.DateTimeField()
-    percent = models.PositiveIntegerField()
+    percent = models.PositiveIntegerField(validators=[MinValueValidator(0),MaxValueValidator(90)])
     offer_code = models.CharField(max_length=100, unique=True)
     is_available = models.BooleanField(default=False)
 
