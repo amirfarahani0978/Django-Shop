@@ -22,7 +22,9 @@
             </div>
             {% if order.user %}
             <div>
+                {% for order in order%}
                 {{order.user}}
+                {% endfor %}
             </div>
             {% endif %}
         </div>
