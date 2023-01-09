@@ -37,8 +37,8 @@ class OrderItem(BaseModel):
 
 
 class Offer(BaseModel):
-    expire_time = models.DateField()
-    start_time = models.DateField()
+    expire_time = models.DateTimeField()
+    start_time = models.DateTimeField()
     percent = models.PositiveIntegerField()
     offer_code = models.CharField(max_length=100, unique=True)
     is_available = models.BooleanField(default=False)
