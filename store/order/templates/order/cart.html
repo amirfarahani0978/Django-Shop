@@ -30,5 +30,9 @@
             </tr>
         </tbody>
     </table>
-    <a href="{% url 'order:check' %}" class="btn btn-primary">Order</a>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'order:check' %}" class="btn btn-primary">Order</a>
+    {% else %}
+        <a href="{% url 'register:login' %}" class="btn btn-primary">Login</a>
+    {% endif %}
 {% endblock %}
