@@ -57,3 +57,6 @@ class CheckProfileCart(LoginRequiredMixin, View):
         if request.user.postal_code is not None:
             return render(request, 'order/checkprofile.html', {'user': user})
         return render(request, 'order/error.html')
+
+class OfferApplyView(LoginRequiredMixin , View):
+    pass

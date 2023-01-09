@@ -9,6 +9,6 @@ urlpatterns=[
     path('cart/add/<int:product_id>/' , views.CartAddView.as_view() ,name='addcart'),
     path('cart/remove/<int:product_id>/' , views.RemoveCardView.as_view() , name='removecart'),
     path('checkprofile/' , views.CheckProfileCart.as_view() , name='check'),
-    path('offer/<int:order_id>' ,views.OfferApply.as_view() , name='offer'),
+    path('offer/<int:order_id>' ,views.OfferApplyView.as_view() , name='offer'),
     path('api/', include('order.api_urls', namespace='api_order')),
 ]
