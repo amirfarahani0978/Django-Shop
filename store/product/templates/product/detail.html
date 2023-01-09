@@ -1,18 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="container col-lg-6 p-4">
-        <h2 class="p-4 col-lg-6 " style="margin-bottom: 0px; display: inline; padding-bottom: 0px !important;"> NAME : {{product.name}}</h2>
-        <h3 class="p-4 col-lg-12" >Price : {{product.price}}</h3>
-        <h3 class="p-4 col-lg-12">Rate : {{product.rate}}</h3>
-        <h3 class="p-4 col-lg-12">Count_buy : {{product.count_buying}}</h3>
+<div class="container text-center">
+    <div class="card bg-dark" style="background: linear-gradient(0.25turn,#78c0e2 ,45%,#ec92db);">
+        <div class="row text-white">
+            <div class="container col-6 p-4">
+                <h2 class="p-4 col-lg-6 " style="margin-bottom: 0px; display: inline; padding-bottom: 0px !important;">
+                    NAME : {{product.name}}</h2>
+                <h3 class="p-4 col-lg-12">Price : {{product.price}}</h3>
+                <h3 class="p-4 col-lg-12">Rate : {{product.rate}}</h3>
+                <h3 class="p-4 col-lg-12">Count_buy : {{product.count_buying}}</h3>
+                <form action="{% url 'order:addcart' product.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="add to cart">
+                </form>
+            </div>
+            <div class="col-6 mt-5">
+                <img src="{{product.image.url}}" class="col-6 p-3 mb-3" style="border-radius: 10%; height: 400px;">
+            </div>
+        </div>
     </div>
-    <img src="{{product.image.url}}" class="col-lg-6" style="border-radius: 10%; height: 400px;">
-    <form action="{% url 'order:addcart' product.id %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="add to cart">
-    </form>
 </div>
 {% endblock %}
