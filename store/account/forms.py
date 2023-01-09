@@ -48,7 +48,7 @@ class LoginForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Account
-        exclude = ('password','last_login','is_admin','is_active','phone_number',)
+        exclude = ('password','last_login','is_admin','is_active','is_superuser','phone_number','groups','user_permissions',)
 
 class VerfiyCodeForm(forms.Form):
     code = forms.IntegerField()
