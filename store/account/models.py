@@ -1,11 +1,11 @@
 from django.db import models
 from core.models import BaseModel
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin
 from .managers import AccountManager
 # Create your models here.
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser , PermissionsMixin):
     GENDER_CHOICE = (('male', 'MALE'), ('female', 'FEMALE'))
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=50)
