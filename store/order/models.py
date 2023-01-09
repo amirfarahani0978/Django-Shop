@@ -4,9 +4,11 @@ from core.models import BaseModel
 from product.models import Product
 from account.models import Account
 
+
 class Order(BaseModel):
-    user = models.ForeignKey(Account , on_delete=models.CASCADE , related_name='orders')
-    state = models.CharField(max_length=100 , null=True)
+    user = models.ForeignKey(
+        Account, on_delete=models.CASCADE, related_name='orders')
+    state = models.CharField(max_length=100, null=True)
     paid = models.BooleanField(default=False)
     description = models.CharField(max_length=100, null=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -32,3 +34,14 @@ class OrderItem(BaseModel):
 
     def get_cost(self):
         return self.price*self.quantity
+
+
+class Offer(BaseModel):
+    expire_time = models.DateField()
+    start_time = models.DateField()
+    percent = models.PositiveIntegerField()
+    offer_code = models.CharField(max_length=100, unique=True)
+    is_available = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.offer_code

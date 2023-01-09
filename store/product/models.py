@@ -3,8 +3,10 @@ from account.models import Account
 from core.models import BaseModel
 from django.urls import reverse
 
+
 class Category(BaseModel):
-    sub_category = models.ForeignKey('self', on_delete=models.CASCADE , related_name='subcategory' , null=True , blank=True)
+    sub_category = models.ForeignKey(
+        'self', on_delete=models.CASCADE, related_name='subcategory', null=True, blank=True)
     is_sub = models.BooleanField(default=False)
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=200, unique=True)
@@ -16,8 +18,10 @@ class Category(BaseModel):
 
     def __str__(self) -> str:
         return self.name
+
     def get_absolute_url(self):
-        return reverse('home:category_filter' , args=[self.slug,])
+        return reverse('home:category_filter', args=[self.slug,])
+
 
 class ProductFeature(BaseModel):
     amount = models.PositiveIntegerField()
@@ -48,17 +52,7 @@ class Product(BaseModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('product:details' ,args=[self.slug,])
-
-
-class Offer(BaseModel):
-    expire_time = models.DateField()
-    start_time = models.DateField()
-    min_price = models.PositiveIntegerField()
-    max_price = models.PositiveIntegerField()
-    percent = models.PositiveIntegerField()
-    offer_code = models.CharField(max_length=100, null=True)
-    is_available = models.BooleanField()
+        return reverse('product:details', args=[self.slug,])
 
 
 class Comment(BaseModel):
