@@ -16,7 +16,11 @@ class Order(BaseModel):
         return f'{self.user} - {self.id}'
 
     def get_total_price(self):
-        return sum(item.get_cost() for item in self.items.all())
+        total = sum(item.get_cost() for item in self.items.all())
+        if self.offer:
+            discount_price = (self.offer /100)*total
+            return (total - discount_price)
+        return total
 
 
 class OrderItem(BaseModel):
