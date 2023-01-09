@@ -20,6 +20,11 @@
                 <p>Email : {{user.email}}</p>
                 <a href="{% url 'register:update' %}" class="btn btn-info w-25">Edit</a>
             </div>
+            {% if order.user %}
+            <div>
+                {{order.user}}
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
