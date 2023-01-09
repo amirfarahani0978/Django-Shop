@@ -4,9 +4,10 @@ from .cart import Cart
 from product.models import Product
 from .forms import CartAddForm, OfferForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Order, OrderItem
+from .models import Order, OrderItem , Offer
 from account.models import Account
-
+import datetime
+from django.contrib import messages
 
 class CartView(View):
     def get(self, request):
@@ -59,4 +60,18 @@ class CheckProfileCart(LoginRequiredMixin, View):
         return render(request, 'order/error.html')
 
 class OfferApplyView(LoginRequiredMixin , View):
-    pass
+    form_class = OfferForm
+    def post(self,request ,order_id):
+        now = datetime.datetime.now()
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            code = form.cleaned_data['code']
+            try:
+                offer = Offer.objects.get(offer_code__exact = code , start_time__lte = now , expire_time__gte = now , is_available = True)
+            except Offer.DoesNotExist:
+                messages.error(request,"This coupon does'nt exist!!!", 'danger')
+                return redirect('order:detail_order' , order_id)
+            order = Order.objects.get(id = order_id)
+            order.offer = offer.offer_code
+            order.save()
+            return redirect('order:detail_order' ,order_id)
