@@ -72,6 +72,6 @@ class OfferApplyView(LoginRequiredMixin , View):
                 messages.error(request,"This coupon does'nt exist!!!", 'danger')
                 return redirect('order:detail_order' , order_id)
             order = Order.objects.get(id = order_id)
-            order.offer = offer.offer_code
+            order.offer = offer.percent
             order.save()
             return redirect('order:detail_order' ,order_id)
