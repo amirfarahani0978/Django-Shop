@@ -14,7 +14,7 @@ class Order(BaseModel):
     created = models.DateTimeField(auto_now_add=True)
     offer_id = models.OneToOneField(
         Offer, on_delete=models.CASCADE, related_name='order', null=True)
-
+    offer = models.IntegerField(default=None , null=True , blank=True)
     def __str__(self) -> str:
         return f'{self.user} - {self.id}'
 
