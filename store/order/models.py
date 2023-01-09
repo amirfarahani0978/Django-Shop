@@ -1,5 +1,4 @@
 from django.db import models
-from product.models import Offer
 from core.models import BaseModel
 from product.models import Product
 from account.models import Account
@@ -12,8 +11,6 @@ class Order(BaseModel):
     paid = models.BooleanField(default=False)
     description = models.CharField(max_length=100, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    offer_id = models.OneToOneField(
-        Offer, on_delete=models.CASCADE, related_name='order', null=True)
     offer = models.IntegerField(default=None , null=True , blank=True)
     def __str__(self) -> str:
         return f'{self.user} - {self.id}'
