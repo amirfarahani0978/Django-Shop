@@ -13,7 +13,7 @@ class Order(BaseModel):
     created = models.DateTimeField(auto_now_add=True)
     offer = models.IntegerField(default=None , null=True , blank=True)
     def __str__(self) -> str:
-        return f'{self.user} - {self.id}'
+        return f'{self.user}'
 
     def get_total_price(self):
         total = sum(item.get_cost() for item in self.items.all())
@@ -31,7 +31,7 @@ class OrderItem(BaseModel):
     quantity = models.IntegerField(default=1)
 
     def __str__(self) -> str:
-        return self.quantity
+        return f'{self.quantity}'
 
     def get_cost(self):
         return self.price*self.quantity
