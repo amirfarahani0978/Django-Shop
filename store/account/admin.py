@@ -13,7 +13,7 @@ class OtpCodeAdmin(admin.ModelAdmin):
 class UserAdmin(BaseUserAdmin):
     form = AccountChangeForm
     add_form = AccountCreationForm
-    list_display = ('phone_number', 'lastname', 'firstname',)
+    list_display = ('phone_number', 'lastname', 'firstname','email','birth_date','gender','is_admin','is_active','last_login')
     list_filter = ('lastname',)
     fieldsets = (
         (None, {'fields': ('phone_number', 'lastname', 'firstname',
