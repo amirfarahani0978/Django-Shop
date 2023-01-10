@@ -8,3 +8,4 @@ admin.site.register(ProductFeature)
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields =('category',)
+    list_display = ('name' , 'slug' , 'price' , 'count_buying' , 'status_available','quantity','rate','product_feature',)
