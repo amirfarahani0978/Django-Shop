@@ -7,5 +7,5 @@ admin.site.register(ProductFeature)
 #admin.site.register(Product)
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    search_fields =('category',)
+    search_fields =('category__name',)
     list_display = ('name' , 'slug' , 'price' , 'count_buying' , 'status_available','quantity','rate','product_feature',)
