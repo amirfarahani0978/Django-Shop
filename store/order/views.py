@@ -46,16 +46,17 @@ class DetailOrderView(LoginRequiredMixin, View):
 class CreateOrderView(LoginRequiredMixin, View):
     def get(self, request):
         cart = Cart(request)
-        order = Order.objects.create(user=request.user)
         for item in cart:
             quant_store = Product.objects.get(slug=item['product'])
-            print(quant_store.quantity)
-            if item['quantity'] <= quant_store.quantity:
-                OrderItem.objects.create(
-                    order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
-            else:
-                messages.error(request , f"Sorry, this {item['product']}is not available in the quantity you requested" ,'danger')
+            if item['quantity'] > quant_store.quantity:
+                messages.error(
+                    request, f"Sorry, this {item['product']}is not available in the quantity you requested", 'danger')
                 return redirect('order:cart')
+        order = Order.objects.create(user=request.user)
+        for item in cart:
+            OrderItem.objects.create(
+                order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
+
         cart.clear()
         return redirect('order:detail_order', order.id)
 
