@@ -4,10 +4,12 @@ from .cart import Cart
 from product.models import Product
 from .forms import CartAddForm, OfferForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Order, OrderItem , Offer
+from .models import Order, OrderItem, Offer
 from account.models import Account
 import datetime
 from django.contrib import messages
+from product.models import Product
+
 
 class CartView(View):
     def get(self, request):
@@ -46,8 +48,14 @@ class CreateOrderView(LoginRequiredMixin, View):
         cart = Cart(request)
         order = Order.objects.create(user=request.user)
         for item in cart:
-            OrderItem.objects.create(
-                order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
+            quant_store = Product.objects.get(slug=item['product'])
+            print(quant_store.quantity)
+            if item['quantity'] <= quant_store.quantity:
+                OrderItem.objects.create(
+                    order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
+            else:
+                messages.error(request , f"Sorry, this {item['product']}is not available in the quantity you requested" ,'danger')
+                return redirect('order:cart')
         cart.clear()
         return redirect('order:detail_order', order.id)
 
@@ -59,19 +67,23 @@ class CheckProfileCart(LoginRequiredMixin, View):
             return render(request, 'order/checkprofile.html', {'user': user})
         return render(request, 'order/error.html')
 
-class OfferApplyView(LoginRequiredMixin , View):
+
+class OfferApplyView(LoginRequiredMixin, View):
     form_class = OfferForm
-    def post(self,request ,order_id):
+
+    def post(self, request, order_id):
         now = datetime.datetime.now()
         form = self.form_class(request.POST)
         if form.is_valid():
             code = form.cleaned_data['code']
             try:
-                offer = Offer.objects.get(offer_code__exact = code , start_time__lte = now , expire_time__gte = now , is_available = True)
+                offer = Offer.objects.get(
+                    offer_code__exact=code, start_time__lte=now, expire_time__gte=now, is_available=True)
             except Offer.DoesNotExist:
-                messages.error(request,"This coupon does'nt exist!!!", 'danger')
-                return redirect('order:detail_order' , order_id)
-            order = Order.objects.get(id = order_id)
+                messages.error(
+                    request, "This coupon does'nt exist!!!", 'danger')
+                return redirect('order:detail_order', order_id)
+            order = Order.objects.get(id=order_id)
             order.offer = offer.percent
             order.save()
-            return redirect('order:detail_order' ,order_id)
+            return redirect('order:detail_order', order_id)
