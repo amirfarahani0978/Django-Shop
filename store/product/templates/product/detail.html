@@ -22,12 +22,14 @@
         </div>
     </div>
 </div>
-<div>
+<div class="container">
     <h1>
         comment :
         <br>
-        {% for com in comment %}
-            {{comment }}
+        {% for message in comment %}
+            {{message.comment }}
+            {{message.product_id}}
+            <br>
         {% endfor %}
     </h1>
 </div>
