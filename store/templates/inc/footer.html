@@ -1,15 +1,17 @@
+{% load static%}
 <footer>
     <div class="row1 row">
         <div class="hr-droid">
             <div class="hr-line black"></div>
-            <div><img src="static/images/logo.jpg" class="lo-img img-fluid" alt="..." width="10%">
+            <div><img src="{% static 'images/logo.jpg'%}" class="lo-img img-fluid"
+                      alt="...">
             </div>
             <div class="hr-line purple"></div>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <h1 class="long-text">A DEDICATED GLUTEN-FREE BAKERY & CAFÉ.</h1>
+            <h1 class="long-text"></h1>
             <p class="name_coffe" style="padding-top: 20px;">Paris Café</p>
             <div class="row">
                 <div class="col-12 col-lg-6">
@@ -41,12 +43,12 @@
             <form>
                 <div class="mb-3">
                     <input type="email" class="form-input form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
+                           aria-describedby="emailHelp">
                     <label for="examplet-atEmail1" class="form-label">Email address</label>
                 </div>
                 <div class="mb-3">
                     <input type="email" class="form-input form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
+                           aria-describedby="emailHelp">
                     <label for="exampleInputEmail1" class="form-input form-label">Password</label>
                 </div>
                 <div class="submit col-12 col-lg-6">
