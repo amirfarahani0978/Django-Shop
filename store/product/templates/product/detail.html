@@ -54,5 +54,13 @@
             <h4>Count_buy : {{product.count_buying}}</h4>
         </div>
     </div>
+    {% if comment %}
+    <div class="row">
+        <h1>Comment : </h1>
+        {% for message in comment %}
+            <h4>{{message.comment}}</h4>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
