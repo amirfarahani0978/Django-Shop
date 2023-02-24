@@ -33,17 +33,26 @@
         {% endfor %}
     </h1>
 </div> -->
-<div class="row">
-    <div class="col-lg-4" style="margin-left: 10px;">
-        <div class="card mb-3">
-            <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="height:200px;">
-            <div class="card-body">
-                <p class="card-text">{{product.price}}</p>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <div class="card mb-4">
+                <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="height:200px;">
+                <div class="card-body">
+                    <h3 class="card-text">{{product.price}} Toman</h3>
+                    <form action="{% url 'order:addcart' product.id %}" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" class="col-12 col-lg-12 add_to" value="add to cart">
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-8">
-
+        <div class="col-12 col-lg-8">
+            <h4>Name : {{product.name}}</h4>
+            <h4>Rate : {{product.rate}}</h4>
+            <h4>Count_buy : {{product.count_buying}}</h4>
+        </div>
     </div>
 </div>
 {% endblock %}
