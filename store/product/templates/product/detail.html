@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container text-center">
+<!-- <div class="container text-center">
     <div class="card bg-dark" style="background: linear-gradient(0.25turn,#78c0e2 ,45%,#ec92db);">
         <div class="row text-white">
             <div class="container col-6 p-4">
@@ -32,5 +32,18 @@
             <br>
         {% endfor %}
     </h1>
+</div> -->
+<div class="row">
+    <div class="col-lg-4" style="margin-left: 10px;">
+        <div class="card mb-3">
+            <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="height:200px;">
+            <div class="card-body">
+                <p class="card-text">{{product.price}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+
+    </div>
 </div>
 {% endblock %}
