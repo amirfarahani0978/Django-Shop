@@ -41,21 +41,20 @@ class RegistrationForm(forms.Form):
     firstname = forms.CharField(max_length='100', label='First name')
     lastname = forms.CharField(max_length='100', label='Last name')
     password = forms.CharField(widget=forms.PasswordInput)
-
-class LoginForm(forms.Form):
-    phone_number = forms.CharField(max_length=11)
-    password = forms.CharField(widget=forms.PasswordInput)
-class ProfileForm(forms.ModelForm):
-    password2 = forms.CharField(
-        label='Confirm Password', widget=forms.PasswordInput)
-    class Meta:
-        model = Account
-        exclude = ('password','last_login','is_admin','is_active','is_superuser','phone_number','groups','user_permissions',)
+    password2 = forms.CharField(widget=forms.PasswordInput)
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] and cd['password2'] and cd['password'] != cd['password2']:
             raise ValidationError('password dont match')
         return cd['password2']
+
+class LoginForm(forms.Form):
+    phone_number = forms.CharField(max_length=11)
+    password = forms.CharField(widget=forms.PasswordInput)
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        exclude = ('password','last_login','is_admin','is_active','is_superuser','phone_number','groups','user_permissions',)
 class VerfiyCodeForm(forms.Form):
     code = forms.IntegerField()
 
