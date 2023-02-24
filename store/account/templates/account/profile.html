@@ -1,37 +1,6 @@
 {%extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!-- <div class="container text-center">
-    <div class="card bg-dark" style="background: linear-gradient(0.25turn,#78c0e2 ,45%,#ec92db);">
-        <div class="row text-white">
-            <div class="col-4">
-                {% if user.image %}
-                <img src="{{ user.image.url }}" alt="" style="width:300px; height:300px; " class="m-5 border">
-                {% else %}
-                <img src="{% static 'images/default.png' %}" alt="" style="width:300px; height:300px;"
-                    class="m-5 border circle">
-                {% endif %}
-            </div>
-            <div class="col-8 mt-5">
-                <p>Phone Number : {{user.phone_number}}</p>
-                <p>firstname : {{user.firstname}}</p>
-                <p>lastname : {{user.lastname}}</p>
-                <p>postal_code : {{user.postal_code}}</p>
-                <p>birth_date : {{user.birth_date}}</p>
-                <p>Email : {{user.email}}</p>
-                <a href="{% url 'register:update' %}" class="btn btn-info w-25">Edit</a>
-                <br>
-                {% if order %}
-                <h3>History_buy : </h3>
-                {% for order in order%}
-                Date:{{order.created}} Total Price : {{order.get_total_price }}
-                <br>
-                {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div> -->
 <section style="background-color: #eee;">
     <div class="container py-5">
         <div class="row">
