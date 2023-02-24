@@ -60,20 +60,22 @@
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3">
                                 <p class="lead fw-normal mb-2">{{item.product}}</p>
-                                <p><span class="text-muted">Quantity: </span>{{item.quantity}}<span class="text-muted">Price: </span>{{item.price}}
+                                <p><span class="text-muted">Quantity: </span>{{item.quantity}}<span
+                                        class="text-muted">Price: </span>{{item.price}}
                                 </p>
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                 <h5 class="mb-0">{{item.total_price}} Toman</h5>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="{% url 'order:removecart' item.product.id %}" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                <a href="{% url 'order:removecart' item.product.id %}" class="text-danger"><i
+                                        class="fas fa-trash fa-lg"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-                <div class="card mb-4">
+                <!-- <div class="card mb-4">
                     <div class="card-body p-4 d-flex flex-row">
                         <div class="form-outline flex-fill">
                             <input type="text" id="form1" class="form-control form-control-lg" />
@@ -81,12 +83,20 @@
                         </div>
                         <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
                     </div>
-                </div>
+                </div> -->
+                {% if request.user.is_authenticated %}
                 <div class="card">
                     <div class="card-body">
-                        <a href="{% url 'order:check' %}" class="btn btn-warning btn-block btn-lg order_btn">Proceed to Pay</a>
+                        <a href="{% url 'order:check' %}" class="btn btn-warning btn-block btn-lg order_btn">Proceed to
+                            Pay</a>
                     </div>
                 </div>
+                {% else %}
+                <div class="card-body">
+                    <a href="{% url 'register:login' %}" class="btn btn-primary btn-block btn-lg order_btn">Login
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
