@@ -1,7 +1,7 @@
 {%extends 'base.html' %}
 {% load static %}
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" enctype='multipart/form-data' novalidate>
     {% csrf_token %}
     <section style="background-color: #eee;">
         <div class="container py-5">
@@ -11,12 +11,12 @@
                         <div class="card-body text-center">
                             {% if user.image %}
                             <img src="{{ user.image.url }}"
-                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                alt="avatar" class="rounded-circle img-fluid" style="width: 250px;">
                             {% else %}
                             <img src="{% static 'images/default.png' %}"
                                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                             {% endif %}
-                            <div class="d-flex justify-content-center mb-2">
+                            <div class="inf">
                                 {{form.image}}
                             </div>
                         </div>
