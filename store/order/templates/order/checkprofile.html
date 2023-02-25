@@ -1,11 +1,54 @@
 {%extends 'base.html' %}
 {% block content %}
-<div class="contaioner m-3" style="justify-content: center;background-color: aquamarine; ">
-<p>Phone Number : {{user.phone_number}}</p>
-<p>firstname : {{user.firstname}}</p>
-<p>lastname : {{user.lastname}}</p>
-<p>lastname : {{user.postal_code}}</p>
-<a href="{% url 'order:create_order'%}" class="btn btn-primary">OK</a>
-<a href="{% url 'register:update'%}" class="btn btn-primary">Edit profile</a>
-</div>
+<h4 class="container">Are you sure complete the order with this information?</h4>
+<section style="background-color: #eee;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user.phone_number}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">First Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user.firstname}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Last Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user.lastname}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Postal Code</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user.postal_code}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <a href="{% url 'order:create_order'%}" class="btn btn-warning">OK</a>
+                        <a href="{% url 'register:update'%}" class="btn btn-warning">Edit profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
