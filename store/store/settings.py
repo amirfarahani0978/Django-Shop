@@ -159,10 +159,10 @@ AUTH_USER_MODEL = 'account.Account'
 API_CODE = '56483559532F5741705069372F784A3275476A4F536F4A4472696F4A55734465673670415979764B7A63513D'
 
 # Arvan cloud storage
-STORAGES = {"default": "storages.backends.s3boto3.S3Boto3Storage"}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_ACCESS_KEY_ID = 'edb45724-9757-4b38-b67b-397f00b2bbb8'
 AWS_SECRET_ACCESS_KEY  = '3895a02ad1a4db43a311bde5ccd23f7f6f6c3e00'
-AWS_S3_ENDPOINT_URL = 's3.ir-thr-at1.arvanstorage.ir'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
 AWS_STORAGE_BUCKET_NAME = 'online'
 AWS_SERVICE_NAME = 's3'
 AWS_S3_FILE_OVERWRITE = False
