@@ -166,3 +166,8 @@ AWS_S3_ENDPOINT_URL = 'http://s3.ir-thr-at1.arvanstorage.ir'
 AWS_STORAGE_BUCKET_NAME = 'online'
 AWS_SERVICE_NAME = 's3'
 AWS_S3_FILE_OVERWRITE = False
+
+
+#Zarinpal mode
+MERCHANT = "00000000-0000-0000-0000-000000000000"
+SANDBOX = True

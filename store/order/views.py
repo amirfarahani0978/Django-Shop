@@ -9,7 +9,7 @@ from account.models import Account
 import datetime
 from django.contrib import messages
 from product.models import Product
-
+from django.conf import settings
 
 class CartView(View):
     def get(self, request):
@@ -91,3 +91,15 @@ class OfferApplyView(LoginRequiredMixin, View):
             order.offer = offer.percent
             order.save()
             return redirect('order:detail_order', order_id)
+
+if settings.SANDBOX:
+    sandbox = 'sandbox'
+else:
+    sandbox = 'www'
+
+ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
+ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
+class OrderPayView(LoginRequiredMixin , View):
+    def get(self , request , order_id):
+        order = Order.objects.get(id=order_id)
