@@ -29,20 +29,18 @@
                 <!-- End DropDown Menu -->
                 <span class="divider"></span>
                 <a href="{% url 'home:contact-us' %}" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
-<!-- 
-                {% comment %} <a href="#" class="help d-lg-show"><i class="d-icon-info"></i> Need Help</a> {% endcomment
-                %} -->
+
                 <span class="divider"></span>
 
 
                 {% if request.user.is_authenticated %}
-                <a class="contact" href="{% url 'register:profile' %}"><i class="d-icon-bars"></i>Profile</a>
+                <a class="contact" href="{% url 'register:profile' request.user.id%}"><i class="d-icon-bars"></i>Profile</a>
                 <span class="divider"></span>
                 <a class="contact" href="{% url 'register:logout' %}"><i class="d-icon-user"></i>Sign out</a>
                 {% else %}
                 <a class="contact" href="{% url 'register:login' %}"><i class="d-icon-user"></i>Sign in</a>
                 <span class="delimiter">/</span>
-                <a class="contact ml-0" href="{% url 'accounts:login' %}">Register</a>
+                <a class="contact ml-0" href="{% url 'register:login' %}">Register</a>
 
                 {% endif %}
                 <!-- End of Login -->
