@@ -10,7 +10,7 @@ class Home(View):
         if category_slug:
             category = Category.objects.get(slug = category_slug)
             products = products.filter(category = category)
-        return render(request, 'base.html', {'products': products , 'categories':categories})
+        return render(request, 'base2.html', {'products': products , 'categories':categories})
 
     # def post(self, request):
     #     return render(request, 'base.html')
