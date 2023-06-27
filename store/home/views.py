@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from product.models import Product , Category
+from .forms import ContactForm
 
 class Home(View):
     def get(self, request , category_slug=None):
@@ -15,6 +16,7 @@ class Home(View):
     #     return render(request, 'base.html')
 
 class Contact(View):
+    form_class = ContactForm
     def get(self , request):
         ...
     def post(self , request):
