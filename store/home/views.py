@@ -14,4 +14,8 @@ class Home(View):
     # def post(self, request):
     #     return render(request, 'base.html')
 
-
+class Contact(View):
+    def get(self , request):
+        ...
+    def post(self , request):
+        ...
