@@ -17,6 +17,7 @@ class Home(View):
 
 class Contact(View):
     form_class = ContactForm
+    template_name = 'contact-us.html'
     def get(self , request):
         ...
     def post(self , request):
