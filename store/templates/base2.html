@@ -1065,7 +1065,7 @@
             <!-- End of Search Form -->
             <ul class="mobile-menu mmenu-anim">
                 <li>
-                    <a href="demo2.html">Home</a>
+                    <a href="{% url 'home:home' %}">Home</a>
                 </li>
                 <li>
                     <a href="demo2-shop.html">Categories</a>
@@ -1183,9 +1183,9 @@
                 <li>
                     <a href="#">Pages</a>
                     <ul>
-                        <li><a href="about-us.html">About</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                        <li><a href="account.html">Login</a></li>
+                        <li><a href="{% url 'home:contact-us' %}">About</a></li>
+                        <li><a href="{% url 'home:contact-us' %}">Contact Us</a></li>
+                        <li><a href="{% url 'register:login' %}">Login</a></li>
                         <li><a href="faq.html">FAQs</a></li>
                         <li><a href="error-404.html">Error 404</a>
                             <ul>
