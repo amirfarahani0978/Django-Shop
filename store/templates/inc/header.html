@@ -403,8 +403,8 @@
                         <li>
                             <a href="#">Pages</a>
                             <ul>
-                                <li><a href="about-us.html">About</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
+                                <li><a href="{% url 'home:contact-us' %}">About</a></li>
+                                <li><a href="{% url 'home:contact-us' %}">Contact Us</a></li>
                                 <li><a href="account.html">My Account</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="faq.html">FAQs</a></li>
@@ -558,7 +558,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="about-us.html">About Us</a>
+                            <a href="{% url 'home:contact-us' %}">About Us</a>
                         </li>
                     </ul>
                 </nav>
