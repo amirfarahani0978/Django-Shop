@@ -1,5 +1,4 @@
 {% load static %}
-<h1 class="d-none">Riode - Responsive eCommerce HTML Template</h1>
 <header class="header">
     <div class="header-top">
         <div class="container">
@@ -7,7 +6,7 @@
                 <p class="welcome-msg">Welcome to Riode store message or remove it!</p>
             </div>
             <div class="header-right">
-                <div class="dropdown">
+                <div class="dropdown currency-dropdown">
                     <a href="#currency">USD</a>
                     <ul class="dropdown-box">
                         <li><a href="#USD">USD</a></li>
@@ -15,164 +14,77 @@
                     </ul>
                 </div>
                 <!-- End DropDown Menu -->
-                <div class="dropdown ml-5">
+                <div class="dropdown language-dropdown">
                     <a href="#language">ENG</a>
                     <ul class="dropdown-box">
                         <li>
-                            <a href="#USD">ENG</a>
+                            <a href="#USD">
+                                ENG
+                            </a>
                         </li>
                         <li>
-                            <a href="#EUR">FRH</a>
+                            <a href="#EUR">
+                                FRH
+                            </a>
                         </li>
                     </ul>
                 </div>
                 <!-- End DropDown Menu -->
-                <span class="divider"></span>
-                <a href="{% url 'home:contact-us' %}" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
-
-                <span class="divider"></span>
-
-
-                {% if request.user.is_authenticated %}
-                <a class="contact" href="{% url 'register:profile' request.user.id%}"><i class="d-icon-bars"></i>Profile</a>
-                <span class="divider"></span>
-                <a class="contact" href="{% url 'register:logout' %}"><i class="d-icon-user"></i>Sign out</a>
-                {% else %}
-                <a class="contact" href="{% url 'register:login' %}"><i class="d-icon-user"></i>Sign in</a>
-                <span class="delimiter">/</span>
-                <a class="contact ml-0" href="{% url 'register:login' %}">Register</a>
-
-                
-                {% endif %}
-                <!-- End of Login -->
+                <div class="dropdown dropdown-expanded d-lg-show">
+                    <a href="#dropdown">Links</a>
+                    <ul class="dropdown-box">
+                        <li><a href="about-us.html">About</a></li>
+                        <li><a href="blog-classic.html">Blog</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="contact-us.html">Contact</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                    </ul>
+                </div>
+                <!-- End DropDownExpanded Menu -->
             </div>
         </div>
     </div>
     <!-- End HeaderTop -->
-    <div class="header-middle sticky-header fix-top sticky-content">
+    <div class="header-middle has-center">
         <div class="container">
             <div class="header-left">
-                <a href="#" class="mobile-menu-toggle">
+                <a href="#" class="mobile-menu-toggle text-primary">
                     <i class="d-icon-bars2"></i>
                 </a>
-                <a href="{% url 'home:home'%}" class="logo">
-                    <img src="{% static 'base/images/icons/logo.jpg' %}" alt="logo" width="54" height="54" />
+                <!-- Mobile Menu Toggle -->
+            </div>
+            <div class="header-center">
+                <a href="demo16.html" class="logo mr-0">
+                    <img src="images/demos/demo16/logo.png" alt="logo" width="306" height="88" />
                 </a>
                 <!-- End Logo -->
-
-                <div class="header-search hs-simple">
-                    <form action="#" class="input-wrapper">
-                        <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search..."
-                            required />
-                        <button class="btn btn-search" type="submit" title="submit-button">
-                            <i class="d-icon-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <!-- End Header Search -->
             </div>
             <div class="header-right">
-                <a href="tel:#" class="icon-box icon-box-side">
-                    <div class="icon-box-icon mr-0 mr-lg-2">
-                        <i class="d-icon-phone"></i>
-                    </div>
-                    <div class="icon-box-content d-lg-show">
-                        <h4 class="icon-box-title">Call Us Now:</h4>
-                        <p>(+98)9357269308</p>
-                    </div>
-                </a>
-                <span class="divider"></span>
-                <div class="dropdown wishlist wishlist-dropdown off-canvas">
-                    <a href="wishlist.html" class="wishlist-toggle" title="wishlist">
-                        <i class="d-icon-heart"></i>
+                <div class="dropdown cart-dropdown d-lg-none off-canvas">
+                    <a href="#" class="cart-toggle">
+                        <span class="cart-label">
+                            <span class="cart-name">My Cart</span>
+                            <span class="cart-price">$42.00</span>
+                        </span>
+                        <i class="minicart-icon">
+                            <span class="cart-count">2</span>
+                        </i>
                     </a>
                     <div class="canvas-overlay"></div>
-                    <!-- End Wishlist Toggle -->
-                    <div class="dropdown-box scrollable">
-                        <div class="canvas-header">
-                            <h4 class="canvas-title">wishlist</h4>
-                            <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">close<i
-                                    class="d-icon-arrow-right"></i><span class="sr-only">wishlist</span></a>
-                        </div>
-                        <div class="products scrollable">
-                            <div class="product product-wishlist">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="images/wishlist/product-1.jpg" width="100" height="100"
-                                            alt="product" />
-                                    </a>
-                                    <button class="btn btn-link btn-close">
-                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
-                                    </button>
-                                </figure>
-                                <div class="product-detail">
-                                    <a href="product.html" class="product-name">Girl's Dark Bag</a>
-                                    <div class="price-box">
-                                        <span class="product-price">$84.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End of wishlist Product -->
-                            <div class="product product-wishlist">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="images/wishlist/product-2.jpg" width="100" height="100"
-                                            alt="product" />
-                                    </a>
-                                    <button class="btn btn-link btn-close">
-                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
-                                    </button>
-                                </figure>
-                                <div class="product-detail">
-                                    <a href="product.html" class="product-name">Women's Fashional Comforter
-                                    </a>
-                                    <div class="price-box">
-                                        <span class="product-price">$84.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End of wishlist Product -->
-                            <div class="product product-wishlist">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="images/wishlist/product-3.jpg" width="100" height="100"
-                                            alt="product" />
-                                    </a>
-                                    <button class="btn btn-link btn-close">
-                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
-                                    </button>
-                                </figure>
-                                <div class="product-detail">
-                                    <a href="product.html" class="product-name">Wide Knickerbockers</a>
-                                    <div class="price-box">
-                                        <span class="product-price">$84.00</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- End of wishlist Product -->
-                        </div>
-                        <a href="wishlist.html" class="btn btn-dark wishlist-btn mt-4"><span>Go To
-                                Wishlist</span></a>
-                        <!-- End of Products  -->
-                    </div>
-                    <!-- End Dropdown Box -->
-                </div>
-                <span class="divider"></span>
-                <div class="dropdown cart-dropdown type2 mr-0 mr-lg-2">
-                    <a href="#" class="cart-toggle label-block link">
-                        <div class="cart-label d-lg-show">
-                            <span class="cart-name">Shopping Cart:</span>
-                            <span class="cart-price">$0.00</span>
-                        </div>
-                        <i class="d-icon-bag"><span class="cart-count">2</span></i>
-                    </a>
+                    <!-- End Cart Toggle -->
                     <div class="dropdown-box">
+                        <div class="canvas-header">
+                            <h4 class="canvas-title">Shopping Cart</h4>
+                            <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">close<i
+                                    class="d-icon-arrow-right"></i><span class="sr-only">Cart</span></a>
+                        </div>
                         <div class="products scrollable">
                             <div class="product product-cart">
                                 <figure class="product-media">
                                     <a href="product.html">
-                                        <img src="images/cart/product-1.jpg" alt="product" width="80" height="88" />
+                                        <img src="images/cart/product-1.jpg" alt="product" width="80"
+                                            height="88" />
                                     </a>
                                     <button class="btn btn-link btn-close">
                                         <i class="fas fa-times"></i><span class="sr-only">Close</span>
@@ -191,7 +103,8 @@
                             <div class="product product-cart">
                                 <figure class="product-media">
                                     <a href="product.html">
-                                        <img src="images/cart/product-2.jpg" alt="product" width="80" height="88" />
+                                        <img src="images/cart/product-2.jpg" alt="product" width="80"
+                                            height="88" />
                                     </a>
                                     <button class="btn btn-link btn-close">
                                         <i class="fas fa-times"></i><span class="sr-only">Close</span>
@@ -222,6 +135,7 @@
                     </div>
                     <!-- End Dropdown Box -->
                 </div>
+
                 <div class="header-search hs-toggle mobile-search">
                     <a href="#" class="search-toggle">
                         <i class="d-icon-search"></i>
@@ -239,17 +153,33 @@
         </div>
 
     </div>
-
-    <div class="header-bottom d-lg-show">
+    <!-- End Header Middle -->
+    <div class="header-bottom pb-0 sticky-header fix-top sticky-content has-center">
         <div class="container">
             <div class="header-left">
+                <div class="header-search hs-toggle search-left">
+                    <a href="#" class="search-toggle d-flex align-items-center">
+                        <i class="d-icon-search"></i>
+                        <span class="ml-1">Search</span>
+                    </a>
+                    <form action="#" class="input-wrapper">
+                        <input type="text" class="form-control" name="search" autocomplete="off"
+                            placeholder="Search your keyword..." required />
+                        <button class="btn btn-search" type="submit" title="submit-button">
+                            <i class="d-icon-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- Header Search -->
+            </div>
+            <div class="header-center">
                 <nav class="main-nav">
-                    <ul class="menu menu-active-underline">
+                    <ul class="menu">
                         <li class="active">
-                            <a href="{% url 'home:home'%}">Home</a>
+                            <a href="demo16.html">Home</a>
                         </li>
                         <li>
-                            <a href="demo2-shop.html">Categories</a>
+                            <a href="demo16-shop.html">Categories</a>
                             <div class="megamenu">
                                 <div class="row">
                                     <div class="col-6 col-sm-4 col-md-4 col-lg-3">
@@ -322,9 +252,9 @@
                                         <div class="banner-content y-50">
                                             <h4 class="banner-subtitle font-weight-bold text-primary ls-m">Sale.
                                             </h4>
-                                            <h3 class="banner-title font-weight-bold"><span class="text-uppercase">Up
-                                                    to</span>70% Off</h3>
-                                            <a href="demo2-shop.html" class="btn btn-link btn-underline">shop
+                                            <h3 class="banner-title font-weight-bold"><span
+                                                    class="text-uppercase">Up to</span>70% Off</h3>
+                                            <a href="demo16-shop.html" class="btn btn-link btn-underline">shop
                                                 now<i class="d-icon-arrow-right"></i></a>
                                         </div>
                                     </div>
@@ -333,7 +263,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="demo2-product.html">Products</a>
+                            <a href="demo16-product.html">Products</a>
                             <div class="megamenu">
                                 <div class="row">
                                     <div class="col-6 col-sm-4 col-md-3">
@@ -384,7 +314,8 @@
                                             <li><a href="product-360-degree.html">360 Degree Thumbnail </a></li>
                                         </ul>
                                     </div>
-                                    <div class="col-6 col-sm-4 col-md-3 menu-banner menu-banner2 banner banner-fixed">
+                                    <div
+                                        class="col-6 col-sm-4 col-md-3 menu-banner menu-banner2 banner banner-fixed">
                                         <figure>
                                             <img src="images/menu/banner-2.jpg" alt="Menu banner" width="221"
                                                 height="330" />
@@ -403,8 +334,8 @@
                         <li>
                             <a href="#">Pages</a>
                             <ul>
-                                <li><a href="{% url 'home:contact-us' %}">About</a></li>
-                                <li><a href="{% url 'home:contact-us' %}">Contact Us</a></li>
+                                <li><a href="about-us.html">About</a></li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
                                 <li><a href="account.html">My Account</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="faq.html">FAQs</a></li>
@@ -419,7 +350,7 @@
                                 <li><a href="coming-soon.html">Coming Soon</a></li>
                             </ul>
                         </li>
-                        <li class="d-xl-show">
+                        <li>
                             <a href="element.html">Elements</a>
                             <div class="megamenu">
                                 <div class="row">
@@ -523,49 +454,84 @@
                             </div>
                         </li>
                         <li>
-                            <a href="blog-classic.html">Blog</a>
-                            <ul>
-                                <li><a href="blog-classic.html">Classic</a></li>
-                                <li><a href="blog-listing.html">Listing</a></li>
-                                <li>
-                                    <a href="#">Grid</a>
-                                    <ul>
-                                        <li><a href="blog-grid-2col.html">Grid 2 columns</a></li>
-                                        <li><a href="blog-grid-3col.html">Grid 3 columns</a></li>
-                                        <li><a href="blog-grid-4col.html">Grid 4 columns</a></li>
-                                        <li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Masonry</a>
-                                    <ul>
-                                        <li><a href="blog-masonry-2col.html">Masonry 2 columns</a></li>
-                                        <li><a href="blog-masonry-3col.html">Masonry 3 columns</a></li>
-                                        <li><a href="blog-masonry-4col.html">Masonry 4 columns</a></li>
-                                        <li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Mask</a>
-                                    <ul>
-                                        <li><a href="blog-mask-grid.html">Blog mask grid</a></li>
-                                        <li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="post-single.html">Single Post</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{% url 'home:contact-us' %}">About Us</a>
+                            <a href="https://d-themes.com/buynow/riodehtml">Buy Riode!</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="header-right">
-                <a href="#"><i class="d-icon-card"></i>Special Offers</a>
-                <a href="https://d-themes.com/buynow/riodehtml" class="ml-6">Buy Riode!</a>
+                <div class="dropdown cart-dropdown off-canvas">
+                    <a href="#" class="cart-toggle">
+                        <span class="cart-label mr-0">
+                            <span class="cart-name">Cart</span>&nbsp;/&nbsp;<span
+                                class="cart-price">$42.00</span>
+                        </span>&nbsp;
+                        <span class="cart-count">(2)</span>
+                    </a>
+                    <div class="canvas-overlay"></div>
+                    <!-- End Cart Toggle -->
+                    <div class="dropdown-box">
+                        <div class="canvas-header">
+                            <h4 class="canvas-title">Shopping Cart</h4>
+                            <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">close<i
+                                    class="d-icon-arrow-right"></i><span class="sr-only">Cart</span></a>
+                        </div>
+                        <div class="products scrollable">
+                            <div class="product product-cart">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="images/cart/product-1.jpg" alt="product" width="80"
+                                            height="88" />
+                                    </a>
+                                    <button class="btn btn-link btn-close">
+                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                    </button>
+                                </figure>
+                                <div class="product-detail">
+                                    <a href="product.html" class="product-name">Riode White Trends</a>
+                                    <div class="price-box">
+                                        <span class="product-quantity">1</span>
+                                        <span class="product-price">$21.00</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- End of Cart Product -->
+                            <div class="product product-cart">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="images/cart/product-2.jpg" alt="product" width="80"
+                                            height="88" />
+                                    </a>
+                                    <button class="btn btn-link btn-close">
+                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                    </button>
+                                </figure>
+                                <div class="product-detail">
+                                    <a href="product.html" class="product-name">Dark Blue Women’s
+                                        Leomora Hat</a>
+                                    <div class="price-box">
+                                        <span class="product-quantity">1</span>
+                                        <span class="product-price">$118.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Cart Product -->
+                        </div>
+                        <!-- End of Products  -->
+                        <div class="cart-total">
+                            <label>Subtotal:</label>
+                            <span class="price">$139.00</span>
+                        </div>
+                        <!-- End of Cart Total -->
+                        <div class="cart-action">
+                            <a href="cart.html" class="btn btn-dark btn-link">View Cart</a>
+                            <a href="checkout.html" class="btn btn-dark"><span>Go To Checkout</span></a>
+                        </div>
+                        <!-- End of Cart Action -->
+                    </div>
+                    <!-- End Dropdown Box -->
+                </div>
             </div>
         </div>
     </div>
