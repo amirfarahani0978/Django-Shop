@@ -1,3 +1,4 @@
+{% load static %}
 <div class="mobile-menu-wrapper">
     <div class="mobile-menu-overlay">
     </div>
@@ -15,7 +16,7 @@
         <!-- End Search Form -->
         <ul class="mobile-menu mmenu-anim">
             <li>
-                <a href="demo16.html">Home</a>
+                <a href="{% url 'home:home' %}">Home</a>
             </li>
             <li>
                 <a href="demo16-shop.html">Categories</a>
