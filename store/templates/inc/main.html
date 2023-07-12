@@ -204,10 +204,11 @@
                     }
                 }
             }">
+                {% for product in products %}
                 <div class="product product-classic">
                     <figure class="product-media">
                         <a href="demo16-product.html">
-                            <img src="images/demos/demo16/products/1.jpg" alt="product" width="280" height="315">
+                            <img src="{{product.image.url}}" alt="product" width="280" height="315">
                         </a>
                         <div class="product-label-group">
                             <label class="product-label label-new">new</label>
@@ -221,7 +222,7 @@
                             <a href="demo16-product.html">Fashion Overnight Bag</a>
                         </h3>
                         <div class="product-price">
-                            <span class="price">$39.00</span>
+                            <span class="price">{{product.price}}</span>
                         </div>
                         <div class="ratings-container">
                             <div class="ratings-full">
@@ -241,6 +242,7 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
                 <div class="product product-classic">
                     <figure class="product-media">
                         <a href="demo16-product.html">
