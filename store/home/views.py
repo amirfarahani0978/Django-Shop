@@ -9,7 +9,7 @@ class Home(View):
         products = Product.objects.order_by('created')[:7]
         baner = Baner.objects.get(title = 'mobin')
         category_header = Category.objects.all()
-        return render(request, 'base2.html', {'products': products , 'baner':baner , 'category' : category_header})
+        return render(request, 'base2.html', {'products': products , 'baner':baner , 'categories' : category_header})
 
     # def post(self, request):
     #     return render(request, 'base.html')
