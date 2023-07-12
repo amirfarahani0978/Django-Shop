@@ -8,7 +8,7 @@ class Home(View):
     def get(self, request , category_slug=None):
         products = Product.objects.order_by('created')[:7]
         baner = Baner.objects.get(title = 'mobin')
-        return render(request, 'base2.html', {'products': products , 'categories':categories , 'baner':baner})
+        return render(request, 'base2.html', {'products': products , 'baner':baner})
 
     # def post(self, request):
     #     return render(request, 'base.html')
