@@ -6,7 +6,7 @@ from .forms import ContactForm
 
 class Home(View):
     def get(self, request , category_slug=None):
-        products = Product.objects.order_by('created')[:7]
+        products = Product.objects.order_by('created')[:4]
         baner = Baner.objects.get(title = 'mobin')
         category_header = Category.objects.all()
         return render(request, 'base2.html', {'products': products , 'baner':baner , 'categories' : category_header})
