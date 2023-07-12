@@ -10511,8 +10511,8 @@ button.mfp-arrow {
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 2rem;
-    top: 2rem;
+    left: 0.5rem;
+    top: 0.5rem;
     max-width: 10rem
 }
 
