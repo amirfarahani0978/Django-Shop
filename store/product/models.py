@@ -42,6 +42,7 @@ class Product(BaseModel):
     category = models.ManyToManyField(
         Category, related_name='products')
     rate = models.PositiveIntegerField()
+    created = models.DateTimeField(auto_now=True)
     product_feature = models.OneToOneField(
         ProductFeature, on_delete=models.CASCADE, null=True, blank=True)
 
