@@ -215,9 +215,11 @@
                         </div>
                     </figure>
                     <div class="product-details">
+                        {% for cat in product.category.all %}
                         <div class="product-cat">
-                            <a href="demo16-shop.html">Bags Fresh</a>
+                            <a href="demo16-shop.html">{{cat.name}}</a>
                         </div>
+                        {% endfor %}
                         <h3 class="product-name">
                             <a href="demo16-product.html">{{product.name}}</a>
                         </h3>
