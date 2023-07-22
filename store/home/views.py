@@ -24,4 +24,4 @@ class Contact(View):
 
 class AboutUsView(View):
     def get(self , request):
-        return render(self , 'inc/about_us.html')
+        return render(self , 'store/about_us.html')
