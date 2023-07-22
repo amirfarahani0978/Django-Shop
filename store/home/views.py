@@ -18,6 +18,6 @@ class Contact(View):
     form_class = ContactForm
     template_name = 'contact-us.html'
     def get(self , request):
-        return render(request, 'contac-us.html')
+        return render(request, self.template_name)
     def post(self , request):
         ...
