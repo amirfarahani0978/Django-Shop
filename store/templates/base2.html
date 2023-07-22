@@ -47,7 +47,9 @@
     <div class="page-wrapper">
         <h1 class="d-none">Mobin - Responsive eCommerce HTML Template</h1>
         {% include 'inc/header.html' %}
-        {% include 'inc/main.html' %}
+        <main class="main account">
+            {%block main %}{% endblock %}
+        </main>
         {% include 'inc/footer.html' %}
     </div>
 
@@ -58,56 +60,6 @@
 
     <!-- MobileMenu -->
     {% include 'inc/mobile-menu.html' %}
-
-    <!-- newsletter-popup type2 -->
-    <div class="newsletter-popup newsletter-pop2 mfp-hide" id="newsletter-popup">
-        <figure>
-            <img src="images/newsletter-popup2.jpg" width="500" height="264" alt="newsletter2" />
-        </figure>
-        <div class="newsletter-content">
-            <h2 class="font-weight-bolder">Join Our Mailing List</h2>
-            <p class="text-grey">Stay Informed!Monthly Tips and Discount.</p>
-            <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
-                <input type="email" class="form-control email" name="email" id="email2"
-                    placeholder="Email address here..." required="">
-                <button class="btn btn-dark" type="submit">SUBMIT</button>
-            </form>
-            <div class="form-checkbox justify-content-center">
-                <input type="checkbox" class="custom-checkbox" id="hide-newsletter-popup" name="hide-newsletter-popup"
-                    required />
-                <label for="hide-newsletter-popup">Don't show this popup again</label>
-            </div>
-            <div class="social-links">
-                <a href="#" title="social-link" class="social-link social-facebook fab fa-facebook-f"></a>
-                <a href="#" title="social-link" class="social-link social-twitter fab fa-twitter"></a>
-                <a href="#" title="social-link" class="social-link social-linkedin fab fa-linkedin-in"></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- sticky icons-->
-	<div class="sticky-icons-wrapper">
-		<div class="sticky-icon-links">
-			<ul>
-				<li><a href="#" class="demo-toggle"><i class="fas fa-home"></i><span>Demos</span></a></li>
-				<li><a href="documentation.html"><i class="fas fa-info-circle"></i><span>Documentation</span></a>
-				</li>
-				<li><a href="https://themeforest.net/downloads/"><i class="fas fa-star"></i><span>Reviews</span></a>
-				</li>
-				<li><a href="https://d-themes.com/buynow/riodehtml"><i class="fas fa-shopping-cart"></i><span>Buy
-							now!</span></a></li>
-			</ul>
-		</div>
-		<div class="demos-list">
-			<div class="demos-overlay"></div>
-			<a class="demos-close" href="#"><i class="close-icon"></i></a>
-			<div class="demos-content scrollable scrollable-light">
-				<h3 class="demos-title">Demos</h3>
-				<div class="demos">
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Plugins JS File -->
     <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'base/vendor/elevatezoom/jquery.elevatezoom.min.js' %}"></script>
@@ -116,9 +68,10 @@
     <script src="{% static 'base/vendor/owl-carousel/owl.carousel.min.js' %}"></script>
     <script src="{% static 'base/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
     <script src="{% static 'base/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+    {% block script %}{% endblock %}
     <!-- Main JS File -->
     <script src="{% static 'base/js/main.min.js' %}"></script>
-    {%block script %}{% endblock %}
+    
 </body>
 
 </html>
