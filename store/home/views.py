@@ -25,4 +25,4 @@ class Contact(View):
 class AboutUsView(View):
     template_name = 'inc/about_us.html'
     def get(self , request):
-        return render(self , self.template_name)
+        return render(request , self.template_name)
