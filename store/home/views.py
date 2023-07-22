@@ -21,3 +21,7 @@ class Contact(View):
         return render(request, self.template_name)
     def post(self , request):
         ...
+
+class AboutUsView(View):
+    def get(self , request):
+        return render(self , 'inc/about_us.html')
