@@ -42,27 +42,27 @@
                         <div class="product-thumbs-wrap">
                             <div class="product-thumbs">
                                 <div class="product-thumb active">
-                                    <img src="images/demos/demo16/product/product-1-137x154.jpg"
+                                    <img src="{{product.image.url}}"
                                         alt="product thumbnail" width="137" height="154">
                                 </div>
                                 <div class="product-thumb">
-                                    <img src="images/demos/demo16/product/product-2-137x154.jpg"
+                                    <img src="{{product.image.url}}"
                                         alt="product thumbnail" width="137" height="154">
                                 </div>
                                 <div class="product-thumb">
-                                    <img src="images/demos/demo16/product/product-3-137x154.jpg"
+                                    <img src="{{product.image.url}}"
                                         alt="product thumbnail" width="137" height="154">
                                 </div>
                                 <div class="product-thumb">
-                                    <img src="images/demos/demo16/product/product-4-137x154.jpg"
+                                    <img src="{{product.image.url}}"
                                         alt="product thumbnail" width="137" height="154">
                                 </div>
                                 <div class="product-thumb">
-                                    <img src="images/demos/demo16/product/product-5-137x154.jpg"
+                                    <img src="{{product.image.url}}"
                                         alt="product thumbnail" width="137" height="154">
                                 </div>
                                 <div class="product-thumb">
-                                    <img src="images/demos/demo16/product/product-6-137x154.jpg"
+                                    <img src="{{product.image.url}}"
                                         alt="product thumbnail" width="137" height="154">
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                     <div class="product-details">
                         <div class="product-navigation pt-0">
                             <ul class="breadcrumb breadcrumb-lg">
-                                <li><a href="demo16.html"><i class="d-icon-home"></i></a></li>
+                                <li><a href="{% url 'home:home' %}"><i class="d-icon-home"></i></a></li>
                                 <li><a href="#" class="active">Products</a></li>
                                 <li>Detail</li>
                             </ul>
