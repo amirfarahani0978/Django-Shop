@@ -16,7 +16,7 @@ class Home(View):
 
 class Contact(View):
     form_class = ContactForm
-    template_name = 'contact-us.html'
+    template_name = 'inc/contact-us.html'
     def get(self , request):
         return render(request, self.template_name)
     def post(self , request):
