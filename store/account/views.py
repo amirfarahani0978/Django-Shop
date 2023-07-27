@@ -106,4 +106,4 @@ class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
         order = Order.objects.filter(user = request.user)
-        return render(request , 'account/profile.html' , {'user':user ,'order':order})
+        return render(request , 'inc/acoount.html' , {'user':user ,'order':order})
