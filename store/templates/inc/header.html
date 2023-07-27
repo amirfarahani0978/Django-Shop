@@ -1,3 +1,4 @@
+{% load static %}
 <header class="header border-no">
     <div class="header-middle sticky-header fix-top sticky-content">
         <div class="container-fluid">
@@ -5,8 +6,8 @@
                 <a href="#" class="mobile-menu-toggle">
                     <i class="d-icon-bars2"></i>
                 </a>
-                <a href="demo7.html" class="logo">
-                    <img src="images/demos/demo7/logo.png" alt="logo" width="154" height="43" />
+                <a href="{% url 'home:home' %}" class="logo">
+                    <img src="{% static 'base/images/icons/logo2.jpg' %}" alt="logo" width="154" height="43" />
                 </a>
                 <!-- End of Logo -->
             </div>
