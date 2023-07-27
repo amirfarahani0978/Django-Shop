@@ -41,8 +41,7 @@ class LoginView(View):
     form_class = LoginForm
 
     def get(self, request):
-        form = self.form_class
-        return render(request, 'account/login.html', {'form': form})
+        return render(request, 'inc/login.html')
 
     def post(self, request):
         form = self.form_class(request.POST)
