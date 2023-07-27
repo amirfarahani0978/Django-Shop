@@ -13845,14 +13845,14 @@ aside+div .product-single .product-details {
     font-size: 1.7rem
 }
 
-.header-top .login-link,
+.header-top .login-linking,
 .header-top .login-toggle,
 .header-top .register-link,
 .header-top .register-toggle {
     cursor: pointer
 }
 
-.header-top .login-link i,
+.header-top .login-linking i,
 .header-top .login-toggle i,
 .header-top .register-link i,
 .header-top .register-toggle i {
@@ -13889,22 +13889,22 @@ aside+div .product-single .product-details {
     padding: 2.8rem 0.2rem 2.6rem
 }
 
-.header-middle .login-link {
+.header-middle .login-linking {
     display: flex;
     align-items: center;
     margin-right: 2rem;
     padding-bottom: 0
 }
 
-.header-middle .login-link span {
+.header-middle .login-linking span {
     cursor: pointer
 }
 
-.header-middle .login-link i {
+.header-middle .login-linking i {
     font-size: 2.1rem
 }
 
-.header-middle .login-link:hover {
+.header-middle .login-linking:hover {
     color: #d3986a
 }
 
@@ -14417,7 +14417,7 @@ aside+div .product-single .product-details {
 
     .header-top .delimiter,
     .header-top .divider,
-    .header-top .login-link,
+    .header-top .login-linking,
     .header-top .register-link {
         display: none
     }
