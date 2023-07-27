@@ -61,7 +61,10 @@ class LoginView(View):
         #         return redirect('home:home')
         phone_number  = request.POST.get('phone number')
         password = request.POST.get('password')
-        if phone_number and password:
+        account = authenticate(request, phone_number=phone_number, password=password)
+        if account is not None:
+            auth_login(request, account)
+            messages.success(request, 'Login is successfully !!!', 'success')
             return redirect('home:home')
         return redirect('home:home')
 
