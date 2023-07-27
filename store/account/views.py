@@ -45,21 +45,25 @@ class LoginView(View):
         return render(request, 'account/login.html' , {'form':form})
 
     def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            account = authenticate(
-                request, phone_number=cd['phone_number'], password=cd['password'])
-            if account is not None:
-                auth_login(request, account)
-                messages.success(
-                    request, 'Login is successfully !!!', 'success')
-                return redirect('home:home')
-            else:
-                messages.error(
-                    request, "Phone number or password is not correct ?", 'danger')
-                return redirect('home:home')
-                
+        # form = self.form_class(request.POST)
+        # if form.is_valid():
+        #     cd = form.cleaned_data
+        #     account = authenticate(
+        #         request, phone_number=cd['phone_number'], password=cd['password'])
+        #     if account is not None:
+        #         auth_login(request, account)
+        #         messages.success(
+        #             request, 'Login is successfully !!!', 'success')
+        #         return redirect('home:home')
+        #     else:
+        #         messages.error(
+        #             request, "Phone number or password is not correct ?", 'danger')
+        #         return redirect('home:home')
+        phone_number  = request.POST.get('phone number')
+        password = request.POST.get('password')
+        if phone_number and password:
+            return redirect('home:home')
+        return redirect('home:home')
 
 class VerifyCodeView(View):
     form_class = VerfiyCodeForm
