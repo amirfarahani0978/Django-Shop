@@ -302,7 +302,7 @@
                 </div>
                 <!-- End of Header Search -->
                 {% if request.user.is_authenticated %}
-                <a class="login-linking" href="{% url 'register:login' %}" data-toggle="login-modal" title="login"><i
+                <a class="login-linking" href="{% url 'register:profile' request.user.id %}" data-toggle="profile-modal" title="profile"><i
                         class="d-icon-user"></i></a>
                 {% else %}
                 <a class="login-linking" href="{% url 'register:login' %}" data-toggle="login-modal" title="login"><svg
