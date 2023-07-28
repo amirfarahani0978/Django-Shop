@@ -59,7 +59,7 @@ class LoginView(View):
         #         messages.error(
         #             request, "Phone number or password is not correct ?", 'danger')
         #         return redirect('home:home')
-        phone_number  = request.POST.get('phone number')
+        phone_number  = request.POST.get('phone_number')
         password = request.POST.get('password')
         account = authenticate(request, phone_number=phone_number, password=password)
         if account is not None:
