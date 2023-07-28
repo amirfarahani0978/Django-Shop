@@ -36,7 +36,8 @@
                 <div class="tab-content col-lg-9 col-md-8">
                     <div class="tab-pane active" id="dashboard">
                         <p class="mb-0">
-                            Hello <span>User</span> (not <span>User</span>? <a href="{% url 'register:logout'%}" class="text-primary">Log
+                            Hello <span>User</span> (not <span>User</span>? <a href="{% url 'register:logout'%}"
+                                class="text-primary">Log
                                 out</a>)
                         </p>
                         <p class="mb-8">
@@ -151,22 +152,27 @@
                         <form action="#" class="form">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>First Name *</label>
-                                    <input type="text" class="form-control" name="first_name" required="">
+                                    <label>First Name :</label>
+                                    <input class="form-control" type="text" value="{{user.firstname}}" aria-label="readonly input example" readonly>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Last Name *</label>
-                                    <input type="text" class="form-control" name="last_name" required="">
+                                    <label>Last Name :</label>
+                                    <input class="form-control" type="text" value="{{user.lastname}}" aria-label="readonly input example" readonly>
                                 </div>
                             </div>
 
-                            <label>Display Name *</label>
-                            <input type="text" class="form-control mb-0" name="display_name" required="">
-                            <small class="d-block form-text mb-7">This will be how your name will be displayed
-                                in the account section and in reviews</small>
+                            <label>Email Address :</label>
+                            <input type="text" class="form-control mb-7" value="{{user.email}}" name="display_name" readonly>
+                            <!-- <small class="d-block form-text mb-7">This will be how your name will be displayed
+                                in the account section and in reviews</small> -->
 
-                            <label>Email Address *</label>
-                            <input type="email" class="form-control" name="email" required="">
+                            <label>Birth date :</label>
+                            {%if user.birth_date %}
+                            <input type="email" class="form-control" name="email" value="{{user.birth_date}}" readonly>
+                            {% else %}
+                            <input type="email" class="form-control mb-0" name="email" value="your Birth date" readonly>
+                            <small class="d-block form-text mb-7">In your birth date you can use the offer</small>
+                            {% endif %}
                             <fieldset>
                                 <legend>Password Change</legend>
                                 <label>Current password (leave blank to leave unchanged)</label>
