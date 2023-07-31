@@ -56,9 +56,9 @@ class Product(BaseModel):
         return reverse('product:details', args=[self.slug,])
     
     def get_star_representation(self):
-        full_stars = "★" * (self.rate // 20)
-        half_star = "★" if (self.rate % 20 >= 10) else ""
-        empty_stars = "☆" * (5 - (self.rate // 20) - (1 if half_star else 0))
+        full_stars = '<i class="fas fa-star"></i>' * (self.rate // 20)
+        half_star = '<i class="fas fa-star-half-alt"></i>' if (self.rate % 20 >= 10) else ''
+        empty_stars = '<i class="far fa-star"></i>' * (5 - (self.rate // 20) - (1 if half_star else 0))
 
         return f"{full_stars}{half_star}{empty_stars}"
 

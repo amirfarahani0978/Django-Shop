@@ -112,8 +112,7 @@
                         <div class="product-price">{{product.price}}</div>
                         <div class="ratings-container">
                             <div class="ratings-full">
-                                <span class="ratings" style="width:80%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
+                                <p>{{ product.get_star_representation|safe }}</p>
                             </div>
                             <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 6 reviews )</a>
                         </div>
