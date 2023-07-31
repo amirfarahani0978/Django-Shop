@@ -41,7 +41,7 @@ class Product(BaseModel):
     quantity = models.PositiveIntegerField()
     category = models.ManyToManyField(
         Category, related_name='products')
-    rate = models.PositiveIntegerField()
+    rate = models.PositiveIntegerField(default=20)
     created = models.DateTimeField(auto_now=True)
     product_feature = models.OneToOneField(
         ProductFeature, on_delete=models.CASCADE, null=True, blank=True)
@@ -54,6 +54,13 @@ class Product(BaseModel):
 
     def get_absolute_url(self):
         return reverse('product:details', args=[self.slug,])
+    
+    def get_star_representation(self):
+        full_stars = "★" * (self.rate // 20)
+        half_star = "★" if (self.rate % 20 >= 10) else ""
+        empty_stars = "☆" * (5 - (self.rate // 20) - (1 if half_star else 0))
+
+        return f"{full_stars}{half_star}{empty_stars}"
 
 
 class Comment(BaseModel):
