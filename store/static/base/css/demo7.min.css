@@ -1414,7 +1414,7 @@ h5,
 h6,
 p {
     font-weight: 400;
-    margin: 0 0 2rem
+    margin: 0px;
 }
 
 h1,
@@ -1453,11 +1453,6 @@ h6 {
     font-size: 1.5rem
 }
 
-p {
-    font-family: Poppins, sans-serif;
-    font-size: 1.4rem;
-    line-height: 1.86
-}
 
 blockquote {
     margin: 0
