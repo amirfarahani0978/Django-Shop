@@ -229,11 +229,10 @@
                             <span class="price">{{product.price}}</span>
                         </div>
                         <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:100%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
+                            <div class="ratings-fulling">
+                                <p>{{ product.get_star_representation|safe }}</p>
                             </div>
-                            <a href="demo16-product.html" class="rating-reviews">( 12 reviews )</a>
+                            <p href="#product-tab-reviews" class="rating-reviewing">( 6 reviews )</p>
                         </div>
                         <div class="product-action">
                             <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
