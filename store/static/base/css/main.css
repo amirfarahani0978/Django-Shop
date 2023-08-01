@@ -10751,11 +10751,11 @@ button.mfp-arrow {
     color: #999
 }
 
-.dark-theme .rating-reviews {
+.dark-theme .rating-reviewing {
     color: #999
 }
 
-.dark-theme .ratings-full:before {
+.dark-theme .ratings-fulling:before {
     color: #666
 }
 
@@ -10769,27 +10769,26 @@ button.mfp-arrow {
     letter-spacing: 0.2em
 }
 
-.ratings-full {
+.ratings-fulling {
     cursor: pointer
 }
 
 .ratings,
-.ratings-full {
+.ratings-fulling {
     position: relative;
     font-family: "riode"
 }
 
-.ratings-full+.rating-reviews {
+.ratings-fulling+.rating-reviewing {
     margin-left: 1rem
 }
 
-.ratings-full:before {
-    content: "" "" "" "" "";
+.ratings-fulling:before {
     color: rgba(0, 0, 0, 0.16);
     font-family: "riode"
 }
 
-.ratings-full:hover .tooltiptext {
+.ratings-fulling:hover .tooltiptext {
     visibility: visible;
     opacity: 1
 }
@@ -10808,7 +10807,7 @@ button.mfp-arrow {
     font-family: "riode"
 }
 
-.rating-reviews {
+.rating-reviewing {
     margin: 2px 0;
     white-space: nowrap;
     overflow: hidden;
@@ -10816,10 +10815,10 @@ button.mfp-arrow {
     font-size: 1.1rem;
     color: #aaa;
     letter-spacing: 0;
-    text-transform: capitalize
+    text-transform: capitalize;
 }
 
-.rating-reviews:hover {
+.rating-reviewing:hover {
     color: #519071
 }
 
@@ -11670,11 +11669,11 @@ aside+div .product-single .product-details {
     font-weight: 600
 }
 
-.product-single .rating-reviews {
+.product-single .rating-reviewing {
     font-size: 1.2rem
 }
 
-.product-single .rating-reviews:not(:hover) {
+.product-single .rating-reviewing:not(:hover) {
     color: #999
 }
 
@@ -11687,7 +11686,7 @@ aside+div .product-single .product-details {
     color: #666
 }
 
-.product-single .ratings-full {
+.product-single .ratings-fulling {
     margin-top: -2px
 }
 
@@ -17716,8 +17715,8 @@ aside+div .product-single .product-details {
     margin-bottom: 1rem
 }
 
-#product-tab-reviews .ratings-full,
-.card-reviews .ratings-full {
+#product-tab-reviews .ratings-fulling,
+.card-reviews .ratings-fulling {
     margin-right: 0
 }
 
@@ -18103,7 +18102,7 @@ aside .owl-nav-top .owl-nav i:before {
     margin-right: 1.8rem
 }
 
-.avg-rating-container .rating-reviews:hover {
+.avg-rating-container .rating-reviewing:hover {
     color: #999
 }
 
