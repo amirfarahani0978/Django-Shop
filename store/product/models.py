@@ -67,6 +67,6 @@ class Comment(BaseModel):
     profile_id = models.OneToOneField(Account, on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    created_time = models.DateTimeField(auto_now=True)
+    created_time = models.DateField(auto_now=True)
     def __str__(self) -> str:
         return self.comment
