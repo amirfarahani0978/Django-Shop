@@ -62,7 +62,7 @@ class Product(BaseModel):
 
         return f"{full_stars}{half_star}{empty_stars}"
     
-    def comment_count(self):
+    def get_count_comment(self):
         return self.comments.count()
 
 

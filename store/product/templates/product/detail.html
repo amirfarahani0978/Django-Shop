@@ -114,7 +114,7 @@
                             <div class="ratings-fulling">
                                 <p>{{ product.get_star_representation|safe }}</p>
                             </div>
-                            <p href="#product-tab-reviews" class="rating-reviewing">( 6 reviews )</p>
+                            <p href="#product-tab-reviews" class="rating-reviewing">( {{product.get_count_comment}} reviews )</p>
                         </div>
                         <p class="product-short-desc">Sed egestas, ante et vulputate volutpat, eros pede semper
                             est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus
