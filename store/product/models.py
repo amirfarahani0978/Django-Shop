@@ -61,12 +61,15 @@ class Product(BaseModel):
         empty_stars = '<i class="far fa-star"></i>' * (5 - (self.rate // 20) - (1 if half_star else 0))
 
         return f"{full_stars}{half_star}{empty_stars}"
+    
+    def comment_count(self):
+        return self.comments.count()
 
 
 class Comment(BaseModel):
     profile_id = models.OneToOneField(Account, on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE , related_name='comments')
     created_time = models.DateField(auto_now=True)
     def __str__(self) -> str:
         return self.comment
