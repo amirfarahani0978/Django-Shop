@@ -1,5 +1,5 @@
 {% extends 'base2.html' %}
-
+{% load static %}
 {% block main %}
 <main class="main mt-lg-6 single-product">
     <div class="page-content mb-10">
@@ -425,8 +425,13 @@
                                                     <div class="comment">
                                                         <figure class="comment-media">
                                                             <a href="#">
-                                                                <img src="images/blog/comments/1.jpg"
+                                                                {% if user.profile_id.image.url %}
+                                                                <img src="{{ user.profile_id.image.url }}"
                                                                     alt="avatar">
+                                                                {% else %}
+                                                                <img src="{% static 'images/default.png' %}"
+                                                                    alt="avatar">
+                                                                {% endif %}
                                                             </a>
                                                         </figure>
                                                         <div class="comment-body">
@@ -440,8 +445,7 @@
                                                             </div>
                                                             <div class="comment-user">
                                                                 <span class="comment-date">by <span
-                                                                        class="font-weight-semi-bold text-uppercase text-dark">John
-                                                                        Doe</span> on
+                                                                        class="font-weight-semi-bold text-uppercase text-dark">{{user.profile_id.lastname}}</span> on
                                                                     <span
                                                                         class="font-weight-semi-bold text-dark">{{user.created_time}}</span>
                                                                     </span>
@@ -449,7 +453,7 @@
                                                             <div class="comment-content mb-5">
                                                                 <p>{{user.comment}}</p>
                                                             </div>
-                                                            <div class="file-input-wrappers">
+                                                            <!-- <div class="file-input-wrappers">
                                                                 <img class="btn-play btn-img pwsp"
                                                                     src="images/products/product1.jpg"
                                                                     width="280" height="315" alt="product" />
@@ -464,7 +468,7 @@
                                                                     href="video/memory-of-a-woman.mp4">
                                                                     <i class="d-icon-play-solid"></i>
                                                                 </a>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="feeling mt-5">
                                                                 <button
                                                                     class="btn btn-link btn-icon-left btn-slide-up btn-infinite like mr-2">
