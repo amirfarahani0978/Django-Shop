@@ -80,7 +80,7 @@
                                 <li>Detail</li>
                             </ul>
 
-                            <ul class="product-nav">
+                            <!-- <ul class="product-nav">
                                 <li class="product-nav-prev">
                                     <a href="#">
                                         <i class="d-icon-arrow-left"></i> Prev
@@ -101,7 +101,7 @@
                                         </span>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
 
                         <h1 class="product-name">{{product.name}}</h1>
@@ -303,7 +303,7 @@
                             </div>
                             <div class="card card-reviews">
                                 <div class="card-header">
-                                    <a href="#collapse1-4" class="expand">Reviews (2)</a>
+                                    <a href="#collapse1-4" class="expand">Reviews ({{product.get_count_comment}})</a>
                                 </div>
                                 <div class="card-body collapsed" id="collapse1-4">
                                     <div class="row">
