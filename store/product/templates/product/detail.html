@@ -420,6 +420,7 @@
                                                 </div>
                                             </nav>
                                             <ul class="comments-list">
+                                                {% for user in comment %}
                                                 <li>
                                                     <div class="comment">
                                                         <figure class="comment-media">
@@ -446,19 +447,8 @@
                                                                         22,
                                                                         2018</span></span>
                                                             </div>
-
                                                             <div class="comment-content mb-5">
-                                                                <p>Sed pretium, ligula sollicitudin laoreet
-                                                                    viverra, tortor
-                                                                    libero sodales leo,
-                                                                    eget blandit nunc tortor eu nibh. Nullam
-                                                                    mollis. Ut
-                                                                    justo.
-                                                                    Suspendisse potenti.
-                                                                    Sed egestas, ante et vulputate volutpat,
-                                                                    eros pede
-                                                                    semper
-                                                                    est, vitae luctus metus libero eu augue.</p>
+                                                                <p>{{user.comment}}</p>
                                                             </div>
                                                             <div class="file-input-wrappers">
                                                                 <img class="btn-play btn-img pwsp"
@@ -491,71 +481,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="comment">
-                                                        <figure class="comment-media">
-                                                            <a href="#">
-                                                                <img src="images/blog/comments/2.jpg"
-                                                                    alt="avatar">
-                                                            </a>
-                                                        </figure>
-
-                                                        <div class="comment-body">
-                                                            <div class="comment-rating ratings-container">
-                                                                <div class="ratings-full">
-                                                                    <span class="ratings"
-                                                                        style="width:100%"></span>
-                                                                    <span
-                                                                        class="tooltiptext tooltip-top"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="comment-user">
-                                                                <span class="comment-date">by <span
-                                                                        class="font-weight-semi-bold text-uppercase text-dark">John
-                                                                        Doe</span> on
-                                                                    <span
-                                                                        class="font-weight-semi-bold text-dark">Nov
-                                                                        22,
-                                                                        2018</span></span>
-                                                            </div>
-
-                                                            <div class="comment-content">
-                                                                <p>Sed pretium, ligula sollicitudin laoreet
-                                                                    viverra, tortor
-                                                                    libero sodales leo, eget blandit nunc tortor
-                                                                    eu nibh.
-                                                                    Nullam
-                                                                    mollis.
-                                                                    Ut justo. Suspendisse potenti. Sed egestas,
-                                                                    ante et
-                                                                    vulputate volutpat,
-                                                                    eros pede semper est, vitae luctus metus
-                                                                    libero eu
-                                                                    augue.
-                                                                    Morbi purus libero,
-                                                                    faucibus adipiscing, commodo quis, avida id,
-                                                                    est. Sed
-                                                                    lectus. Praesent elementum
-                                                                    hendrerit tortor. Sed semper lorem at felis.
-                                                                    Vestibulum
-                                                                    volutpat.</p>
-                                                            </div>
-                                                            <div class="feeling mt-5">
-                                                                <button
-                                                                    class="btn btn-link btn-icon-left btn-slide-up btn-infinite like mr-2">
-                                                                    <i class="fa fa-thumbs-up"></i>
-                                                                    Like (<span class="count">0</span>)
-                                                                </button>
-                                                                <button
-                                                                    class="btn btn-link btn-icon-left btn-slide-down btn-infinite unlike">
-                                                                    <i class="fa fa-thumbs-down"></i>
-                                                                    Unlike (<span class="count">0</span>)
-                                                                </button>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
+                                                {% endfor %}
                                             </ul>
                                             <nav class="toolbox toolbox-pagination justify-content-end">
                                                 <ul class="pagination">
