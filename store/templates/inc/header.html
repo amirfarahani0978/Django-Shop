@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="dropdown cart-dropdown type2 mr-0 mr-lg-2">
-                    <a href="cart.html" class="cart-toggle link">
+                    <a href="{% url 'order:cart' %}" class="cart-toggle link">
                         <i class="d-icon-bag"><span class="cart-count">{{cart|length}}</span></i>
                     </a>
                     <!-- End Cart Toggle -->
@@ -205,7 +205,7 @@
                         </div>
                         <!-- End of Cart Total -->
                         <div class="cart-action">
-                            <a href="cart.html" class="btn btn-dark btn-link">View Cart</a>
+                            <a href="{% url 'order:cart' %}" class="btn btn-dark btn-link">View Cart</a>
                             <a href="checkout.html" class="btn btn-dark"><span>Go To Checkout</span></a>
                         </div>
                         <!-- End of Cart Action -->
