@@ -4,5 +4,6 @@ btns.forEach(btn=>{
 })
 function addToCart(e){
     let product_id = e.target.value
-    console.log(product_id)
+    let url = '/cart/add/'
+    let data = {id:product_id}
 }
