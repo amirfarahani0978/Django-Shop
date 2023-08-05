@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from .cart import Cart
 from product.models import Product
 from .forms import CartAddForm, OfferForm
 from django.contrib.auth.mixins import LoginRequiredMixin
