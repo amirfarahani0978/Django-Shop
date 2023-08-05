@@ -13,6 +13,10 @@ from django.conf import settings
 import requests
 import json
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 class CartView(View):
     def get(self, request):
@@ -30,6 +34,7 @@ class CartAddView(View):
     #     return redirect('order:cart')
     def get(self , request):
         return JsonResponse('it is ok' , safe=False)
+    @method_decorator(csrf_exempt)  # Temporarily disable CSRF protection for this view (not recommended)
     def post(self , request):
         return JsonResponse('it is ok' , safe=False)
 
