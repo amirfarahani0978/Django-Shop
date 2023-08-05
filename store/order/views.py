@@ -12,7 +12,7 @@ from product.models import Product
 from django.conf import settings
 import requests
 import json
-
+from django.http import JsonResponse
 
 class CartView(View):
     def get(self, request):
@@ -21,13 +21,15 @@ class CartView(View):
 
 
 class CartAddView(View):
-    def post(self, request, product_id):
-        cart = Cart(request)
-        product = get_object_or_404(Product, id=product_id)
-        form = CartAddForm(request.POST)
-        if form.is_valid():
-            cart.add(product, form.cleaned_data['quantity'])
-        return redirect('order:cart')
+    # def post(self, request, product_id):
+    #     cart = Cart(request)
+    #     product = get_object_or_404(Product, id=product_id)
+    #     form = CartAddForm(request.POST)
+    #     if form.is_valid():
+    #         cart.add(product, form.cleaned_data['quantity'])
+    #     return redirect('order:cart')
+    def get(self , request):
+        return JsonResponse('it is ok' , safe=False)
 
 
 class RemoveCardView(View):
