@@ -155,7 +155,7 @@
                                     <input class="quantity form-control" type="number" min="1" max="1000000">
                                     <button class="quantity-plus d-icon-plus"></button>
                                 </div>
-                                <button href="{% url 'order:addcart' product.id %}" class="btn-product btn-cart"><i
+                                <button value="{{product.id}}" class="btn-product btn-cart"><i
                                         class="d-icon-bag"></i> Add
                                     ToCart</button>
                             </div>
