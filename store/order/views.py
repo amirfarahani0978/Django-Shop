@@ -30,6 +30,8 @@ class CartAddView(View):
     #     return redirect('order:cart')
     def get(self , request):
         return JsonResponse('it is ok' , safe=False)
+    def post(self , request):
+        return JsonResponse('it is ok' , safe=False)
 
 
 class RemoveCardView(View):
