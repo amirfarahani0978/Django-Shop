@@ -4,7 +4,7 @@ from .cart import Cart
 from product.models import Product
 from .forms import CartAddForm, OfferForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Order, OrderItem, Offer
+from .models import Order, OrderItem, Offer , Cart , CartItem
 from account.models import Account
 import datetime
 from django.contrib import messages
@@ -19,28 +19,31 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 class CartView(View):
-    def get(self, request):
-        cart = Cart(request)
-        return render(request, 'order/cart.html', {'cart': cart})
-
+    # def get(self, request):
+    #     cart = Cart(request)
+    #     return render(request, 'order/cart.html', {'cart': cart})
+    def get(self , request):
+        cart = None
+        cartitems = []
+        
+        if request.user.is_authenticated:
+            cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+            cartitems = cart.cartitems.all()
+        
+        context = {"cart":cart, "items":cartitems}
+        return render(request, 'order/cart.html', context)
 
 class CartAddView(View):
-    # def post(self, request, product_id):
-    #     cart = Cart(request)
-    #     product = get_object_or_404(Product, id=product_id)
-    #     form = CartAddForm(request.POST)
-    #     if form.is_valid():
-    #         cart.add(product, form.cleaned_data['quantity'])
-    #     return redirect('order:cart')
-    def get(self , request):
-        return JsonResponse('it is ok' , safe=False)
     def post(self , request):
-        cart = Cart(request)
-        print(cart)
         data = json.loads(request.body)
         product_id = data['id']
         product = get_object_or_404(Product, id=product_id)
-        return JsonResponse('it is ok' , safe=False)
+        if request.user.is_authenticated:
+            cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+            cartitem, created =CartItem.objects.get_or_create(cart=cart, product=product)
+            cartitem.quantity += 1
+            cartitem.save()
+        return JsonResponse('it is ok', safe=False)
 
 
 class RemoveCardView(View):
