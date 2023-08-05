@@ -176,26 +176,7 @@
                     <!-- End Cart Toggle -->
                     <div class="dropdown-box">
                         <div class="products scrollable">
-                            {% for item in cart %}
-                            <div class="product product-cart">
-                                <figure class="product-media">
-                                    <a href="demo7-product.html">
-                                        <img src="images/cart/product-1.jpg" alt="product" width="80" height="88" />
-                                    </a>
-                                    <button class="btn btn-link btn-close">
-                                        <!-- <i class="fas fa-times"></i><span class="sr-only">Close</span> -->
-                                        <i class="fas fa-times"></i><a href="{% url 'order:removecart' item.product.id %}" class="sr-only">Close</a>
-                                    </button>
-                                </figure>
-                                <div class="product-detail">
-                                    <a href="demo7-product.html" class="product-name">{{item.product}}</a>
-                                    <div class="price-box">
-                                        <span class="product-quantity">{{item.quantity}}</span>
-                                        <span class="product-price">{{item.price}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+                            
                             <!-- End of Cart Product -->
                         </div>
                         <!-- End of Products  -->
