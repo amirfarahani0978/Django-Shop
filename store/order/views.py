@@ -34,8 +34,12 @@ class CartAddView(View):
     #     return redirect('order:cart')
     def get(self , request):
         return JsonResponse('it is ok' , safe=False)
-    @method_decorator(csrf_exempt)  # Temporarily disable CSRF protection for this view (not recommended)
     def post(self , request):
+        cart = Cart(request)
+        print(cart)
+        data = json.loads(request.body)
+        product_id = data['id']
+        product = get_object_or_404(Product, id=product_id)
         return JsonResponse('it is ok' , safe=False)
 
 

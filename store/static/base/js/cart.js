@@ -1,7 +1,3 @@
-const csrftoken = Cookies.get('csrftoken');
-console.log(csrftoken)
-
-
 let btns = document.querySelectorAll(".product-form button")
 btns.forEach(btn=>{
     btn.addEventListener("click", addToCart)
@@ -22,3 +18,25 @@ function addToCart(e){
     })
     .catch(error=>console.log(error))
 }
+// function addToCart(e) {
+//     let product_id = e.target.value;
+//     console.log('amir');
+//     let url = '/order/cart/add/';
+//     let data = {id: product_id};
+
+//     $.ajax({
+//         url: url,
+//         type: 'POST',
+//         headers: {
+//             "Content-Type": "application/json",
+//             'X-CSRFToken': csrftoken
+//         },
+//         data: JSON.stringify(data),
+//         success: function(data) {
+//             console.log(data);
+//         },
+//         error: function(error) {
+//             console.log(error);
+//         }
+//     });
+// }
