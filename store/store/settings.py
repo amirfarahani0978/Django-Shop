@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'home.context_processors.category',
+                'order.context_processors.cart',
                 # "django.template.context_processors.i18n",
             ],
         },
