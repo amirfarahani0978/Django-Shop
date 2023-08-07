@@ -150,12 +150,11 @@
                         <form action="{% url 'order:addcart' product.id %}" method="post">
                             {% csrf_token %}
                             <div class="product-form product-qty">
-                                <label>QTY:</label>
-                                <div class="product-form-group">
-                                    <div class="input-group">
+                                <div class="row product-form-group">
+                                    <div class="col-6 col-lg-6 input-group">
                                         {{form}}
                                     </div>
-                                    <button type="submit" class="btn-product btn-cart"><i class="d-icon-bag"></i> Add
+                                    <button type="submit" class="col-6 col-lg-6 btn-product btn-cart"><i class="d-icon-bag"></i> Add
                                         ToCart</button>
                                 </div>
                             </div>
