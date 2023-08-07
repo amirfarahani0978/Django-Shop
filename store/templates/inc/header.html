@@ -171,7 +171,7 @@
 
                 <div class="dropdown cart-dropdown type2 mr-0 mr-lg-2">
                     <a href="{% url 'order:cart' %}" class="cart-toggle link">
-                        <i class="d-icon-bag"><span class="cart-count">{{cart.num_of_items}}</span></i>
+                        <i class="d-icon-bag"><span class="cart-count">{{cart|length}}</span></i>
                     </a>
                     <!-- End Cart Toggle -->
                     <div class="dropdown-box">
