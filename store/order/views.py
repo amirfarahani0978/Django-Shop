@@ -3,7 +3,7 @@ from django.views import View
 from product.models import Product
 from .forms import CartAddForm, OfferForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Order, OrderItem, Offer , Cart , CartItem
+from .models import Order, OrderItem, Offer 
 from account.models import Account
 import datetime
 from django.contrib import messages
@@ -12,25 +12,26 @@ from django.conf import settings
 import requests
 import json
 from django.http import JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from .cart import Cart
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.csrf import csrf_exempt
 
 
 
 class CartView(View):
-    # def get(self, request):
-    #     cart = Cart(request)
-    #     return render(request, 'order/cart.html', {'cart': cart})
-    def get(self , request):
-        cart = None
-        cartitems = []
+    def get(self, request):
+        cart = Cart(request)
+        return render(request, 'order/cart.html', {'cart': cart})
+    # def get(self , request):
+    #     cart = None
+    #     cartitems = []
         
-        if request.user.is_authenticated:
-            cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
-            cartitems = cart.cartitems.all()
+    #     if request.user.is_authenticated:
+    #         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+    #         cartitems = cart.cartitems.all()
         
-        context = {"cart":cart, "items":cartitems}
-        return render(request, 'order/cart.html', context)
+    #     context = {"cart":cart, "items":cartitems}
+    #     return render(request, 'order/cart.html', context)
 
 class CartAddView(View):
     def post(self , request):
