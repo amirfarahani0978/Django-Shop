@@ -53,7 +53,7 @@
                                     <span class="amount">{{item.total_price}}</span>
                                 </td>
                                 <td class="product-close">
-                                    <a href="#" class="product-remove" title="Remove this product">
+                                    <a href="{% url 'order:removecart' item.product.id %}" class="product-remove" title="Remove this product">
                                         <i class="fas fa-times"></i>
                                     </a>
                                 </td>
