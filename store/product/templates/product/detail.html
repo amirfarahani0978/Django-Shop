@@ -147,20 +147,19 @@
                         </div> -->
 
                         <hr class="product-divider">
-                        <div class="product-form product-qty">
-                            <label>QTY:</label>
-                            <div class="product-form-group">
-                                <div class="input-group">
-                                    <button class="quantity-minus d-icon-minus"></button>
-                                    <input class="quantity form-control" type="number" min="1" max="1000000">
-                                    <button class="quantity-plus d-icon-plus"></button>
+                        <form action="{% url 'order:addcart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="product-form product-qty">
+                                <label>QTY:</label>
+                                <div class="product-form-group">
+                                    <div class="input-group">
+                                        {{form}}
+                                    </div>
+                                    <button type="submit" class="btn-product btn-cart"><i class="d-icon-bag"></i> Add
+                                        ToCart</button>
                                 </div>
-                                <button value="{{product.id}}" class="btn-product btn-cart"><i
-                                        class="d-icon-bag"></i> Add
-                                    ToCart</button>
                             </div>
-                        </div>
-
+                        </form>
                         <hr class="product-divider mb-3">
 
                         <div class="product-footer">
