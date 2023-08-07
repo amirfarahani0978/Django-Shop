@@ -34,16 +34,23 @@ class CartView(View):
     #     return render(request, 'order/cart.html', context)
 
 class CartAddView(View):
-    def post(self , request):
-        data = json.loads(request.body)
-        product_id = data['id']
+    def post(self, request, product_id):
+        cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
-        if request.user.is_authenticated:
-            cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
-            cartitem, created =CartItem.objects.get_or_create(cart=cart, product=product)
-            cartitem.quantity += 1
-            cartitem.save()
-        return JsonResponse('it is ok', safe=False)
+        form = CartAddForm(request.POST)
+        if form.is_valid():
+            cart.add(product, form.cleaned_data['quantity'])
+        return redirect('order:cart')
+    # def post(self , request):
+    #     data = json.loads(request.body)
+    #     product_id = data['id']
+    #     product = get_object_or_404(Product, id=product_id)
+    #     if request.user.is_authenticated:
+    #         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+    #         cartitem, created =CartItem.objects.get_or_create(cart=cart, product=product)
+    #         cartitem.quantity += 1
+    #         cartitem.save()
+    #     return JsonResponse('it is ok', safe=False)
 
 
 # class RemoveCardView(View):
