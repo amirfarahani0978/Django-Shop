@@ -418,10 +418,11 @@
                     }
                 }
             }">
+                {% for item in featured_product %}
                 <div class="product product-classic">
                     <figure class="product-media">
                         <a href="demo16-product.html">
-                            <img src="images/demos/demo16/products/5.jpg" alt="product" width="280" height="315">
+                            <img src="{{item.image.url}}" alt="product" width="280" height="315">
                         </a>
                         <div class="product-label-group">
                             <label class="product-label label-new">new</label>
@@ -432,10 +433,10 @@
                             <a href="demo16-shop.html">Accessories</a>
                         </div>
                         <h3 class="product-name">
-                            <a href="demo16-product.html">Fashion Men's Underwear</a>
+                            <a href="demo16-product.html">{{item.name}}</a>
                         </h3>
                         <div class="product-price">
-                            <span class="price">$39.00</span>
+                            <span class="price">{{item.price}}</span>
                         </div>
                         <div class="ratings-container">
                             <div class="ratings-full">
@@ -455,111 +456,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product product-classic">
-                    <figure class="product-media">
-                        <a href="demo16-product.html">
-                            <img src="images/demos/demo16/products/6.jpg" alt="product" width="280" height="315">
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <div class="product-cat">
-                            <a href="demo16-shop.html">categories</a>
-                        </div>
-                        <h3 class="product-name">
-                            <a href="demo16-product.html">Hunting Knife</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$30.00</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:40%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                            <a href="demo16-product.html" class="rating-reviews">( 3 reviews )</a>
-                        </div>
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
-                                title="Add to cart"><i class="d-icon-bag"></i><span>add to
-                                    cart</span></a>
-                            <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                    class="d-icon-heart"></i></a>
-                            <a href="#" class="btn-product-icon btn-quickview" title="Quick View"><i
-                                    class="d-icon-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-classic">
-                    <figure class="product-media">
-                        <a href="demo16-product.html">
-                            <img src="images/demos/demo16/products/1.jpg" alt="product" width="280" height="315">
-                        </a>
-                        <div class="product-label-group">
-                            <label class="product-label label-sale">27% off</label>
-                        </div>
-                    </figure>
-                    <div class="product-details">
-                        <div class="product-cat">
-                            <a href="demo16-shop.html">categories</a>
-                        </div>
-                        <h3 class="product-name">
-                            <a href="demo16-product.html">Fashion Overnight Bag</a>
-                        </h3>
-                        <div class="product-price">
-                            <ins class="new-price">$199.00</ins><del class="old-price">$210.00</del>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:20%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                            <a href="demo16-product.html" class="rating-reviews">( 2 reviews )</a>
-                        </div>
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
-                                title="Add to cart"><i class="d-icon-bag"></i><span>add to
-                                    cart</span></a>
-                            <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                    class="d-icon-heart"></i></a>
-                            <a href="#" class="btn-product-icon btn-quickview" title="Quick View"><i
-                                    class="d-icon-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-classic">
-                    <figure class="product-media">
-                        <a href="demo16-product.html">
-                            <img src="images/demos/demo16/products/7.jpg" alt="product" width="280" height="315">
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <div class="product-cat">
-                            <a href="demo16-shop.html">categories</a>
-                        </div>
-                        <h3 class="product-name">
-                            <a href="demo16-product.html">Dark Blue Suede Shoes</a>
-                        </h3>
-                        <div class="product-price">
-                            <ins class="new-price">$199.00</ins><del class="old-price">$210.00</del>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:0%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                            <a href="demo16-product.html" class="rating-reviews">( 0 reviews )</a>
-                        </div>
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
-                                title="Add to cart"><i class="d-icon-bag"></i><span>add to
-                                    cart</span></a>
-                            <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                    class="d-icon-heart"></i></a>
-                            <a href="#" class="btn-product-icon btn-quickview" title="Quick View"><i
-                                    class="d-icon-search"></i></a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </section>
 
