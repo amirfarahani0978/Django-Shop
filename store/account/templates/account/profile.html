@@ -1,4 +1,9 @@
 {%extends 'base2.html'%}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/style.min.css' %}" />
+{% endblock %}
+
 {% block main %}
 <main class="main account">
     <nav class="breadcrumb-nav">
@@ -67,51 +72,11 @@
                                     <td class="order-number"><a href="#">{{item.id}}</a></td>
                                     <td class="order-date"><span>{{item.created}}</span></td>
                                     <td class="order-status"><span>{{item.state}}</span></td>
-                                    <td class="order-total"><span>{{order.get_total_price}}</span></td>
+                                    <td class="order-total"><span>{{item.get_total_price}}</span></td>
                                     <td class="order-action"><a href="#"
                                             class="btn btn-primary btn-link btn-underline">View</a></td>
                                 </tr>
                                 {% endfor %}
-                                <tr>
-                                    <td class="order-number"><a href="#">#3593</a></td>
-                                    <td class="order-date"><span>February 21, 2021</span></td>
-                                    <td class="order-status"><span>On hold</span></td>
-                                    <td class="order-total"><span>$290.00 for 2 items</span></td>
-                                    <td class="order-action"><a href="#"
-                                            class="btn btn-primary btn-link btn-underline">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="order-number"><a href="#">#2547</a></td>
-                                    <td class="order-date"><span>January 4, 2021</span></td>
-                                    <td class="order-status"><span>On hold</span></td>
-                                    <td class="order-total"><span>$480.00 for 8 items</span></td>
-                                    <td class="order-action"><a href="#"
-                                            class="btn btn-primary btn-link btn-underline">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="order-number"><a href="#">#2549</a></td>
-                                    <td class="order-date"><span>January 19, 2021</span></td>
-                                    <td class="order-status"><span>On hold</span></td>
-                                    <td class="order-total"><span>$680.00 for 5 items</span></td>
-                                    <td class="order-action"><a href="#"
-                                            class="btn btn-primary btn-link btn-underline">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="order-number"><a href="#">#4523</a></td>
-                                    <td class="order-date"><span>Jun 6, 2021</span></td>
-                                    <td class="order-status"><span>On hold</span></td>
-                                    <td class="order-total"><span>$564.00 for 3 items</span></td>
-                                    <td class="order-action"><a href="#"
-                                            class="btn btn-primary btn-link btn-underline">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="order-number"><a href="#">#4526</a></td>
-                                    <td class="order-date"><span>Jun 19, 2021</span></td>
-                                    <td class="order-status"><span>On hold</span></td>
-                                    <td class="order-total"><span>$123.00 for 8 items</span></td>
-                                    <td class="order-action"><a href="#"
-                                            class="btn btn-primary btn-link btn-underline">View</a></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
