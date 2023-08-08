@@ -232,11 +232,11 @@
                             <div class="ratings-fulling">
                                 <p>{{ product.get_star_representation|safe }}</p>
                             </div>
-                            <p href="#product-tab-reviews" class="rating-reviewing">( 6 reviews )</p>
+                            <p href="#product-tab-reviews" class="rating-reviewing">( {{product.get_count_comment}} reviews )</p>
                         </div>
                         <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
-                                title="Add to cart"><i class="d-icon-bag mb-1"></i><span>add to cart</span>
+                            <a href="{{ product.get_absolute_url }}" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
+                                title="Add to cart"><i class="d-icon-category mb-1"></i><span>Detail</span>
                             </a>
                             <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
                                     class="d-icon-heart"></i></a>
@@ -421,7 +421,7 @@
                 {% for item in featured_product %}
                 <div class="product product-classic">
                     <figure class="product-media">
-                        <a href="demo16-product.html">
+                        <a href="{{ item.get_absolute_url }}">
                             <img src="{{item.image.url}}" alt="product" width="280" height="315">
                         </a>
                         <div class="product-label-group">
@@ -439,20 +439,20 @@
                             <span class="price">{{item.price}}</span>
                         </div>
                         <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:0%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
+                            <div class="ratings-container">
+                                <div class="ratings-fulling">
+                                    <p>{{ item.get_star_representation|safe }}</p>
+                                </div>
+                                <p href="#product-tab-reviews" class="rating-reviewing">( {{item.get_count_comment}} reviews )</p>
                             </div>
-                            <a href="demo16-product.html" class="rating-reviews">( 0 reviews )</a>
                         </div>
                         <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
-                                title="Add to cart"><i class="d-icon-bag"></i><span>add to
-                                    cart</span></a>
+                            <a href="{{ item.get_absolute_url }}" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
+                                title="Add to cart"><i class="d-icon-category"></i><span>Detail</span></a>
                             <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
                                     class="d-icon-heart"></i></a>
-                            <a href="#" class="btn-product-icon btn-quickview" title="Quick View"><i
-                                    class="d-icon-search"></i></a>
+                            <!-- <a href="#" class="btn-product-icon btn-quickview" title="Quick View"><i
+                                    class="d-icon-search"></i></a> -->
                         </div>
                     </div>
                 </div>
@@ -460,7 +460,7 @@
             </div>
         </section>
 
-        <section class="container mt-10 pt-8 pb-2 appear-animate">
+        <!-- <section class="container mt-10 pt-8 pb-2 appear-animate">
             <h2 class="title title-simple text-center">Latest News</h2>
             <div class="owl-carousel owl-theme row cols-md-2 cols-1" data-owl-options="{
                 'items': 2,
@@ -529,8 +529,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="grey-section pt-3 pb-3 mt-10 appear-animate">
+        </section> -->
+        <!-- <section class="grey-section pt-3 pb-3 mt-10 appear-animate">
             <h2 class="title title-simple d-none">Our Client</h2>
             <div class="container">
                 <div class="owl-carousel owl-theme row brand-carousel cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2 gutter-no"
@@ -568,7 +568,7 @@
                     <img src="images/brands/6.png" alt="brand" width="180" height="100" />
                 </div>
             </div>
-        </section>
+        </section> -->
     </div>
 
 </main>
