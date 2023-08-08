@@ -73,14 +73,14 @@ class CreateOrderView(LoginRequiredMixin, View):
     def get(self, request):
         cart = Cart(request)
         for item in cart:
-            quant_store = Product.objects.get(slug=item['product'])
+            quant_store = Product.objects.get(name=item['product'])
             if item['quantity'] > quant_store.quantity:
                 messages.error(
                     request, f"Sorry, this {item['product']}is not available in the quantity you requested", 'danger')
                 return redirect('order:cart')
         order = Order.objects.create(user=request.user)
         for item in cart:
-            quant_store = Product.objects.get(slug=item['product'])
+            quant_store = Product.objects.get(name=item['product'])
             OrderItem.objects.create(
                 order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
             quant_store.quantity -= item['quantity']
