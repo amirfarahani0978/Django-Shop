@@ -62,14 +62,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for item in order %}
                                 <tr>
-                                    <td class="order-number"><a href="#">#3596</a></td>
-                                    <td class="order-date"><span>February 24, 2021</span></td>
-                                    <td class="order-status"><span>On hold</span></td>
-                                    <td class="order-total"><span>$900.00 for 5 items</span></td>
+                                    <td class="order-number"><a href="#">{{item.id}}</a></td>
+                                    <td class="order-date"><span>{{item.created}}</span></td>
+                                    <td class="order-status"><span>{{item.state}}</span></td>
+                                    <td class="order-total"><span>{{order.get_total_price}}</span></td>
                                     <td class="order-action"><a href="#"
                                             class="btn btn-primary btn-link btn-underline">View</a></td>
                                 </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="order-number"><a href="#">#3593</a></td>
                                     <td class="order-date"><span>February 21, 2021</span></td>

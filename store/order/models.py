@@ -11,7 +11,7 @@ class Order(BaseModel):
     state = models.CharField(max_length=100, null=True)
     paid = models.BooleanField(default=False)
     description = models.CharField(max_length=100, null=True)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
     offer = models.IntegerField(default=None, null=True, blank=True)
 
     def __str__(self) -> str:
