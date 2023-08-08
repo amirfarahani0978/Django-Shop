@@ -28,6 +28,7 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('phone_number', 'lastname')
     ordering = ('phone_number', 'lastname')
     filter_horizontal = ('groups', 'user_permissions')
+    readonly_fields = ('last_login',)
 
 
 admin.site.register(Account, UserAdmin)
