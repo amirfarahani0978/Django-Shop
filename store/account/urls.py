@@ -13,5 +13,5 @@ urlpatterns = [
     path('profile/<int:user_id>/' , ProfileView.as_view() , name='profile'),
     path('api/', include('account.api_urls' , namespace='api')),
     path('verifycode/' , VerifyCodeView.as_view() , name='verifycode'),
-    path('address/' , CreateAddress.as_view() , name='created'),
+    path('address/' , CreateAddress.as_view() , name='address_created'),
 ]
