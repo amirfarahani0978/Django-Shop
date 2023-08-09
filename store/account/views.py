@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.views import View
 from .forms import RegistrationForm, LoginForm, ProfileForm , VerfiyCodeForm
 from django.contrib.auth import authenticate
-from .models import Account , OtpCode
+from .models import Account , OtpCode , Address
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -114,4 +114,5 @@ class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
         order = Order.objects.filter(user = request.user)
-        return render(request , 'account/profile.html' , {'user':user ,'order':order})
+        address = Address.objects.get(account_id = user_id)
+        return render(request , 'account/profile.html' , {'user':user ,'order':order , 'address':address,})
