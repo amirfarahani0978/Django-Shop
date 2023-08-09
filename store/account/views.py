@@ -114,5 +114,5 @@ class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
         order = Order.objects.filter(user = request.user)
-        address = Address.objects.get(account_id = user_id)
+        address = Address.objects.filter(account_id = user_id)
         return render(request , 'account/profile.html' , {'user':user ,'order':order , 'address':address,})

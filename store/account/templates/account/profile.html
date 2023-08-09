@@ -89,30 +89,63 @@
                         <p class="mb-2">The following addresses will be used on the checkout page by default.
                         </p>
                         <div class="row">
-                            <div class="col-sm-6 mb-4">
-                                <div class="card card-address">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-uppercase">Billing Address</h5>
-                                        <p>John Doe<br>
-                                            Riode Company<br>
-                                            Steven street<br>
-                                            El Carjon, CA 92020
-                                        </p>
-                                        <a href="#" class="btn btn-link btn-secondary btn-underline">Edit <i
-                                                class="far fa-edit"></i></a>
+                            {% if address %}
+                                {% for item in address %}
+                                    <div class="col-sm-6 mb-4">
+                                        <div class="card card-address">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-uppercase">{{item.Postal_code}}</h5>
+                                                <p>{{item.city}}<br>
+                                                    {{item.street}}<br>
+                                                    {{item.Alley}}<br>
+                                                    {{item.Housenumber}}, {{item.Housebell}}
+                                                </p>
+                                                <a href="#" class="btn btn-link btn-secondary btn-underline">Edit <i
+                                                        class="far fa-edit"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="col-lg-7 mb-6 mb-lg-0 pr-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label>City *</label>
+                                            <input type="text" class="form-control" name="city" required="" />
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label>Street *</label>
+                                            <input type="text" class="form-control" name="state" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label>Alley *</label>
+                                            <input type="text" class="form-control" name="zip" required="" />
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label>Housenumber *</label>
+                                            <input type="number" class="form-control" name="phone" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label>Housebell *</label>
+                                            <input type="number" class="form-control" name="zip" required="" />
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label>Postal Code *</label>
+                                            <input type="number" class="form-control" name="phone" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <button type="submit" class="col-6 col-lg-11 add-address btn-product btn-cart"><i class="d-icon-plus"></i> Add </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <div class="card card-address">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-uppercase">Shipping Address</h5>
-                                        <p>You have not set up this type of address yet.</p>
-                                        <a href="#" class="btn btn-link btn-secondary btn-underline">Edit <i
-                                                class="far fa-edit"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="tab-pane" id="account">
