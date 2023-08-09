@@ -18784,9 +18784,9 @@ aside .owl-nav-top .owl-nav i:before {
     content: ""
 }
 
-.accordion .card-header a.collapse:after {
+/* .accordion .card-header a.collapse:after {
     content: ""
-}
+} */
 
 .accordion .description-title {
     font-size: 1.6rem
