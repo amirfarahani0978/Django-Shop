@@ -90,11 +90,11 @@ class CreateOrderView(LoginRequiredMixin, View):
         return redirect('order:detail_order', order.id)
 
 
-class CheckProfileCart(LoginRequiredMixin, View):
+class CheckOutView(View):
     def get(self, request):
         user = Account.objects.get(id=request.user.id)
         if request.user.postal_code is not None:
-            return render(request, 'order/checkprofile.html', {'user': user})
+            return render(request, 'order/checkout.html', {'user': user})
         return render(request, 'order/error.html')
 
 
