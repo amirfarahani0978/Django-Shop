@@ -11,7 +11,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
     lastname = models.CharField(max_length=50)
     birth_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='profile/%Y/%m/%d/', blank=True)
-    postal_code = models.IntegerField(null=True, blank=True)
     gender = models.CharField(
         max_length=6, choices=GENDER_CHOICE, null=True, blank=True)
     phone_number = models.CharField(max_length=11, unique=True)
@@ -32,11 +31,17 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
 
 class Address(BaseModel):
-    address = models.CharField(max_length=200)
-    account_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    city = models.CharField(max_length=200)
+    street = models.CharField(max_length=400)
+    Alley = models.CharField(max_length=400)
+    Housenumber = models.PositiveIntegerField()
+    Housebell = models.PositiveIntegerField()
+    Postal_code = models.IntegerField(null=True, blank=True)
+    account_id = models.ForeignKey(Account, on_delete=models.CASCADE , related_name='address')
 
     def __str__(self) -> str:
-        return self.address
+        return self.street
+
 
 
 class Wishing(BaseModel):
