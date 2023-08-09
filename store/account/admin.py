@@ -3,8 +3,9 @@ from django.contrib import admin
 from .forms import AccountChangeForm, AccountCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
-from .models import Account, OtpCode
+from .models import Account, OtpCode , Address
 
+admin.site.register(Address)
 
 @admin.register(OtpCode)
 class OtpCodeAdmin(admin.ModelAdmin):
@@ -33,8 +34,8 @@ class UserAdmin(BaseUserAdmin):
     readonly_fields = ('last_login',)
     # this method is used to disable the user if he is not superuser.
 
-    def get_form(self, request: Any, obj: Any | None = ..., change: bool = ..., **kwargs: Any) -> Any:
-        form = super().get_form(request, obj, change, **kwargs)
+    def get_form(self, request: Any, obj: None,**kwargs: Any) -> Any:
+        form = super().get_form(request, obj, **kwargs)
         is_superuser = request.user.is_superuser
         if not is_superuser:
             form.base_fields['is_superuser'].disable = True
