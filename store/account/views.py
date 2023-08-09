@@ -116,3 +116,18 @@ class ProfileView(View):
         order = Order.objects.filter(user = request.user)
         address = Address.objects.filter(account_id = user_id)
         return render(request , 'account/profile.html' , {'user':user ,'order':order , 'address':address,})
+
+class CreateAddress(View):
+    def post(self,request):
+        city = request.POST.get('city')
+        street = request.POST.get('street')
+        alley = request.POST.get('alley')
+        housenumber = request.POST.get('housenumber')
+        housebell = request.POST.get('housebell')
+        postalcode = request.POST.get('postalcode')
+        address = Address.objects.create(city = city , street =street , Alley = alley, Hosenumber = housenumber , Housebell = housebell , Postal_code = postalcode , account_id = request.user)
+        if address:
+            messages.success(request , 'this address is created' , 'success')
+        else:
+            messages.error(request , 'please try agian' , 'danger')
+        return redirect('registe:profile')
