@@ -44,13 +44,13 @@ class Address(BaseModel):
 
 
 
-class Wishing(BaseModel):
-    user_id = models.OneToOneField(Account, on_delete=models.CASCADE)
+# class Wishing(BaseModel):
+#     user_id = models.OneToOneField(Account, on_delete=models.CASCADE)
 
 
-class Wishing_item(BaseModel):
-    # product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
-    wishing = models.ForeignKey(Wishing, on_delete=models.CASCADE)
+# class Wishing_item(BaseModel):
+#     # product_id = models.ForeignKey(Product , on_delete=models.CASCADE)
+#     wishing = models.ForeignKey(Wishing, on_delete=models.CASCADE)
 
 
 class OtpCode(BaseModel):

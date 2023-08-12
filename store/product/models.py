@@ -73,3 +73,8 @@ class Comment(BaseModel):
     created_time = models.DateField(auto_now=True)
     def __str__(self) -> str:
         return self.comment
+
+
+class WishList(BaseModel):
+    user_id = models.OneToOneField(Account, on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product , related_name='product')
