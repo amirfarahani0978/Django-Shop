@@ -78,3 +78,7 @@ class Comment(BaseModel):
 class WishList(BaseModel):
     user_id = models.OneToOneField(Account, on_delete=models.CASCADE)
     product = models.ManyToManyField(Product , related_name='product')
+
+    def __str__(self) -> str:
+        product_ids = ", ".join(str(product.id) for product in self.product.all())
+        return f'{self.user_id} ( {product_ids} )'
