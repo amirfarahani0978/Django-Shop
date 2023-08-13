@@ -10,3 +10,8 @@ class ProductDetailView(View):
         comment = Comment.objects.filter(product_id = product.id)
         form = CartAddForm()
         return render(request, 'product/detail.html', {'product': product , 'form':form , 'comment':comment})
+    
+
+class AddWishListView(View):
+    def post(self , request):
+        ...
