@@ -154,7 +154,7 @@
                                     <div class="col-6 col-lg-6 input-group">
                                         {{form}}
                                     </div>
-                                    <button type="submit" class="add-to-wishlist col-6 col-lg-6 btn-product btn-cart" data-product-id="{{ product.id }}"><i class="d-icon-bag"></i> Add
+                                    <button type="submit" class="col-6 col-lg-6 btn-product btn-cart"><i class="d-icon-bag"></i> Add
                                         ToCart</button>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                             </div>
                             <span class="divider d-lg-show"></span>
                             <div class="product-action">
-                                <a href="#" class="btn-product btn-wishlist mr-6"><i class="d-icon-heart"></i>Add to
+                                <a href="#" class="add-to-wishlist btn-product btn-wishlist mr-6"  data-product-id="{{product.id}}"><i class="d-icon-heart"></i>Add to
                                     wishlist</a>
                                 <span class="divider d-lg-show"></span>
                                 <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Compare</a>
@@ -761,13 +761,12 @@
 
 </main>
 {% endblock %}
-<!-- {% block script %}
+{% block script %}
 <script>
     $(document).ready(function() {
         $('.add-to-wishlist').click(function() {
-            var $productElement = $(this).prev('.product-name');
-            var productId = $productElement.data('product-id');
-
+            var productId = $(this).data('product-id');
+            console.log(productId);
             $.ajax({
                 type: 'POST',
                 url: '{% url "product:addwishlist" %}',
@@ -785,4 +784,4 @@
         });
     });
 </script>
-{% endblock %} -->
+{% endblock %}
