@@ -154,7 +154,7 @@
                                     <div class="col-6 col-lg-6 input-group">
                                         {{form}}
                                     </div>
-                                    <button type="submit" class="product-name col-6 col-lg-6 btn-product btn-cart" data-product-id="{{ product.id }}"><i class="d-icon-bag"></i> Add
+                                    <button type="submit" class="add-to-wishlist col-6 col-lg-6 btn-product btn-cart" data-product-id="{{ product.id }}"><i class="d-icon-bag"></i> Add
                                         ToCart</button>
                                 </div>
                             </div>
@@ -762,5 +762,27 @@
 </main>
 {% endblock %}
 <!-- {% block script %}
-<script src="{% static 'base/js/cart.js'%}"></script> 
+<script>
+    $(document).ready(function() {
+        $('.add-to-wishlist').click(function() {
+            var $productElement = $(this).prev('.product-name');
+            var productId = $productElement.data('product-id');
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "product:addwishlist" %}',
+                data: {
+                    'product_id': productId,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function(response) {
+                    alert('Product added to wishlist!');
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 {% endblock %} -->
