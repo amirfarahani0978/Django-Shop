@@ -610,7 +610,7 @@
                     {% for item in related %}
                     <div class="product product-classic">
                         <figure class="product-media">
-                            <a href="demo16-product.html">
+                            <a href="{{item.get_absolute_url}}">
                                 <img src="{{item.image.url}}" alt="product" width="280" height="315">
                             </a>
                             <div class="product-label-group">
@@ -619,10 +619,10 @@
                         </figure>
                         <div class="product-details">
                             <div class="product-cat">
-                                <a href="demo16-shop.html">{{item.category}}</a>
+                                <a href="{{item.get_absolute_url}}">{{item.category}}</a>
                             </div>
                             <h3 class="product-name">
-                                <a href="demo16-product.html">{{item.name}}</a>
+                                <a href="{{item.get_absolute_url}}">{{item.name}}</a>
                             </h3>
                             <div class="product-price">
                                 <span class="price">{{item.price}}</span>
