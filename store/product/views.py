@@ -11,9 +11,8 @@ class ProductDetailView(View):
         comment = Comment.objects.filter(product_id = product.id)
         # print('*'*10 ,product.category)
         filter_product = Product.objects.filter(category = product.category)
-        # print("*"*10 , filter_product)
         form = CartAddForm()
-        return render(request, 'product/detail.html', {'product': product , 'form':form , 'comment':comment})
+        return render(request, 'product/detail.html', {'product': product , 'form':form , 'comment':comment , 'related':filter_product})
     def post(self , request , slug):
         print('****************************')
         return redirect('home:home')
