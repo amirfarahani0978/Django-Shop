@@ -154,7 +154,8 @@
                                     <div class="col-6 col-lg-6 input-group">
                                         {{form}}
                                     </div>
-                                    <button type="submit" class="col-6 col-lg-6 btn-product btn-cart"><i class="d-icon-bag"></i> Add
+                                    <button type="submit" class="col-6 col-lg-6 btn-product btn-cart"><i
+                                            class="d-icon-bag"></i> Add
                                         ToCart</button>
                                 </div>
                             </div>
@@ -169,7 +170,8 @@
                             </div>
                             <span class="divider d-lg-show"></span>
                             <div class="product-action">
-                                <a type="button" class="add-to-wishlist btn-product btn-wishlist mr-6"  data-product-id="{{product.id}}"><i class="d-icon-heart"></i>Add to
+                                <a type="button" class="add-to-wishlist btn-product btn-wishlist mr-6"
+                                    data-product-id="{{product.id}}"><i class="d-icon-heart"></i>Add to
                                     wishlist</a>
                                 <span class="divider d-lg-show"></span>
                                 <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Compare</a>
@@ -605,10 +607,11 @@
                         }
                     }
                 }">
+                    {% for item in related %}
                     <div class="product product-classic">
                         <figure class="product-media">
                             <a href="demo16-product.html">
-                                <img src="images/demos/demo16/products/1.jpg" alt="product" width="280" height="315">
+                                <img src="{{item.image.url}}" alt="product" width="280" height="315">
                             </a>
                             <div class="product-label-group">
                                 <label class="product-label label-new">new</label>
@@ -616,20 +619,20 @@
                         </figure>
                         <div class="product-details">
                             <div class="product-cat">
-                                <a href="demo16-shop.html">Bags Fresh</a>
+                                <a href="demo16-shop.html">{{item.category}}</a>
                             </div>
                             <h3 class="product-name">
-                                <a href="demo16-product.html">Fashion Overnight Bag</a>
+                                <a href="demo16-product.html">{{item.name}}</a>
                             </h3>
                             <div class="product-price">
-                                <span class="price">$39.00</span>
+                                <span class="price">{{item.price}}</span>
                             </div>
                             <div class="ratings-container">
                                 <div class="ratings-full">
-                                    <span class="ratings" style="width:100%"></span>
-                                    <span class="tooltiptext tooltip-top"></span>
+                                    <p>{{ item.get_star_representation|safe }}</p>
                                 </div>
-                                <a href="demo16-product.html" class="rating-reviews">( 12 reviews )</a>
+                                <p href="#product-tab-reviews" class="rating-reviewing">( {{item.get_count_comment}}
+                                    reviews )</p>
                             </div>
                             <div class="product-action">
                                 <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
@@ -643,6 +646,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                     <div class="product product-classic">
                         <figure class="product-media">
                             <a href="demo16-product.html">
@@ -763,8 +767,8 @@
 {% endblock %}
 {% block script %}
 <script>
-    $(document).ready(function() {
-        $('.add-to-wishlist').click(function() {
+    $(document).ready(function () {
+        $('.add-to-wishlist').click(function () {
             var productId = $(this).data('product-id');
 
             $.ajax({
@@ -774,10 +778,10 @@
                     'product_id': productId,
                     'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
-                success: function(response) {
+                success: function (response) {
                     alert('Product added to wishlist!');
                 },
-                error: function(xhr, errmsg, err) {
+                error: function (xhr, errmsg, err) {
                     console.log(xhr.status + ": " + xhr.responseText);
                 }
             });
