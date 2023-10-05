@@ -10,7 +10,7 @@ class ProductDetailView(View):
         product = Product.objects.get(slug = slug)
         comment = Comment.objects.filter(product_id = product.id)
         # print('*'*10 ,product.category)
-        filter_product = Product.objects.filter(category = product.category)
+        filter_product = Product.objects.filter(category = product.category)[:4]
         form = CartAddForm()
         return render(request, 'product/detail.html', {'product': product , 'form':form , 'comment':comment , 'related':filter_product})
     def post(self , request , slug):
