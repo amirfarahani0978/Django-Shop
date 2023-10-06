@@ -1,10 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from .cart import Cart
 from product.models import Product
 from .forms import CartAddForm, OfferForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Order, OrderItem, Offer
+from .models import Order, OrderItem, Offer 
 from account.models import Account
 import datetime
 from django.contrib import messages
@@ -12,13 +11,27 @@ from product.models import Product
 from django.conf import settings
 import requests
 import json
+from django.http import JsonResponse
+from .cart import Cart
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.csrf import csrf_exempt
+
 
 
 class CartView(View):
     def get(self, request):
         cart = Cart(request)
         return render(request, 'order/cart.html', {'cart': cart})
-
+    # def get(self , request):
+    #     cart = None
+    #     cartitems = []
+        
+    #     if request.user.is_authenticated:
+    #         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+    #         cartitems = cart.cartitems.all()
+        
+    #     context = {"cart":cart, "items":cartitems}
+    #     return render(request, 'order/cart.html', context)
 
 class CartAddView(View):
     def post(self, request, product_id):
@@ -28,6 +41,16 @@ class CartAddView(View):
         if form.is_valid():
             cart.add(product, form.cleaned_data['quantity'])
         return redirect('order:cart')
+    # def post(self , request):
+    #     data = json.loads(request.body)
+    #     product_id = data['id']
+    #     product = get_object_or_404(Product, id=product_id)
+    #     if request.user.is_authenticated:
+    #         cart, created = Cart.objects.get_or_create(user=request.user, completed=False)
+    #         cartitem, created =CartItem.objects.get_or_create(cart=cart, product=product)
+    #         cartitem.quantity += 1
+    #         cartitem.save()
+    #     return JsonResponse('it is ok', safe=False)
 
 
 class RemoveCardView(View):
@@ -50,14 +73,14 @@ class CreateOrderView(LoginRequiredMixin, View):
     def get(self, request):
         cart = Cart(request)
         for item in cart:
-            quant_store = Product.objects.get(slug=item['product'])
+            quant_store = Product.objects.get(name=item['product'])
             if item['quantity'] > quant_store.quantity:
                 messages.error(
                     request, f"Sorry, this {item['product']}is not available in the quantity you requested", 'danger')
                 return redirect('order:cart')
         order = Order.objects.create(user=request.user)
         for item in cart:
-            quant_store = Product.objects.get(slug=item['product'])
+            quant_store = Product.objects.get(name=item['product'])
             OrderItem.objects.create(
                 order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
             quant_store.quantity -= item['quantity']
@@ -67,11 +90,11 @@ class CreateOrderView(LoginRequiredMixin, View):
         return redirect('order:detail_order', order.id)
 
 
-class CheckProfileCart(LoginRequiredMixin, View):
+class CheckOutView(View):
     def get(self, request):
         user = Account.objects.get(id=request.user.id)
         if request.user.postal_code is not None:
-            return render(request, 'order/checkprofile.html', {'user': user})
+            return render(request, 'order/checkout.html', {'user': user})
         return render(request, 'order/error.html')
 
 

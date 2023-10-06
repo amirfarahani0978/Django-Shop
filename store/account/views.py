@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.views import View
 from .forms import RegistrationForm, LoginForm, ProfileForm , VerfiyCodeForm
 from django.contrib.auth import authenticate
-from .models import Account , OtpCode
+from .models import Account , OtpCode , Address
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -42,24 +42,31 @@ class LoginView(View):
 
     def get(self, request):
         form = self.form_class
-        return render(request, 'account/login.html', {'form': form})
+        return render(request, 'account/login.html' , {'form':form})
 
     def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            account = authenticate(
-                request, phone_number=cd['phone_number'], password=cd['password'])
-            if account is not None:
-                auth_login(request, account)
-                messages.success(
-                    request, 'Login is successfully !!!', 'success')
-                return redirect('home:home')
-            else:
-                messages.error(
-                    request, "Phone number or password is not correct ?", 'danger')
-                return redirect('home:home')
-                
+        # form = self.form_class(request.POST)
+        # if form.is_valid():
+        #     cd = form.cleaned_data
+        #     account = authenticate(
+        #         request, phone_number=cd['phone_number'], password=cd['password'])
+        #     if account is not None:
+        #         auth_login(request, account)
+        #         messages.success(
+        #             request, 'Login is successfully !!!', 'success')
+        #         return redirect('home:home')
+        #     else:
+        #         messages.error(
+        #             request, "Phone number or password is not correct ?", 'danger')
+        #         return redirect('home:home')
+        phone_number  = request.POST.get('phone_number')
+        password = request.POST.get('password')
+        account = authenticate(request, phone_number=phone_number, password=password)
+        if account is not None:
+            auth_login(request, account)
+            messages.success(request, 'Login is successfully !!!', 'success')
+            return redirect('home:home')
+        return redirect('home:home')
 
 class VerifyCodeView(View):
     form_class = VerfiyCodeForm
@@ -107,4 +114,20 @@ class ProfileView(View):
     def get(self , request , user_id):
         user = Account.objects.get(id = user_id)
         order = Order.objects.filter(user = request.user)
-        return render(request , 'account/profile.html' , {'user':user ,'order':order})
+        address = Address.objects.filter(account_id = user_id)
+        return render(request , 'account/profile.html' , {'user':user ,'order':order , 'address':address,})
+
+class CreateAddress(View):
+    def post(self,request):
+        city = request.POST.get('city')
+        street = request.POST.get('street')
+        alley = request.POST.get('alley')
+        housenumber = request.POST.get('housenumber')
+        housebell = request.POST.get('housebell')
+        postalcode = request.POST.get('postalcode')
+        address = Address.objects.create(city = city , street =street , Alley = alley, Housenumber = housenumber , Housebell = housebell , Postal_code = postalcode , account_id = request.user)
+        if address:
+            messages.success(request , 'this address is created' , 'success')
+        else:
+            messages.error(request , 'please try agian' , 'danger')
+        return redirect('register:profile',request.user.id)

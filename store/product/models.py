@@ -39,9 +39,10 @@ class Product(BaseModel):
     count_buying = models.PositiveIntegerField()
     status_available = models.BooleanField()
     quantity = models.PositiveIntegerField()
-    category = models.ManyToManyField(
-        Category, related_name='products')
-    rate = models.PositiveIntegerField()
+    category = models.ForeignKey(
+        Category, related_name='products' , on_delete=models.CASCADE)
+    rate = models.PositiveIntegerField(default=50)
+    created = models.DateTimeField(auto_now=True)
     product_feature = models.OneToOneField(
         ProductFeature, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -53,12 +54,31 @@ class Product(BaseModel):
 
     def get_absolute_url(self):
         return reverse('product:details', args=[self.slug,])
+    
+    def get_star_representation(self):
+        full_stars = '<i class="fas fa-star"></i>' * (self.rate // 20)
+        half_star = '<i class="fas fa-star-half-alt"></i>' if (self.rate % 20 >= 10) else ''
+        empty_stars = '<i class="far fa-star"></i>' * (5 - (self.rate // 20) - (1 if half_star else 0))
+
+        return f"{full_stars}{half_star}{empty_stars}"
+    
+    def get_count_comment(self):
+        return self.comments.count()
 
 
 class Comment(BaseModel):
     profile_id = models.OneToOneField(Account, on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE , related_name='comments')
+    created_time = models.DateField(auto_now=True)
     def __str__(self) -> str:
         return self.comment
+
+
+class WishList(BaseModel):
+    user_id = models.OneToOneField(Account, on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product , related_name='product')
+
+    def __str__(self) -> str:
+        product_ids = ", ".join(str(product.id) for product in self.product.all())
+        return f'{self.user_id} ( {product_ids} )'

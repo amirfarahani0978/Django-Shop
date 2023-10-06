@@ -1,17 +1,28 @@
 from django.shortcuts import render
 from django.views import View
-from product.models import Product , Category
+from product.models import Product , Category 
+from .models import Baner
+from .forms import ContactForm
 
 class Home(View):
     def get(self, request , category_slug=None):
-        products = Product.objects.filter(status_available=True)
-        categories = Category.objects.all()
-        if category_slug:
-            category = Category.objects.get(slug = category_slug)
-            products = products.filter(category = category)
-        return render(request, 'base.html', {'products': products , 'categories':categories})
+        products = Product.objects.order_by('created')[:4]
+        baner = Baner.objects.get(title = 'mobin')
+        featured_product = Product.objects.order_by('count_buying')[:4]
+        return render(request, 'home_page.html', {'products': products , 'baner':baner , 'featured_product':featured_product })
 
     # def post(self, request):
     #     return render(request, 'base.html')
 
+class Contact(View):
+    form_class = ContactForm
+    template_name = 'inc/contact-us.html'
+    def get(self , request):
+        return render(request, self.template_name)
+    def post(self , request):
+        ...
 
+class AboutUsView(View):
+    template_name = 'inc/about_us.html'
+    def get(self , request):
+        return render(request , self.template_name)

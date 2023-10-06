@@ -1,0 +1,199 @@
+{% load static %}
+<header class="header border-no">
+    <div class="header-middle sticky-header fix-top sticky-content">
+        <div class="container-fluid">
+            <div class="header-left">
+                <a href="#" class="mobile-menu-toggle">
+                    <i class="d-icon-bars2"></i>
+                </a>
+                <a href="{% url 'home:home' %}" class="logo">
+                    <img src="{% static 'images/logo.png' %}" alt="logo" width="154" height="43" />
+                </a>
+                <!-- End of Logo -->
+            </div>
+            <div class="header-center">
+                <nav class="main-nav ml-0 mr-0">
+                    <ul class="menu">
+                        <li class="active">
+                            <a href="{% url 'home:home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="demo7-shop.html">Categories</a>
+                            <div class="megamenu">
+                                <div class="row">
+                                    {% for category in categories %}
+                                    {% if not category.sub_category %}
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                        <h4 class="menu-title">{{category.name}}</h4>
+                                        <ul>
+                                            {% for cat in category.subcategory.all %}
+                                            <li><a href="shop-classic-filter.html">{{cat.name}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <div
+                                        class="col-6 col-sm-4 col-md-4 col-lg-3 menu-banner menu-banner1 banner banner-fixed">
+                                        <figure>
+                                            <img src="images/menu/banner-1.jpg" alt="Menu banner" width="221"
+                                                height="330" />
+                                        </figure>
+                                        <div class="banner-content y-50">
+                                            <h4 class="banner-subtitle font-weight-bold text-primary ls-m">Sale.
+                                            </h4>
+                                            <h3 class="banner-title font-weight-bold"><span class="text-uppercase">Up
+                                                    to</span>70% Off</h3>
+                                            <a href="demo7-shop.html" class="btn btn-link btn-underline">shop
+                                                now<i class="d-icon-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- End of Megamenu -->
+                                </div>
+                            </div>
+                        </li>
+                        <!-- End of Dropdown -->
+                        <li>
+                            <a href="{% url 'home:contact-us' %}">Contact Us</a>
+                        </li>
+                        <!-- End of Dropdown -->
+                        <li>
+                            <a href="{% url 'home:about-us'%}">About Us</a>
+                        </li>
+                        <!-- End of Dropdown -->                        
+                    </ul>
+                </nav>
+                <!-- End of Divider -->
+            </div>
+            <div class="header-right">
+                <div class="header-search hs-toggle">
+                    <a href="#" class="search-toggle" title="wishlist">
+                        <i class="d-icon-search"></i>
+                    </a>
+                    <form action="#" class="input-wrapper">
+                        <input type="text" class="form-control" name="search" autocomplete="off"
+                            placeholder="Search your keyword..." required />
+                        <button class="btn btn-search" type="submit" title="submit-button">
+                            <i class="d-icon-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- End of Header Search -->
+                {% if request.user.is_authenticated %}
+                <a class="login-linking" href="{% url 'register:profile' request.user.id %}" data-toggle="profile-modal" title="profile"><i
+                        class="d-icon-user"></i></a>
+                {% else %}
+                <a class="login-linking" href="{% url 'register:login' %}" data-toggle="login-modal" title="login"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                        <path fill-rule="evenodd"
+                            d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg></a>
+                {% endif %}
+                <div class="dropdown wishlist wishlist-dropdown off-canvas mr-4 d-lg-show">
+                    <a href="wishlist.html" class="wishlist-toggle" title="wislist">
+                        <i class="d-icon-heart"></i>
+                    </a>
+                    <div class="canvas-overlay"></div>
+                    <!-- End Wishlist Toggle -->
+                    <div class="dropdown-box scrollable">
+                        <div class="canvas-header">
+                            <h4 class="canvas-title">wishlist</h4>
+                            <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">close<i
+                                    class="d-icon-arrow-right"></i><span class="sr-only">wishlist</span></a>
+                        </div>
+                        <div class="products scrollable">
+                            <div class="product product-wishlist">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="images/wishlist/product-1.jpg" width="100" height="100"
+                                            alt="product" />
+                                    </a>
+                                    <button class="btn btn-link btn-close">
+                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                    </button>
+                                </figure>
+                                <div class="product-detail">
+                                    <a href="product.html" class="product-name">Girl's Dark Bag</a>
+                                    <div class="price-box">
+                                        <span class="product-price">$84.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of wishlist Product -->
+                            <div class="product product-wishlist">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="images/wishlist/product-2.jpg" width="100" height="100"
+                                            alt="product" />
+                                    </a>
+                                    <button class="btn btn-link btn-close">
+                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                    </button>
+                                </figure>
+                                <div class="product-detail">
+                                    <a href="product.html" class="product-name">Women's Fashional Comforter
+                                    </a>
+                                    <div class="price-box">
+                                        <span class="product-price">$84.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of wishlist Product -->
+                            <div class="product product-wishlist">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="images/wishlist/product-3.jpg" width="100" height="100"
+                                            alt="product" />
+                                    </a>
+                                    <button class="btn btn-link btn-close">
+                                        <i class="fas fa-times"></i><span class="sr-only">Close</span>
+                                    </button>
+                                </figure>
+                                <div class="product-detail">
+                                    <a href="product.html" class="product-name">Wide Knickerbockers</a>
+                                    <div class="price-box">
+                                        <span class="product-price">$84.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- End of wishlist Product -->
+                        </div>
+                        <a href="wishlist.html" class="btn btn-dark wishlist-btn mt-4"><span>Go To
+                                Wishlist</span></a>
+                        <!-- End of Products  -->
+                    </div>
+                    <!-- End Dropdown Box -->
+                </div>
+
+                <div class="dropdown cart-dropdown type2 mr-0 mr-lg-2">
+                    <a href="{% url 'order:cart' %}" class="cart-toggle link">
+                        <i class="d-icon-bag"><span class="cart-count">{{cart|length}}</span></i>
+                    </a>
+                    <!-- End Cart Toggle -->
+                    <div class="dropdown-box">
+                        <div class="products scrollable">
+                            
+                            <!-- End of Cart Product -->
+                        </div>
+                        <!-- End of Products  -->
+                        <div class="cart-total">
+                            <label>Subtotal:</label>
+                            <span class="price">{{item.total_price}}</span>
+                        </div>
+                        <!-- End of Cart Total -->
+                        <div class="cart-action">
+                            <a href="{% url 'order:cart' %}" class="btn btn-dark btn-link">View Cart</a>
+                            <a href="checkout.html" class="btn btn-dark"><span>Go To Checkout</span></a>
+                        </div>
+                        <!-- End of Cart Action -->
+                    </div>
+                    <!-- End Dropdown Box -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,66 +1,595 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
+{% load static %}
+{% block main %}
+<main class="main mt-lg-6 single-product">
+    <div class="page-content mb-10">
+        <div class="container">
+            <div class="product product-single row">
+                <div class="col-md-6">
+                    <div class="product-gallery product-gallery-sticky">
+                        <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
+                            <figure class="product-image">
+                                <img src="{{product.image.url}}"
+                                    data-zoom-image="images/demos/demo16/product/product-1-800x900.jpg"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{product.image.url}}"
+                                    data-zoom-image="images/demos/demo16/product/product-2-800x900.jpg"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{product.image.url}}"
+                                    data-zoom-image="images/demos/demo16/product/product-3-800x900.jpg"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{product.image.url}}"
+                                    data-zoom-image="images/demos/demo16/product/product-4-800x900.jpg"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{product.image.url}}"
+                                    data-zoom-image="images/demos/demo16/product/product-5-800x900.jpg"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{product.image.url}}"
+                                    data-zoom-image="images/demos/demo16/product/product-6-800x900.jpg"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900">
+                            </figure>
+                        </div>
+                        <div class="product-thumbs-wrap">
+                            <div class="product-thumbs">
+                                <div class="product-thumb active">
+                                    <img src="{{product.image.url}}" alt="product thumbnail" width="137" height="154">
+                                </div>
+                                <div class="product-thumb">
+                                    <img src="{{product.image.url}}" alt="product thumbnail" width="137" height="154">
+                                </div>
+                                <div class="product-thumb">
+                                    <img src="{{product.image.url}}" alt="product thumbnail" width="137" height="154">
+                                </div>
+                                <div class="product-thumb">
+                                    <img src="{{product.image.url}}" alt="product thumbnail" width="137" height="154">
+                                </div>
+                                <div class="product-thumb">
+                                    <img src="{{product.image.url}}" alt="product thumbnail" width="137" height="154">
+                                </div>
+                                <div class="product-thumb">
+                                    <img src="{{product.image.url}}" alt="product thumbnail" width="137" height="154">
+                                </div>
+                            </div>
+                            <button class="thumb-up disabled"><i class="fas fa-chevron-left"></i></button>
+                            <button class="thumb-down disabled"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-details">
+                        <div class="product-navigation pt-0">
+                            <ul class="breadcrumb breadcrumb-lg">
+                                <li><a href="{% url 'home:home' %}"><i class="d-icon-home"></i></a></li>
+                                <li><a href="#" class="active">Products</a></li>
+                                <li>Detail</li>
+                            </ul>
 
-{% block content %}
-<!-- <div class="container text-center">
-    <div class="card bg-dark" style="background: linear-gradient(0.25turn,#78c0e2 ,45%,#ec92db);">
-        <div class="row text-white">
-            <div class="container col-6 p-4">
-                <h2 class="p-4 col-lg-6 " style="margin-bottom: 0px; display: inline; padding-bottom: 0px !important;">
-                    NAME : {{product.name}}</h2>
-                <h3 class="p-4 col-lg-12">Price : {{product.price}}</h3>
-                <h3 class="p-4 col-lg-12">Rate : {{product.rate}}</h3>
-                <h3 class="p-4 col-lg-12">Count_buy : {{product.count_buying}}</h3>
-                <form action="{% url 'order:addcart' product.id %}" method="post">
-                    {% csrf_token %}
-                    {{ form }}
-                    <input type="submit" value="add to cart">
-                </form>
-            </div>
-            <div class="col-6 mt-5">
-                <img src="{{product.image.url}}" class="col-6 p-3 mb-3" style="border-radius: 10%; height: 400px;">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <h1>
-        comment :
-        <br>
-        {% for message in comment %}
-            {{message.comment }}
-            {{message.product_id}}
-            <br>
-        {% endfor %}
-    </h1>
-</div> -->
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-12 col-lg-4">
-            <div class="card mb-4">
-                <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="height:200px;">
-                <div class="card-body">
-                    <h3 class="card-text">{{product.price}} Toman</h3>
-                    <form action="{% url 'order:addcart' product.id %}" method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <input type="submit" class="col-12 col-lg-12 add_to" value="add to cart">
-                    </form>
+                            <!-- <ul class="product-nav">
+                                <li class="product-nav-prev">
+                                    <a href="#">
+                                        <i class="d-icon-arrow-left"></i> Prev
+                                        <span class="product-nav-popup">
+                                            <img src="images/product/product-thumb-prev.jpg"
+                                                alt="product thumbnail" width="110" height="123">
+                                            <span class="product-name">Sed egtas Dnte Comfort</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="product-nav-next">
+                                    <a href="#">
+                                        Next <i class="d-icon-arrow-right"></i>
+                                        <span class="product-nav-popup">
+                                            <img src="images/product/product-thumb-next.jpg"
+                                                alt="product thumbnail" width="110" height="123">
+                                            <span class="product-name">Sed egtas Dnte Comfort</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul> -->
+                        </div>
+
+                        <h1 class="product-name">{{product.name}}</h1>
+                        <div class="product-meta">
+                            SKU: <span class="product-sku">12345670</span>
+                            BRAND: <span class="product-brand">The Northland</span>
+                        </div>
+                        <div class="product-price">{{product.price}}</div>
+                        <div class="ratings-container">
+                            <div class="ratings-fulling">
+                                <p>{{ product.get_star_representation|safe }}</p>
+                            </div>
+                            <p href="#product-tab-reviews" class="rating-reviewing">( {{product.get_count_comment}}
+                                reviews )</p>
+                        </div>
+                        <p class="product-short-desc">Sed egestas, ante et vulputate volutpat, eros pede semper
+                            est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus
+                            adipiscing. Sed lectus te et vulputate aucibus adipiscing. Sed lectus. us
+                            adipiscing. Sed lectus. </p>
+                        <!-- <div class="product-form product-color">
+                            <label>Color:</label>
+                            <div class="product-variations">
+                                <a class="color" data-src="images/demos/demo7/products/big1.jpg" href="#"
+                                    style="background-color: #d99e76"></a>
+                                <a class="color" data-src="images/demos/demo7/products/2.jpg" href="#"
+                                    style="background-color: #267497"></a>
+                                <a class="color" data-src="images/demos/demo7/products/3.jpg" href="#"
+                                    style="background-color: #9a999d"></a>
+                                <a class="color" data-src="images/demos/demo7/products/4.jpg" href="#"
+                                    style="background-color: #2b2b2b"></a>
+                            </div>
+                        </div>
+                        <div class="product-form product-size">
+                            <label>Size:</label>
+                            <div class="product-form-group">
+                                <div class="product-variations">
+                                    <a class="size" href="#">S</a>
+                                    <a class="size" href="#">M</a>
+                                    <a class="size" href="#">L</a>
+                                    <a class="size" href="#">XL</a>
+                                    <a class="size" href="#">2XL</a>
+                                </div>
+
+                                <a href="#" class="product-variation-clean">Clean All</a>
+                            </div>
+                        </div>
+                        <div class="product-variation-price">
+                            <span>$239.00</span>
+                        </div> -->
+
+                        <hr class="product-divider">
+                        <form action="{% url 'order:addcart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="product-form product-qty">
+                                <div class="row product-form-group">
+                                    <div class="col-6 col-lg-6 input-group">
+                                        {{form}}
+                                    </div>
+                                    <button type="submit" class="col-6 col-lg-6 btn-product btn-cart"><i
+                                            class="d-icon-bag"></i> Add
+                                        ToCart</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr class="product-divider mb-3">
+
+                        <div class="product-footer">
+                            <div class="social-links mr-4">
+                                <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
+                                <a href="#" class="social-link social-twitter fab fa-twitter"></a>
+                                <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                            </div>
+                            <span class="divider d-lg-show"></span>
+                            <div class="product-action">
+                                <a type="button" class="add-to-wishlist btn-product btn-wishlist mr-6"
+                                    data-product-id="{{product.id}}"><i class="d-icon-heart"></i>Add to
+                                    wishlist</a>
+                                <span class="divider d-lg-show"></span>
+                                <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Compare</a>
+                            </div>
+                        </div>
+
+                        <div class="accordion accordion-simple mb-4">
+                            <div class="card border-no card-description">
+                                <div class="card-header">
+                                    <a href="#collapse1-1" class="collapse">Description</a>
+                                </div>
+                                <div id="collapse1-1" class="card-body expanded">
+                                    <div class="row mt-5">
+                                        <div class="mb-4">
+                                            <h5 class="description-title mb-4 font-weight-semi-bold ls-m">
+                                                Features</h5>
+                                            <p class="mb-2">
+                                                Praesent id enim sit amet.Tdio vulputate eleifend in in tortor.
+                                                ellus massa. siti iMassa ristique sit amet condim vel, facilisis
+                                                quimequistiqutiqu amet condim Dilisis Facilisis quis sapien.
+                                                Praesent id
+                                                enim sit amet.
+                                            </p>
+                                            <ul class="mb-8">
+                                                <li>Praesent id enim sit amet.Tdio vulputate</li>
+                                                <li>Eleifend in in tortor. ellus massa.Dristique sitii</li>
+                                                <li>Massa ristique sit amet condim vel</li>
+                                                <li>Dilisis Facilisis quis sapien. Praesent id enim sit amet
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-reviews">
+                                <div class="card-header">
+                                    <a href="#collapse1-4" class="expand">Reviews ({{product.get_count_comment}})</a>
+                                </div>
+                                <div class="card-body collapsed" id="collapse1-4">
+                                    <div class="row">
+                                        <div class="col-12 mb-6">
+                                            <div class="avg-rating-container">
+                                                <mark>5.0</mark>
+                                                <div class="avg-rating">
+                                                    <span class="avg-rating-title">Average Rating</span>
+                                                    <div class="ratings-container mb-0">
+                                                        <div class="ratings-fulling">
+                                                            <p>{{ product.get_star_representation|safe }}</p>
+                                                        </div>
+                                                        <p href="#product-tab-reviews" class="rating-reviewing">( 6
+                                                            reviews )</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ratings-list mb-2">
+                                                <div class="ratings-item">
+                                                    <div class="ratings-container mb-0">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width:100%"></span>
+                                                            <span class="tooltiptext tooltip-top"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rating-percent">
+                                                        <span style="width:100%;"></span>
+                                                    </div>
+                                                    <div class="progress-value">100%</div>
+                                                </div>
+                                                <div class="ratings-item">
+                                                    <div class="ratings-container mb-0">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width:80%"></span>
+                                                            <span class="tooltiptext tooltip-top">4.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rating-percent">
+                                                        <span style="width:0%;"></span>
+                                                    </div>
+                                                    <div class="progress-value">0%</div>
+                                                </div>
+                                                <div class="ratings-item">
+                                                    <div class="ratings-container mb-0">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width:60%"></span>
+                                                            <span class="tooltiptext tooltip-top">4.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rating-percent">
+                                                        <span style="width:0%;"></span>
+                                                    </div>
+                                                    <div class="progress-value">0%</div>
+                                                </div>
+                                                <div class="ratings-item">
+                                                    <div class="ratings-container mb-0">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width:40%"></span>
+                                                            <span class="tooltiptext tooltip-top">4.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rating-percent">
+                                                        <span style="width:0%;"></span>
+                                                    </div>
+                                                    <div class="progress-value">0%</div>
+                                                </div>
+                                                <div class="ratings-item">
+                                                    <div class="ratings-container mb-0">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width:20%"></span>
+                                                            <span class="tooltiptext tooltip-top">4.00</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rating-percent">
+                                                        <span style="width:0%;"></span>
+                                                    </div>
+                                                    <div class="progress-value">0%</div>
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-dark btn-rounded submit-review-toggle" href="#">Submit
+                                                Review</a>
+                                        </div>
+                                        <div class="col-12 comments pt-2 pb-10 border-no">
+                                            <nav class="toolbox">
+                                                <div class="toolbox-left">
+                                                    <div class="toolbox-item">
+                                                        <a href="#" class="btn btn-outline btn-rounded">All
+                                                            Reviews</a>
+                                                    </div>
+                                                    <div class="toolbox-item">
+                                                        <a href="#" class="btn btn-outline btn-rounded">With
+                                                            Images</a>
+                                                    </div>
+                                                    <div class="toolbox-item">
+                                                        <a href="#" class="btn btn-outline btn-rounded">With
+                                                            Videos</a>
+                                                    </div>
+                                                </div>
+                                                <div class="toolbox-right">
+                                                    <div class="toolbox-item toolbox-sort select-box text-dark">
+                                                        <label>Sort By :</label>
+                                                        <select name="orderby" class="form-control">
+                                                            <option value="">Default Order</option>
+                                                            <option value="newest" selected="selected">Newest
+                                                                Reviews
+                                                            </option>
+                                                            <option value="oldest">Oldest Reviews</option>
+                                                            <option value="high_rate">Highest Rating</option>
+                                                            <option value="low_rate">Lowest Rating</option>
+                                                            <option value="most_likely">Most Likely</option>
+                                                            <option value="most_unlikely">Most Unlikely</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </nav>
+                                            <ul class="comments-list">
+                                                {% for user in comment %}
+                                                <li>
+                                                    <div class="comment">
+                                                        <figure class="comment-media">
+                                                            <a href="#">
+                                                                {% if user.profile_id.image.url %}
+                                                                <img src="{{ user.profile_id.image.url }}" alt="avatar">
+                                                                {% else %}
+                                                                <img src="{% static 'images/default.png' %}"
+                                                                    alt="avatar">
+                                                                {% endif %}
+                                                            </a>
+                                                        </figure>
+                                                        <div class="comment-body">
+                                                            <div class="comment-rating ratings-container">
+                                                                <div class="ratings-full">
+                                                                    <span class="ratings" style="width:100%"></span>
+                                                                    <span class="tooltiptext tooltip-top"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="comment-user">
+                                                                <span class="comment-date">by <span
+                                                                        class="font-weight-semi-bold text-uppercase text-dark">{{user.profile_id.lastname}}</span>
+                                                                    on
+                                                                    <span
+                                                                        class="font-weight-semi-bold text-dark">{{user.created_time}}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="comment-content mb-5">
+                                                                <p>{{user.comment}}</p>
+                                                            </div>
+                                                            <!-- <div class="file-input-wrappers">
+                                                                <img class="btn-play btn-img pwsp"
+                                                                    src="images/products/product1.jpg"
+                                                                    width="280" height="315" alt="product" />
+
+
+                                                                <img class="btn-play btn-img pwsp"
+                                                                    src="images/products/product3.jpg"
+                                                                    width="280" height="315" alt="product" />
+
+                                                                <a class="btn-play btn-iframe"
+                                                                    style="background-image: url(images/product/product.jpg);background-size: cover;"
+                                                                    href="video/memory-of-a-woman.mp4">
+                                                                    <i class="d-icon-play-solid"></i>
+                                                                </a>
+                                                            </div> -->
+                                                            <div class="feeling mt-5">
+                                                                <button
+                                                                    class="btn btn-link btn-icon-left btn-slide-up btn-infinite like mr-2">
+                                                                    <i class="fa fa-thumbs-up"></i>
+                                                                    Like (<span class="count">0</span>)
+                                                                </button>
+                                                                <button
+                                                                    class="btn btn-link btn-icon-left btn-slide-down btn-infinite unlike">
+                                                                    <i class="fa fa-thumbs-down"></i>
+                                                                    Unlike (<span class="count">0</span>)
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                            <nav class="toolbox toolbox-pagination justify-content-end">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link page-link-prev" href="#"
+                                                            aria-label="Previous" tabindex="-1" aria-disabled="true">
+                                                            <i class="d-icon-arrow-left"></i>Prev
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item active" aria-current="page"><a
+                                                            class="page-link" href="#">1</a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a>
+                                                    </li>
+                                                    <li class="page-item page-item-dots"><a class="page-link"
+                                                            href="#">6</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link page-link-next" href="#" aria-label="Next">
+                                                            Next<i class="d-icon-arrow-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                    <!-- End Comments -->
+                                    <div class="review-form-section">
+                                        <div class="review-overlay"></div>
+                                        <div class="review-form-wrapper">
+                                            <div class="title-wrapper text-left">
+                                                <h3 class="title title-simple text-left text-normal">Add a
+                                                    Review</h3>
+                                                <p>Your email address will not be published. Required fields are
+                                                    marked *
+                                                </p>
+                                            </div>
+                                            <div class="rating-form">
+                                                <label for="rating" class="text-dark">Your rating * </label>
+                                                <span class="rating-stars selected">
+                                                    <a class="star-1" href="#">1</a>
+                                                    <a class="star-2" href="#">2</a>
+                                                    <a class="star-3" href="#">3</a>
+                                                    <a class="star-4 active" href="#">4</a>
+                                                    <a class="star-5" href="#">5</a>
+                                                </span>
+
+                                                <select name="rating" id="rating" required="" style="display: none;">
+                                                    <option value="">Rate…</option>
+                                                    <option value="5">Perfect</option>
+                                                    <option value="4">Good</option>
+                                                    <option value="3">Average</option>
+                                                    <option value="2">Not that bad</option>
+                                                    <option value="1">Very poor</option>
+                                                </select>
+                                            </div>
+                                            <form action="#">
+                                                <textarea id="reply-message" cols="30" rows="6"
+                                                    class="form-control mb-4" placeholder="Comment *"
+                                                    required></textarea>
+
+                                                <div class="review-medias">
+                                                    <div class="file-input form-control image-input"
+                                                        style="background-image: url(images/product/placeholder.png);">
+                                                        <div class="file-input-wrapper">
+                                                        </div>
+                                                        <label class="btn-action btn-upload" title="Upload Media">
+                                                            <input type="file" accept=".png, .jpg, .jpeg"
+                                                                name="riode_comment_medias_image_1">
+                                                        </label>
+                                                        <label class="btn-action btn-remove" title="Remove Media">
+                                                        </label>
+                                                    </div>
+                                                    <div class="file-input form-control image-input"
+                                                        style="background-image: url(images/product/placeholder.png);">
+                                                        <div class="file-input-wrapper">
+                                                        </div>
+                                                        <label class=" btn-action btn-upload" title="Upload Media">
+                                                            <input type="file" accept=".png, .jpg, .jpeg"
+                                                                name="riode_comment_medias_image_2">
+                                                        </label>
+                                                        <label class="btn-action btn-remove" title="Remove Media">
+                                                        </label>
+                                                    </div>
+                                                    <div class="file-input form-control video-input"
+                                                        style="background-image: url(images/product/placeholder.png);">
+                                                        <video class="file-input-wrapper" controls=""></video>
+                                                        <label class="btn-action btn-upload" title="Upload Media">
+                                                            <input type="file" accept=".avi, .mp4"
+                                                                name="riode_comment_medias_video_1">
+                                                        </label>
+                                                        <label class="btn-action btn-remove" title="Remove Media">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <p>Upload images and videos. Maximum count: 3, size: 2MB</p>
+                                                <button type="submit" class="btn btn-primary btn-rounded">Submit<i
+                                                        class="d-icon-arrow-right"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End Reply -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-8">
-            <h4>Name : {{product.name}}</h4>
-            <h4>Rate : {{product.rate}}</h4>
-            <h4>Count_buy : {{product.count_buying}}</h4>
+
+            <section class="mt-3 pb-lg-10">
+                <h2 class="title text-center d-block">Related Products</h2>
+                <hr>
+                <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
+                    'items': 5,
+                    'nav': false,
+                    'loop': false,
+                    'dots': true,
+                    'margin': 20,
+                    'responsive': {
+                        '0': {
+                            'items': 2
+                        },
+                        '768': {
+                            'items': 3
+                        },
+                        '992': {
+                            'items': 4,
+                            'dots': false,
+                            'nav': true
+                        }
+                    }
+                }">
+                    {% for item in related %}
+                    <div class="product product-classic">
+                        <figure class="product-media">
+                            <a href="{{item.get_absolute_url}}">
+                                <img src="{{item.image.url}}" alt="product" width="280" height="315">
+                            </a>
+                            <div class="product-label-group">
+                                <label class="product-label label-new">new</label>
+                            </div>
+                        </figure>
+                        <div class="product-details">
+                            <div class="product-cat">
+                                <a href="{{item.get_absolute_url}}">{{item.category}}</a>
+                            </div>
+                            <h3 class="product-name">
+                                <a href="{{item.get_absolute_url}}">{{item.name}}</a>
+                            </h3>
+                            <div class="product-price">
+                                <span class="price">{{item.price}}</span>
+                            </div>
+                            <div class="ratings-container">
+                                <div class="ratings-full">
+                                    <p>{{ item.get_star_representation|safe }}</p>
+                                </div>
+                                <p href="#product-tab-reviews" class="rating-reviewing">( {{item.get_count_comment}}
+                                    reviews )</p>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart" data-toggle="modal" data-target="#addCartModal"
+                                    title="Add to cart"><i class="d-icon-bag"></i>
+                                    <span>add to cart</span>
+                                </a>
+                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
+                                        class="d-icon-heart"></i></a>
+                                <a href="#" class="btn-product-icon btn-quickview" title="Quick View"><i
+                                        class="d-icon-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
         </div>
     </div>
-    {% if comment %}
-    <div class="row">
-        <h1>Comment : </h1>
-        {% for message in comment %}
-            <h4>{{message.comment}}</h4>
-        {% endfor %}
-    </div>
-    {% endif %}
-</div>
+
+</main>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function () {
+        $('.add-to-wishlist').click(function () {
+            var productId = $(this).data('product-id');
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "product:addwishlist" %}',
+                data: {
+                    'product_id': productId,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (response) {
+                    alert('Product added to wishlist!');
+                },
+                error: function (xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

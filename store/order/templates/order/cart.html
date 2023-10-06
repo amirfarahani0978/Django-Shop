@@ -1,104 +1,163 @@
-{% extends 'base.html' %}
-{% block content %}
-<!-- <table class="table table-dark table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Total Price</th>
-            <th scope="col">Remove</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{item.product}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.total_price}}</td>
-            <td><a href="{% url 'order:removecart' item.product.id %}">Remove</a></td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td>Total price</td>
-            <td colspan="3"></td>
-            <td>{{ cart.get_total_price }}</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table> -->
-<!-- {% if request.user.is_authenticated %}
-<a href="{% url 'order:check' %}" class="btn btn-primary">Order</a>
-{% else %}
-<a href="{% url 'register:login' %}" class="btn btn-primary">Login</a>
-{% endif %} -->
-
-
-
-<section class="h-100" style="background-color: #eee;">
-    <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
-
-                <!-- <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-                    <div>
-                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                                    class="fas fa-angle-down mt-1"></i></a></p>
+{% extends 'base2.html' %}
+{% load static %}
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/style.min.css'%}">
+{% endblock %}
+{% block main %}
+<main class="main cart">
+    <div class="page-content pt-7 pb-10">
+        <div class="step-by pr-4 pl-4">
+            <h3 class="title title-simple title-step active"><a href="{% url 'order:cart' %}">1. Shopping Cart</a></h3>
+            <!-- <h3 class="title title-simple title-step"><a href="{% url 'order:checkout' %}">2. Checkout</a></h3>
+            <h3 class="title title-simple title-step"><a href="order.html">3. Order Complete</a></h3> -->
+        </div>
+        <div class="container mt-7 mb-2">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 pr-lg-4">
+                    {% if cart %}
+                    <table class="shop-table cart-table">
+                        <thead>
+                            <tr>
+                                <th><span>Product</span></th>
+                                <th><span>Name</span></th>
+                                <th><span>Price</span></th>
+                                <th><span>quantity</span></th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart %}
+                            <tr>
+                                <td class="product-thumbnail">
+                                    <figure>
+                                        <a href="product-simple.html">
+                                            <img src="{{ item.product.image.url }}" width="50" height="50"
+                                                alt="product">
+                                        </a>
+                                    </figure>
+                                </td>
+                                <td class="product-name">
+                                    <div class="product-name-section">
+                                        <a href="product-simple.html">{{item.product.name}}</a>
+                                    </div>
+                                </td>
+                                <td class="product-price">
+                                    <span class="amount">{{item.product.price}}</span>
+                                </td>
+                                <td class="product-quantity">
+                                    <div class="product-quantity-section">
+                                        <a href="product-simple.html">{{item.quantity}}</a>
+                                    </div>
+                                </td>
+                                <td class="product-subtotal">
+                                    <span class="amount">{{item.total_price}}</span>
+                                </td>
+                                <td class="product-close">
+                                    <a href="{% url 'order:removecart' item.product.id %}" class="product-remove" title="Remove this product">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <h3> This Cart is empty</h3>
+                    {% endif %}
+                    <div class="cart-actions mb-6 pt-4">
+                        <a href="{% url 'home:home' %}" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"><i
+                                class="d-icon-arrow-left"></i>Continue Shopping</a>
+                        <!-- <button type="submit" class="btn btn-outline btn-dark btn-md btn-rounded btn-disabled">Update
+                            Cart</button> -->
                     </div>
-                </div> -->
-                {% for item in cart %}
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">{{item.product}}</p>
-                                <p><span class="text-muted">Quantity: </span>{{item.quantity}}<span
-                                        class="text-muted">Price: </span>{{item.price}}
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">{{item.total_price}} Toman</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="{% url 'order:removecart' item.product.id %}" class="text-danger"><i
-                                        class="fas fa-trash fa-lg"></i></a>
-                            </div>
+                </div>
+                <aside class="col-lg-4 sticky-sidebar-wrapper">
+                    <div class="sticky-sidebar" data-sticky-options="{'bottom': 20}">
+                        <div class="summary mb-4">
+                            <h3 class="summary-title text-left">Cart Totals</h3>
+                            <table class="shipping">
+                                <tr class="summary-subtotal">
+                                    <td>
+                                        <h4 class="summary-subtitle">Subtotal</h4>
+                                    </td>
+                                    <td>
+                                        <p class="summary-subtotal-price">{{cart.get_total_price}}</p>
+                                    </td>
+                                </tr>
+                                <!-- <tr class="sumnary-shipping shipping-row-last">
+                                    <td colspan="2">
+                                        <h4 class="summary-subtitle">Calculate Shipping</h4>
+                                        <ul>
+                                            <li>
+                                                <div class="custom-radio">
+                                                    <input type="radio" id="flat_rate" name="shipping"
+                                                        class="custom-control-input" checked>
+                                                    <label class="custom-control-label" for="flat_rate">Flat
+                                                        rate</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="custom-radio">
+                                                    <input type="radio" id="free-shipping" name="shipping"
+                                                        class="custom-control-input">
+                                                    <label class="custom-control-label" for="free-shipping">Free
+                                                        shipping</label>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-radio">
+                                                    <input type="radio" id="local_pickup" name="shipping"
+                                                        class="custom-control-input">
+                                                    <label class="custom-control-label" for="local_pickup">Local
+                                                        pickup</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr> -->
+                            </table>
+                            <!-- <div class="shipping-address">
+                                <label>Shipping to <strong>CA.</strong></label>
+                                <div class="select-box">
+                                    <select name="country" class="form-control">
+                                        <option value="us" selected>United States (US)</option>
+                                        <option value="uk"> United Kingdom</option>
+                                        <option value="fr">France</option>
+                                        <option value="aus">Austria</option>
+                                    </select>
+                                </div>
+                                <div class="select-box">
+                                    <select name="country" class="form-control">
+                                        <option value="us" selected>California</option>
+                                        <option value="uk">Alaska</option>
+                                        <option value="fr">Delaware</option>
+                                        <option value="aus">Hawaii</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" name="code" placeholder="Town / City" />
+                                <input type="text" class="form-control" name="code" placeholder="ZIP" />
+                                <a href="#" class="btn btn-md btn-dark btn-rounded btn-outline">Update
+                                    totals</a>
+                            </div> -->
+                            <table class="total">
+                                <tr class="summary-subtotal">
+                                    <td>
+                                        <h4 class="summary-subtitle">Total</h4>
+                                    </td>
+                                    <td>
+                                        <p class="summary-total-price ls-s">{{cart.get_total_price}}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <a href="{% url 'order:checkout' %}" class="btn btn-dark btn-rounded btn-checkout">Proceed to
+                                checkout</a>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
-                <!-- <div class="card mb-4">
-                    <div class="card-body p-4 d-flex flex-row">
-                        <div class="form-outline flex-fill">
-                            <input type="text" id="form1" class="form-control form-control-lg" />
-                            <label class="form-label" for="form1">Discound code</label>
-                        </div>
-                        <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
-                    </div>
-                </div> -->
-                {% if request.user.is_authenticated %}
-                <div class="card">
-                    <div class="card-body">
-                        <a href="{% url 'order:check' %}" class="btn btn-warning btn-block btn-lg order_btn">Proceed to
-                            Pay</a>
-                    </div>
-                </div>
-                {% else %}
-                <div class="card-body">
-                    <a href="{% url 'register:login' %}" class="btn btn-primary btn-block btn-lg order_btn">Login
-                    </a>
-                </div>
-                {% endif %}
+                </aside>
             </div>
         </div>
     </div>
-</section>
+
+</main>
 {% endblock %}

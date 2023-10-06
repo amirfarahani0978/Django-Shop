@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <title>Mobin Shop - Welcome to my store</title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Riode - eCommerce Template" />
+    <meta name="author" content="D-THEMES" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'base/images/icons/logo.jpg' %}" />
+    <!-- Preload Font -->
+    <link rel="preload" href="{% static 'base/fonts/riode.ttf?5gap68' %}" as="font" type="font/woff2"
+        crossorigin="anonymous" />
+    <link rel="preload" href="{% static 'base/vendor/fontawesome-free/webfonts/fa-solid-900.woff2' %}" as="font"
+        type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="{% static 'base/vendor/fontawesome-free/webfonts/fa-brands-400.woff2' %}" as="font"
+        type="font/woff2" crossorigin="anonymous" />
+    {% block head_link %}{% endblock %}
+    <script>
+        WebFontConfig = {
+            google: { families: ["Poppins:400,500,600,700,800"] },
+        };
+        (function (d) {
+            var wf = d.createElement("script"),
+                s = d.scripts[0];
+            wf.src = "js/webfont.js";
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+        
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/fontawesome-free/css/all.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/animate/animate.min.css' %}" />
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/magnific-popup/magnific-popup.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/owl-carousel/owl.carousel.min.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/sticky-icon/stickyicon.css' %}" />
+    <!-- Main CSS File -->
+    <!-- change the name of css in here -->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/main.css'%}" />
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/demo7.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'base/css/custom.css' %}">
+</head>
+
+<body class="home">
+    <div class="page-wrapper">
+        <h1 class="d-none">Mobin - Responsive eCommerce HTML Template</h1>
+        {% include 'inc/header.html' %}
+        <main class="main account">{%block main %}{% endblock %}</main>
+        {% include 'inc/footer.html' %}
+    </div>
+
+    <!-- Sticky Footer -->
+    {%include 'inc/sticky-footer.html' %}
+    <!-- Scroll Top -->
+    <a id="scroll-top" href="#top" title="Top" role="button" class="scroll-top"><i class="d-icon-arrow-up"></i></a>
+
+    <!-- MobileMenu -->
+    {% include 'inc/mobile-menu.html' %}
+    <!-- Plugins JS File -->
+    <script src="{% static 'base/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'base/vendor/elevatezoom/jquery.elevatezoom.min.js' %}"></script>
+    <script src="{% static 'base/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+    <script src="{% static 'base/vendor/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'base/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'base/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+
+    {% block script %}{% endblock %}
+    <!-- Main JS File -->
+    <script src="{% static 'base/js/main.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<div class="sticky-footer sticky-content fix-bottom">
+    <a href="{% url 'home:home'%}" class="sticky-link">
+        <i class="d-icon-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="demo16-shop.html" class="sticky-link">
+        <i class="d-icon-volume"></i>
+        <span>Categories</span>
+    </a>
+    <a href="wishlist.html" class="sticky-link">
+        <i class="d-icon-heart"></i>
+        <span>Wishlist</span>
+    </a>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'register:profile' request.user.id %}" class="sticky-link">
+        <i class="d-icon-user"></i>
+        <span>Profile</span>
+    </a>
+    {% else %}
+    <a href="{% url 'register:login' %}" class="sticky-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+            class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+            <path fill-rule="evenodd"
+                d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+        </svg>
+        <span>Login</span>
+    </a>
+    {% endif %}
+    <div class="header-search hs-toggle dir-up">
+        <a href="#" class="search-toggle sticky-link">
+            <i class="d-icon-search"></i>
+            <span>Search</span>
+        </a>
+        <form action="#" class="input-wrapper">
+            <input type="text" class="form-control" name="search" autocomplete="off"
+                placeholder="Search your keyword..." required />
+            <button class="btn btn-search" type="submit" title="submit-button">
+                <i class="d-icon-search"></i>
+            </button>
+        </form>
+    </div>
+</div>
