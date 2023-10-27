@@ -13,6 +13,8 @@ import requests
 import json
 from django.http import JsonResponse
 from .cart import Cart
+from rest_framework.views import APIView
+from rest_framework.response import Response
 # from django.utils.decorators import method_decorator
 # from django.views.decorators.csrf import csrf_exempt
 
@@ -161,3 +163,10 @@ class OrderPayView(LoginRequiredMixin, View):
             return {'status': False, 'code': 'timeout'}
         except requests.exceptions.ConnectionError:
             return {'status': False, 'code': 'connection error'}
+
+
+
+# class CartData(APIView):
+#     def get(self , request):
+#         cart = Cart(request)
+#         return Response(cart)        
