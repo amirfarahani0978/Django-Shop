@@ -60,6 +60,7 @@ class RemoveCardView(View):
         cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
         cart.remove(product)
+        messages.info(request , 'This item is deleted' , 'info')
         return redirect('order:cart')
 
 
